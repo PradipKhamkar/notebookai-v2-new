@@ -3,6 +3,6 @@ import authController from "../controller/auth.controller.ts";
 
 const route = Router();
 
-route.post('/google-login', authController.googleLogin);
+route.post('/google/login', authController.googleLogin);
 
 export default route;

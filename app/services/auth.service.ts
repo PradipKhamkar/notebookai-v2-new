@@ -1,6 +1,8 @@
 import axios from "axios";
 import apiPathConstant from "../constants/apiPath.constant.ts";
 import envConfig from "../config/env.ts";
+import { UserModel } from "../models/user.model.ts";
+import { generateAccessToken, generateRefreshToken } from "../utils/token.ts";
 
 const googleLogin = async (authCode: string) => {
         try {
@@ -20,30 +22,21 @@ const googleLogin = async (authCode: string) => {
                 if (!access_token) throw new Error('Failed to fetch access token');
                 const userInfo = await axios.get(apiPathConstant.GOOGLE_APIS.USERINFO.replace('{{access_token}}', access_token));
                 const { name, email, picture } = userInfo.data;
-                // let user = await UserModel.findOne({ email: email });
-                // if (!user) {
-                //         user = await UserModel.create({ avatar: picture, email: email, name: name, credits: 30 });
-                //         await TransactionModel.create({
-                //                 createdBy: user._id,
-                //                 type: "BONUS",
-                //                 amount: 30,
-                //                 description: "Sign up bonus"
-                //         });
-                // }
+                let user = await UserModel.findOne({ email: email });
+                if (!user) user = await UserModel.create({ avatar: picture, email: email, name: name });
 
-                // const accessToken = generateAccessToken({ userId: user._id });
-                // const refreshToken = generateRefreshToken({ userId: user._id });
+                const accessToken = generateAccessToken({ userId: user._id });
+                const refreshToken = generateRefreshToken({ userId: user._id });
 
-                // return {
-                //         accessToken,
-                //         refreshToken,
-                //         user: {
-                //                 name: user.name,
-                //                 email: user.email,
-                //                 avatar: user.avatar,
-                //                 credits: user.credits,
-                //         },
-                // }
+                return {
+                        accessToken,
+                        refreshToken,
+                        user: {
+                                name: user.name,
+                                email: user.email,
+                                avatar: user.avatar,
+                        },
+                }
         } catch (error) {
                 console.log("error", error);
                 throw error
