@@ -12,4 +12,14 @@ const googleLogin = async (req: Request, res: Response) => {
         }
 };
 
-export default { googleLogin }
+const getLoggedUser = async (req: Request, res: Response) => {
+        try {
+                const results = await authService.getLoggedUser(req.userId as string);
+                apiResponse.success(res, results, "Logged User", 200)
+        } catch (error: any) {
+                apiResponse.error(res, error?.message || "Something went wrong")
+        }
+};
+
+
+export default { googleLogin, getLoggedUser }

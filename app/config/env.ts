@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const envConfig = {
+        PORT: process.env.PORT || 8080,
         GOOGLE: {
                 CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
                 CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || '',
@@ -16,7 +17,10 @@ const envConfig = {
                 KEY: process.env.REFRESH_TOKEN_SECERT || '',
                 EXPAIRY: process.env.REFRESH_TOKEN_EXPAIRY || ''
         },
-
+        DATABASE: {
+                USERNAME: process.env.MONGODB_USERNAME || '',
+                PASSWORD: process.env.MONGODB_PASSWORD || ''
+        }
 }
 
 export default envConfig;

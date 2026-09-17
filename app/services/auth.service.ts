@@ -38,9 +38,20 @@ const googleLogin = async (authCode: string) => {
                         },
                 }
         } catch (error) {
-                console.log("error", error);
                 throw error
         }
 };
-
-export default { googleLogin }
+const getLoggedUser = async (userId: string) => {
+        try {
+                const user = await UserModel.findById(userId);
+                if (!user) throw new Error('User not found');
+                return {
+                        name: user.name,
+                        email: user.email,
+                        avatar: user.avatar,
+                }
+        } catch (error) {
+                throw error
+        }
+}
+export default { googleLogin, getLoggedUser }

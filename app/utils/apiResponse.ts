@@ -4,7 +4,7 @@ const success = (res: Response, output: any = {}, msg: string = 'Success', statu
         return res.status(status).json({
                 success: true,
                 message: msg,
-                data: output
+                results: output
         })
 };
 
