@@ -10,6 +10,7 @@ interface Source extends BaseDocument {
         };
         title: string;
         createdBy: any;
+        summary: string
 };
 
 interface NewSourcePayload {

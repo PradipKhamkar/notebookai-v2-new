@@ -26,7 +26,8 @@ const add = async (userId: string, data: NewSourcePayload) => {
                                 url: data.url
                         },
                         type: data.type,
-                        createdBy: userId
+                        createdBy: userId,
+                        summary: ""
                 });
                 console.log('new source cretaed!', res)
                 return { message: "Source added successfully", res: res._id }

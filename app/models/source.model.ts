@@ -20,6 +20,11 @@ const SourceSchema = new mongoose.Schema<Source>({
                 ref: "user",
                 required: true,
         },
+        summary: {
+                type: String,
+                required: true,
+                default: ''
+        }
 }, { timestamps: true });
 
 
