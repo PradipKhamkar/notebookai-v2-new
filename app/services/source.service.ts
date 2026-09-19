@@ -1,6 +1,7 @@
 import youtubeHelper from "../helper/youtube.helper.ts";
 import { SourceModel } from "../models/source.model.ts";
 import type { NewSourcePayload } from "../types/source.type.ts";
+import contentService from "./content.service.ts";
 
 const add = async (userId: string, data: NewSourcePayload) => {
         try {
@@ -27,9 +28,9 @@ const add = async (userId: string, data: NewSourcePayload) => {
                         },
                         type: data.type,
                         createdBy: userId,
-                        summary: ""
                 });
-                console.log('new source cretaed!', res)
+                // create content
+                await contentService.create('note', res._id, 'create note from this source', userId);
                 return { message: "Source added successfully", res: res._id }
         } catch (error) {
                 console.log(error);

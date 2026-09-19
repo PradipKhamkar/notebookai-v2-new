@@ -20,6 +20,9 @@ const envConfig = {
         DATABASE: {
                 USERNAME: process.env.MONGODB_USERNAME || '',
                 PASSWORD: process.env.MONGODB_PASSWORD || ''
+        },
+        LLM: {
+                GEMINI_API_KEY: process.env.GEMINI_API_KEY || ""
         }
 }
 
