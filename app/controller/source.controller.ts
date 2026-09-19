@@ -22,5 +22,14 @@ const getUserSources = async (req: Request, res: Response) => {
                 apiResponse.error(res, error?.message || "Something went wrong")
         }
 };
-
-export default { add, getUserSources }
+const getSourceById = async (req: Request, res: Response) => {
+        try {
+                const { sourceId } = req.params;
+                // @ts-ignore
+                const results = await sourceService.sourceById(sourceId, req.userId as string)
+                apiResponse.success(res, results, results?.message, 200)
+        } catch (error: any) {
+                apiResponse.error(res, error?.message || "Something went wrong")
+        }
+}
+export default { add, getUserSources,getSourceById }

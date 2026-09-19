@@ -55,7 +55,7 @@ const getAllContentByUserId = async (userId: string, sourceId: string) => {
         try {
                 const content = await ContentModel.find({ sourceId: sourceId, createdBy: userId }).select('-createdBy');
                 return {
-                        content: content,
+                        contents: content,
                         message: "content has been fetched successfully!!"
                 };
         } catch (error) {
