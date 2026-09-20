@@ -6,5 +6,6 @@ const route = Router();
 route.post('/add', sourceController.add);
 route.get('/me', sourceController.getUserSources);
 route.get('/me/:sourceId', sourceController.getSourceById);
-   
+route.delete('/:sourceId', sourceController.deleteSource);
+
 export default route;

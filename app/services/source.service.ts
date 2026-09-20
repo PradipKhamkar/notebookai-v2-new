@@ -66,4 +66,13 @@ const sourceById = async (sourceId: string, userId: string) => {
   }
 };
 
-export default { add, getUserSources, sourceById };
+const deleteSource = async (sourceId: string, userId: string) => {
+  try {
+    const res = await SourceModel.deleteOne({ _id: sourceId, createdBy: userId });
+    if (res.deletedCount === 0) throw new Error("Source not found make sure sourceId is correct and you have access to it");
+    return { message: "Source deleted successfully" };
+  } catch (error) {
+    throw error
+  }
+}
+export default { add, getUserSources, sourceById, deleteSource };
