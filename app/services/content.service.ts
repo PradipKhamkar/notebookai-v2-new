@@ -64,6 +64,17 @@ const getAllContentByUserId = async (userId: string, sourceId: string) => {
                 throw error
         }
 };
-
-export default { create, getAllContentByUserId }
+const getContentById = async (userId: string, contentId: string) => {
+        try {
+                const content = await ContentModel.findOne({ _id: contentId, createdBy: userId }).select('-createdBy');
+                return {
+                        content: content,
+                        message: "content has been fetched successfully!!"
+                };
+        } catch (error) {
+                console.log('CONTENT FETCHED ERROR::', error)
+                throw error
+        }
+};
+export default { create, getAllContentByUserId, getContentById }
 
