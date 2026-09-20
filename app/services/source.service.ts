@@ -60,8 +60,7 @@ const sourceById = async (sourceId: string, userId: string) => {
   try {
     const source = await SourceModel.findOne({ _id: sourceId, createdBy: userId }).select("-createdBy");
     if (!source) throw new Error("Source not found make sure sourceId is correct and you have access to it");
-    const content = await contentService.getAllContentByUserId(sourceId, userId);
-    return { message: "Source fetched successfully", source, content };
+    return { message: "Source fetched successfully", source };
   } catch (error) {
     console.log(error);
   }

@@ -54,11 +54,13 @@ const create = async (type: ContentType, sourceId: string, message: string, user
 const getAllContentByUserId = async (userId: string, sourceId: string) => {
         try {
                 const content = await ContentModel.find({ sourceId: sourceId, createdBy: userId }).select('-createdBy');
+                console.log('CONTENT FETCHED 3434::', content)
                 return {
-                        contents: content,
+                        content: content,
                         message: "content has been fetched successfully!!"
                 };
         } catch (error) {
+                console.log('CONTENT FETCHED ERROR::', error)
                 throw error
         }
 };
