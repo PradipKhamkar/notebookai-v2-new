@@ -39,7 +39,8 @@ const add = async (userId: string, data: NewSourcePayload) => {
     );
     res.summary = content.data?.note;
     await res.save();
-    return { message: "Source added successfully", res: res._id };
+    const source = await SourceModel.findById(res._id).select("-createdBy")
+    return { message: "Source added successfully", source };
   } catch (error) {
     console.log(error);
   }
