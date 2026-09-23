@@ -22,5 +22,15 @@ const getContentById = async (req: Request, res: Response) => {
         }
 };
 
+const createContent = async (req: Request, res: Response) => {
+        try {
+                console.log('req.body', req.body)
+                // @ts-ignore
+                const results = await contentService.create(req.userId as string, req.body.type as string, req.body.sourceId as string, req.body.instruction as string)
+                apiResponse.success(res, results, results?.message, 201)
+        } catch (error: any) {
+                apiResponse.error(res, error?.message || "Something went wrong")
+        }
+};
 
-export default { getAllContentByUserId, getContentById }
+export default { getAllContentByUserId, getContentById, createContent }

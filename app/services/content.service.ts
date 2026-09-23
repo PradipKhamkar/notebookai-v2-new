@@ -6,12 +6,12 @@ import { SourceModel } from "../models/source.model.ts";
 import type { ContentType } from "../types/content.type.ts";
 import { generateText, Output, type ModelMessage } from 'ai';
 
-const create = async (type: ContentType, sourceId: string, message: string, userId: string) => {
+const create = async (userId: string, type: ContentType, sourceId: string, message: string) => {
         try {
                 let instrucation = '', outputSchema: any, messages: ModelMessage[] = [];
 
                 const source = await SourceModel.findById(sourceId).select('metaData type');
-                if (!source) throw new Error('Source Not Found Please Source Id!!');
+                if (!source) throw new Error('Source Not Found Please!!');
                 switch (type) {
                         case "note":
                                 instrucation = contentPrompt.createNote;
@@ -41,12 +41,14 @@ const create = async (type: ContentType, sourceId: string, message: string, user
                         type: type
                 });
 
-                console.log('CONTENT CREATED::', newContent)
+                const content = await ContentModel.findById(newContent._id).select("-createdBy");
+
                 return {
                         message: "Content has been created successfully!!",
-                        content: newContent
+                        content: content
                 }
         } catch (error) {
+                console.log('error inside crate note', error)
                 throw error
         }
 };
