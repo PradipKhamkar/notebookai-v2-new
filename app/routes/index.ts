@@ -9,6 +9,6 @@ const route = Router();
 route.use('/auth', authRoute);
 route.use('/source', authGurd, sourceRoute);
 route.use('/content', authGurd, contentRoute);
-route.use('/conversation', conversationRoute);
+route.use('/conversation', authGurd, conversationRoute);
 
 export default route;

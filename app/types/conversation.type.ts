@@ -1,4 +1,5 @@
 import type { UIMessage } from "ai"
+import type { BaseDocument } from "./model.type.ts";
 
 interface ChatRequestPayload {
         sourceId: string;
@@ -6,6 +7,12 @@ interface ChatRequestPayload {
         userId: string
 };
 
-export type { ChatRequestPayload }
+interface Conversation extends BaseDocument {
+        sourceId: string;
+        createdBy: string;
+        messages: UIMessage[];
+};
+
+export type { ChatRequestPayload, Conversation }
 
 

@@ -6,7 +6,7 @@ import { pipeUIMessageStreamToResponse, toUIMessageStream } from "ai";
 const chat = async (req: Request, res: Response) => {
         try {
                 const { messages, sourceId } = req.body;
-
+                console.log('req,bod', req.body)
                 const result = await conversationService.chat({
                         messages,
                         sourceId,
@@ -31,4 +31,15 @@ const chat = async (req: Request, res: Response) => {
         }
 };
 
-export default { chat }
+const getConversationBySourceId = async (req: Request, res: Response) => {
+        try {
+                const { sourceId } = req.params;
+                const userId = (req.userId as string) || '';
+                const conversation = await conversationService.getConversationBySourceId(userId, sourceId as string);
+                apiResponse.success(res, conversation, 'Conversation fetched successfully');
+        } catch (error: any) {
+                apiResponse.error(res, error?.message || 'Something went wrong');
+
+        }
+}
+export default { chat, getConversationBySourceId }
