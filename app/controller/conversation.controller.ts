@@ -1,0 +1,34 @@
+import type { Request, Response } from "express";
+import apiResponse from "../utils/apiResponse.ts";
+import conversationService from "../services/conversation.service.ts";
+import { pipeUIMessageStreamToResponse, toUIMessageStream } from "ai";
+
+const chat = async (req: Request, res: Response) => {
+        try {
+                const { messages, sourceId } = req.body;
+
+                const result = await conversationService.chat({
+                        messages,
+                        sourceId,
+                        userId: (req.userId as string) || ''
+                });
+
+                pipeUIMessageStreamToResponse({
+                        response: res,
+                        stream: toUIMessageStream({
+                                stream: result.stream,
+                                onError: () => 'Something went wrong.', // don't leak internals to the client
+                        }),
+                });
+
+        } catch (error: any) {
+                console.error('Error in chat controller:', error);
+                if (!res.headersSent) {
+                        apiResponse.error(res, error?.message || 'Something went wrong');
+                } else {
+                        res.end();
+                }
+        }
+};
+
+export default { chat }
