@@ -3,11 +3,12 @@ import contentSchema from "../ai/schema/content.schema.ts";
 import aiHelper from "../helper/ai.helper.ts";
 import { ContentModel } from "../models/content.model.ts";
 import { SourceModel } from "../models/source.model.ts";
-import type { ContentType } from "../types/content.type.ts";
+import type { Content, CreateContentPayload } from "../types/content.type.ts";
 import { generateText, Output, type ModelMessage } from 'ai';
 
-const create = async (userId: string, type: ContentType, sourceId: string, message: string) => {
+const create = async (userId: string, data: CreateContentPayload) => {
         try {
+                const { type, sourceId, instruction: message, language } = data;
                 let instrucation = '', outputSchema: any, messages: ModelMessage[] = [];
 
                 const source = await SourceModel.findById(sourceId).select('metaData type');
@@ -24,7 +25,7 @@ const create = async (userId: string, type: ContentType, sourceId: string, messa
                 const results: any = await generateText({
                         instructions: instrucation,
                         model: aiHelper.getModel('gemini', 'gemini-2.5-flash'),
-                        messages: [...messages, { role: "user", content: message }],
+                        messages: [...messages, { role: "user", content: `${message} must be in => ${language} language` }],
                         output: Output.object({
                                 schema: outputSchema
                         })
@@ -45,18 +46,16 @@ const create = async (userId: string, type: ContentType, sourceId: string, messa
 
                 return {
                         message: "Content has been created successfully!!",
-                        content: content
+                        content: content as Content
                 }
         } catch (error) {
                 console.log('error inside crate note', error)
                 throw error
         }
 };
-
 const getAllContentByUserId = async (userId: string, sourceId: string) => {
         try {
-                const content = await ContentModel.find({ sourceId: sourceId, createdBy: userId }).select('-createdBy');
-                console.log('CONTENT FETCHED 3434::', content)
+                const content = await ContentModel.find({ sourceId: sourceId, createdBy: userId }).select('-createdBy').sort({ createdAt: -1 });
                 return {
                         content: content,
                         message: "content has been fetched successfully!!"

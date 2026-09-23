@@ -32,11 +32,15 @@ const add = async (userId: string, data: NewSourcePayload) => {
 
     // create content
     const { content } = await contentService.create(
-      "note",
-      res._id as string,
-      "create note from this source",
       userId,
+      {
+        instruction: "create note from this source",
+        sourceId: res._id as string,
+        type: "note",
+        language: "en"
+      }
     );
+
     res.summary = content.data?.note;
     await res.save();
     const source = await SourceModel.findById(res._id).select("-createdBy")

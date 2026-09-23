@@ -12,4 +12,11 @@ interface Content extends BaseDocument {
         }
 };
 
-export type { Content, ContentType }
+interface CreateContentPayload {
+        type: ContentType;
+        sourceId: string;
+        instruction: string;
+        language: string
+}
+
+export type { Content, ContentType, CreateContentPayload }
