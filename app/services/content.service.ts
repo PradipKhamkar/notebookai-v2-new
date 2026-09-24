@@ -13,15 +13,21 @@ const create = async (userId: string, data: CreateContentPayload) => {
 
                 const source = await SourceModel.findById(sourceId).select('metaData type');
                 if (!source) throw new Error('Source Not Found Please!!');
+                messages = [{ role: "user", content: [{ type: 'file', data: source.metaData.url, mediaType: 'video/mp4' },] }]
+
                 switch (type) {
                         case "note":
                                 instrucation = contentPrompt.createNote;
                                 outputSchema = contentSchema.createNote;
-                                messages = [{ role: "user", content: [{ type: 'file', data: source.metaData.url, mediaType: 'video/mp4' },] }]
+                                break;
+                        case "quiz":
+                                instrucation = contentPrompt.createQuiz;
+                                outputSchema = contentSchema.createQuiz;
                                 break;
                         default:
                                 throw new Error("Type Not Supported!");
-                }
+                };
+
                 const results: any = await generateText({
                         instructions: instrucation,
                         model: aiHelper.getModel('gemini', 'gemini-2.5-flash'),
@@ -35,9 +41,7 @@ const create = async (userId: string, data: CreateContentPayload) => {
                 const newContent = await ContentModel.create({
                         createdBy: userId,
                         title: results.output.title,
-                        data: {
-                                note: results.output?.note
-                        },
+                        data: results.output.data,
                         sourceId: sourceId,
                         type: type
                 });

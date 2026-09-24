@@ -1,3 +1,3 @@
 const createNote = `create proper note in markdown`;
-
-export default { createNote }
+const createQuiz = `create quiz`
+export default { createNote, createQuiz }

@@ -10,6 +10,7 @@ const ContentSchema = new mongoose.Schema<Content>({
                 type: mongoose.SchemaTypes.Mixed,
                 required: true
         },
+        // @ts-ignore
         createdBy: {
                 type: mongoose.Types.ObjectId,
                 ref: 'user',
@@ -21,6 +22,11 @@ const ContentSchema = new mongoose.Schema<Content>({
                 ref: 'source',
                 required: true
         },
+        type: {
+                type: String,
+                enum: ["note", "quiz"],
+                required: true
+        }
 }, { timestamps: true });
 
 

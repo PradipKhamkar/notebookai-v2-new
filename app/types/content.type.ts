@@ -1,16 +1,60 @@
-import type { BaseDocument } from "./model.type.ts";
+import type { BaseDocument } from "./model.type";
 
-type ContentType = "note" | "summary" | "flashcards" | "quiz" | "mindmap";
+// 1. Derive ContentType directly from the union (no duplicate string literals)
+export type ContentType = Content["type"];
 
-interface Content extends BaseDocument {
-        type: ContentType;
+export interface NoteContentData {
+        note: string;
+}
+
+
+
+export interface FlashcardItem {
+        front: string;
+        back: string;
+}
+
+export interface FlashcardsContentData {
+        flashcards: FlashcardItem[];
+}
+
+export interface QuizQuestion {
+        question: string;
+        options: { label: string; value: string }[];
+        answer: string;
+        explanation: string;
+        type: "multiple-choice";
+}
+
+
+
+export interface MindmapNode {
+        id: string;
+        label: string;
+        children?: MindmapNode[];
+}
+
+export interface MindmapContentData {
+        root: MindmapNode;
+}
+
+
+interface BaseContent<TType extends string, TData> extends BaseDocument {
+        type: TType;
         sourceId: string;
-        createdBy: any;
+        createdBy: string; // use your user id type instead of `any`
         title: string;
-        data: {
-                note: string;
-        }
-};
+        data: TData;
+}
+
+// 4. Discriminated union members
+export type NoteContent = BaseContent<"note", NoteContentData>;
+export type FlashcardsContent = BaseContent<"flashcards", FlashcardsContentData>;
+export type QuizContent = BaseContent<"quiz", QuizQuestion[]>;
+export type MindmapContent = BaseContent<"mindmap", MindmapContentData>;
+
+// 5. Union type
+export type Content = | NoteContent | FlashcardsContent | QuizContent | MindmapContent;
 
 interface CreateContentPayload {
         type: ContentType;
@@ -19,4 +63,4 @@ interface CreateContentPayload {
         language: string
 }
 
-export type { Content, ContentType, CreateContentPayload }
+export { CreateContentPayload }
