@@ -12,11 +12,9 @@ export interface NoteContentData {
 export interface FlashcardItem {
         front: string;
         back: string;
+        explanantion: string;
 }
 
-export interface FlashcardsContentData {
-        flashcards: FlashcardItem[];
-}
 
 export interface QuizQuestion {
         question: string;
@@ -49,7 +47,7 @@ interface BaseContent<TType extends string, TData> extends BaseDocument {
 
 // 4. Discriminated union members
 export type NoteContent = BaseContent<"note", NoteContentData>;
-export type FlashcardsContent = BaseContent<"flashcards", FlashcardsContentData>;
+export type FlashcardsContent = BaseContent<"flashcards", FlashcardItem[]>;
 export type QuizContent = BaseContent<"quiz", QuizQuestion[]>;
 export type MindmapContent = BaseContent<"mindmap", MindmapContentData>;
 

@@ -24,6 +24,10 @@ const create = async (userId: string, data: CreateContentPayload) => {
                                 instrucation = contentPrompt.createQuiz;
                                 outputSchema = contentSchema.createQuiz;
                                 break;
+                        case "flashcards":
+                                instrucation = contentPrompt.createFlashcards;
+                                outputSchema = contentSchema.createFlashcards;
+                                break;
                         default:
                                 throw new Error("Type Not Supported!");
                 };

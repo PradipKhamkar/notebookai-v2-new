@@ -1,3 +1,4 @@
 const createNote = `create proper note in markdown`;
 const createQuiz = `create quiz`
-export default { createNote, createQuiz }
+const createFlashcards = `create flashcards`
+export default { createNote, createQuiz, createFlashcards }

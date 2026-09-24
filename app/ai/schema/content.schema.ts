@@ -33,6 +33,26 @@ export const createQuiz = z.object({
         data: z.array(quizQuestionSchema).describe("List of quiz questions"),
 });
 
+export const flashcardSchema = z.object({
+        front: z
+                .string()
+                .describe("The question, term, or prompt shown on the front of the card. Keep it short and specific"),
+        back: z
+                .string()
+                .describe("The direct answer or definition shown on the back. Keep it concise"),
+        explanation: z
+                .string()
+                .describe("1-2 sentences of extra context that helps the learner understand or remember the answer"),
+});
+
+export const createFlashcards = z.object({
+        title: titleSchema,
+        data: z.array(flashcardSchema).describe("List of flashcards"),
+});
+
+export type Flashcard = z.infer<typeof flashcardSchema>;
+export type CreateFlashcards = z.infer<typeof createFlashcards>;
+
 export type QuizQuestionData = z.infer<typeof createQuiz>;
 export type ICreateNote = z.infer<typeof createNote>
-export default { createNote, createQuiz }
+export default { createNote, createQuiz, createFlashcards }
