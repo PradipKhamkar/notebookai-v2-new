@@ -31,4 +31,15 @@ const create = async (req: Request, res: Response) => {
         }
 };
 
-export default { getAllContentByUserId, getContentById, create }
+
+const deleteContent = async (req: Request, res: Response) => {
+        try {
+                const { contentId } = req.params
+                const results = await contentService.deleteContent(req.userId as string, contentId as string)
+                apiResponse.success(res, results, results?.message, 200)
+        } catch (error: any) {
+                apiResponse.error(res, error?.message || "Something went wrong")
+        }
+};
+
+export default { getAllContentByUserId, getContentById, create, deleteContent }

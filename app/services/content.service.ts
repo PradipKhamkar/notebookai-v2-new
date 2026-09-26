@@ -85,5 +85,16 @@ const getContentById = async (userId: string, contentId: string) => {
                 throw error
         }
 };
-export default { create, getAllContentByUserId, getContentById }
+const deleteContent = async (userId: string, contentId: string) => {
+        try {
+                await ContentModel.findOneAndDelete({ _id: contentId, createdBy: userId });
+                return {
+                        message: "Content has been deleted successfully!!",
+                }
+        } catch (error) {
+                console.log('CONTENT DELETED ERROR::', error)
+                throw error
+        }
+}
+export default { create, getAllContentByUserId, getContentById, deleteContent }
 
