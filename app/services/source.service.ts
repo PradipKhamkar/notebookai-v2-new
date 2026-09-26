@@ -1,6 +1,6 @@
 import youtubeHelper from "../helper/youtube.helper.ts";
 import { SourceModel } from "../models/source.model.ts";
-import type { NewSourcePayload } from "../types/source.type.ts";
+import type { NewSourcePayload, Source } from "../types/source.type.ts";
 import contentService from "./content.service.ts";
 
 const add = async (userId: string, data: NewSourcePayload) => {
@@ -40,8 +40,7 @@ const add = async (userId: string, data: NewSourcePayload) => {
         language: "en"
       }
     );
-
-    res.summary = content.data?.note;
+    res.summary = content.data?.note as string;
     await res.save();
     const source = await SourceModel.findById(res._id).select("-createdBy")
     return { message: "Source added successfully", source };
@@ -79,5 +78,33 @@ const deleteSource = async (sourceId: string, userId: string) => {
   } catch (error) {
     throw error
   }
-}
-export default { add, getUserSources, sourceById, deleteSource };
+};
+
+const updateSource = async (sourceId: string, userId: string, payload: Partial<Source>) => {
+  try {
+    // 1. Remove undefined values or immutable fields (e.g. _id, createdBy)
+    const updateFields: Record<string, any> = {};
+
+    Object.entries(payload).forEach(([key, value]) => {
+      if (value !== undefined && key !== "_id" && key !== "createdBy") {
+        updateFields[key] = value;
+      }
+    });
+
+    // 2. Prevent empty updates
+    if (Object.keys(updateFields).length === 0) throw new Error("No valid fields provided for update");
+
+    // 3. Execute dynamic update query with $set
+    const source = await SourceModel.findByIdAndUpdate(
+      { _id: sourceId, createdBy: userId },
+      { $set: updateFields },
+      { new: true, runValidators: true } // runValidators ensures updates respect Schema constraints
+    ).select("-createdBy");
+
+    console.log('source updated', source)
+    return { message: "Source updated successfully", source };
+  } catch (error) {
+    throw error;
+  }
+};
+export default { add, getUserSources, sourceById, deleteSource, updateSource };

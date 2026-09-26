@@ -42,4 +42,13 @@ const deleteSource = async (req: Request, res: Response) => {
                 apiResponse.error(res, error?.message || "Something went wrong")
         }
 };
-export default { add, getUserSources, getSourceById, deleteSource }
+const updateSource = async (req: Request, res: Response) => {
+        try {
+                const { sourceId } = req.params;
+                const results = await sourceService.updateSource(sourceId as string, req.userId as string, req.body)
+                apiResponse.success(res, results, results?.message, 200)
+        } catch (error: any) {
+                apiResponse.error(res, error?.message || "Something went wrong")
+        }
+};
+export default { add, getUserSources, getSourceById, deleteSource, updateSource }
