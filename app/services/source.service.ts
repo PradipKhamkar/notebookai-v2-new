@@ -1,19 +1,32 @@
+import { string } from "zod";
 import youtubeHelper from "../helper/youtube.helper.ts";
 import { SourceModel } from "../models/source.model.ts";
 import type { NewSourcePayload, Source } from "../types/source.type.ts";
 import contentService from "./content.service.ts";
+import fileService from "./file.service.ts";
 
 const add = async (userId: string, data: NewSourcePayload) => {
   try {
     const ctx = {
       title: "Untitled",
+      uploadId: '',
+      url: data.url,
+      fileType: ""
     };
+
     // handle source
     switch (data.type) {
       case "youtube":
         const title = await youtubeHelper.getYouTubeTitle(data.url as string);
         if (!title) throw new Error("Failed to fetch youtube title");
         ctx.title = title;
+        break;
+      case "document":
+        const { name, type, uploadId, url } = await fileService.upload(data.document);
+        ctx['title'] = name;
+        ctx['uploadId'] = uploadId;
+        ctx['url'] = url;
+        ctx['fileType'] = type;
         break;
       default:
         throw new Error("Source type not support yet!");
@@ -23,7 +36,9 @@ const add = async (userId: string, data: NewSourcePayload) => {
     const res = await SourceModel.create({
       title: ctx.title,
       metaData: {
-        url: data.url,
+        url: ctx.url,
+        uploadId: ctx.uploadId,
+        fileType: ctx.fileType
       },
       type: data.type,
       createdBy: userId,
@@ -40,6 +55,7 @@ const add = async (userId: string, data: NewSourcePayload) => {
         language: "en"
       }
     );
+    // @ts-ignore
     res.summary = content.data?.note as string;
     await res.save();
     const source = await SourceModel.findById(res._id).select("-createdBy")

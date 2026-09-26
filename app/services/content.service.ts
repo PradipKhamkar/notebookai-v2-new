@@ -13,7 +13,7 @@ const create = async (userId: string, data: CreateContentPayload) => {
 
                 const source = await SourceModel.findById(sourceId).select('metaData type');
                 if (!source) throw new Error('Source Not Found Please!!');
-                messages = [{ role: "user", content: [{ type: 'file', data: source.metaData.url, mediaType: 'video/mp4' },] }]
+                messages = [{ role: "user", content: [{ type: 'file', data: source.metaData.url, mediaType: source.type === "youtube" ? 'video/mp4' : source.metaData.fileType ?? '' },] }]
 
                 switch (type) {
                         case "note":

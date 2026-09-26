@@ -23,7 +23,7 @@ export function authGurd(
                 if (!token) throw new Error('Token Not Found!');
 
                 const decoded = verifyAccessToken(token);
-                console.log('decoded', decoded);
+                // console.log('decoded', decoded);
                 req.userId = decoded.userId;
 
                 next();

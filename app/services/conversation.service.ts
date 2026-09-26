@@ -32,11 +32,16 @@ const chat = async (payload: ChatRequestPayload) => {
                         case "youtube":
                                 ctxMsg = { role: "user", content: [{ type: 'file', data: source.metaData.url, mediaType: 'video/mp4' },] }
                                 break
+                        case "document":
+                                ctxMsg = { role: "user", content: [{ type: 'file', data: source.metaData.url, mediaType: source.metaData.fileType || '' },] }
+                                break
+                        default:
+                                throw new Error("Invalid source type");
                 };
 
                 const result = new ToolLoopAgent({
                         model: aiHelper.getModel('gemini', 'gemini-2.5-flash'),
-                        instructions: "heelo",
+                        instructions: "yout helpfull ai study buddy which help user for learning and understanding the content of the source provided.",
                         onStepEnd: async ({ content, text }) => {
                                 if (text) {
                                         const newMsg: UIMessage = {

@@ -4,10 +4,9 @@ import sourceService from "../services/source.service.ts";
 
 const add = async (req: Request, res: Response) => {
         try {
-                console.log('req.body::', req.body)
                 // @ts-ignore
-                const results = await sourceService.add(req.userId as string, req.body)
-                apiResponse.success(res, results, results?.message, 201)
+                const results = await sourceService.add(req.userId as string, { ...req.body, document: req?.files?.document })
+                apiResponse.success(res, results, '', 201)
         } catch (error: any) {
                 apiResponse.error(res, error?.message || "Something went wrong")
         }
