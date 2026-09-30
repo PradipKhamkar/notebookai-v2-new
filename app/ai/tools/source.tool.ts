@@ -2,6 +2,7 @@ import { generateText, type ModelMessage, Output, tool } from "ai"
 import z from "zod"
 import { SourceModel } from "../../models/source.model.ts";
 import aiHelper from "../../helper/ai.helper.ts";
+import sourcePrompt from "../prompts/source.prompt.ts";
 
 const searchSource = tool({
         description: "use this tool for answer user question from its source",
@@ -19,7 +20,7 @@ const searchSource = tool({
                         let ctxMsg: ModelMessage = { role: "user", content: [{ type: "text", text: "below is source for answer user query" }, { type: 'file', data: source.metaData.url, mediaType: source.type === "youtube" ? 'video/mp4' : source.metaData.fileType ?? '' }] };
 
                         const { output } = await generateText({
-                                instructions: 'your are source search assitent',
+                                instructions: sourcePrompt.searchAssistent,
                                 model: aiHelper.getModel('gemini', 'gemini-2.5-flash'),
                                 messages: [ctxMsg, { role: "user", content: `${query}` }],
                                 output: Output.object({

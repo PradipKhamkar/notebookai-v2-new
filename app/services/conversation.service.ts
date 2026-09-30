@@ -3,6 +3,7 @@ import type { ChatRequestPayload } from "../types/conversation.type.ts";
 import aiHelper from "../helper/ai.helper.ts";
 import { ConversationModel } from "../models/conversation.model.ts";
 import tools from "../ai/tools/index.ts";
+import sourcePrompt from "../ai/prompts/source.prompt.ts";
 
 const chat = async (payload: ChatRequestPayload) => {
         try {
@@ -25,7 +26,7 @@ const chat = async (payload: ChatRequestPayload) => {
 
                 const result = new ToolLoopAgent({
                         model: aiHelper.getModel('gemini', 'gemini-2.5-flash'),
-                        instructions: "yout helpfull ai study buddy which help user for learning and understanding the content of the source provided.",
+                        instructions: sourcePrompt.sourceAssistent,
                         onStepEnd: async ({ content, text }) => {
                                 if (text) {
                                         const newMsg: UIMessage = {
