@@ -1,17 +1,13 @@
-import { convertToModelMessages, type ModelMessage, ToolLoopAgent, type UIMessage } from "ai";
+import { convertToModelMessages, type ModelMessage, tool, ToolLoopAgent, type UIMessage } from "ai";
 import type { ChatRequestPayload } from "../types/conversation.type.ts";
 import aiHelper from "../helper/ai.helper.ts";
-import { SourceModel } from "../models/source.model.ts";
 import { ConversationModel } from "../models/conversation.model.ts";
+import tools from "../ai/tools/index.ts";
 
 const chat = async (payload: ChatRequestPayload) => {
         try {
                 const { messages, sourceId } = payload
                 const modelMsg = await convertToModelMessages(messages);
-
-                // fetch source info
-                const source = await SourceModel.findById(sourceId);
-                if (!source) throw new Error("Source not found");
 
                 // store user message
                 const oldMsg = await ConversationModel.findOne({ sourceId: sourceId, createdBy: payload.userId });
@@ -25,7 +21,7 @@ const chat = async (payload: ChatRequestPayload) => {
                         await ConversationModel.updateOne({ sourceId: sourceId, createdBy: payload.userId }, { $push: { messages: messages[messages.length - 1] } });
                 };
 
-                let ctxMsg: ModelMessage = { role: "user", content: [{ type: 'file', data: source.metaData.url, mediaType: source.type === "youtube" ? 'video/mp4' : source.metaData.fileType ?? '' }] }
+                const toolsSet = tools.getTool(['search_into_source']);
 
                 const result = new ToolLoopAgent({
                         model: aiHelper.getModel('gemini', 'gemini-2.5-flash'),
@@ -40,9 +36,12 @@ const chat = async (payload: ChatRequestPayload) => {
                                         await ConversationModel.updateOne({ sourceId: sourceId, createdBy: payload.userId }, { $push: { messages: newMsg } });
                                 }
                         },
+                        tools: toolsSet,
+                        // @ts-ignore
+                        toolsContext: tools.buildToolsContext(toolsSet, { sourceId })
                 });
 
-                return result.stream({ messages: [ctxMsg, ...modelMsg] });
+                return result.stream({ messages: modelMsg });
 
         } catch (error) {
                 throw error
