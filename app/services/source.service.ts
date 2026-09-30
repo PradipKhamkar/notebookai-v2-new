@@ -12,7 +12,6 @@ const add = async (userId: string, data: NewSourcePayload) => {
       url: data.url,
       fileType: ""
     };
-    console.log('data::', data)
     // handle source
     switch (data.type) {
       case "youtube":
