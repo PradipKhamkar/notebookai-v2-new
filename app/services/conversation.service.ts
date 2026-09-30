@@ -1,4 +1,4 @@
-import { convertToModelMessages, ToolLoopAgent, type UIMessage } from "ai";
+import { convertToModelMessages, type ModelMessage, ToolLoopAgent, type UIMessage } from "ai";
 import type { ChatRequestPayload } from "../types/conversation.type.ts";
 import aiHelper from "../helper/ai.helper.ts";
 import { SourceModel } from "../models/source.model.ts";
@@ -25,19 +25,7 @@ const chat = async (payload: ChatRequestPayload) => {
                         await ConversationModel.updateOne({ sourceId: sourceId, createdBy: payload.userId }, { $push: { messages: messages[messages.length - 1] } });
                 };
 
-                let ctxMsg: any = {}
-
-                // file path;
-                switch (source.type) {
-                        case "youtube":
-                                ctxMsg = { role: "user", content: [{ type: 'file', data: source.metaData.url, mediaType: 'video/mp4' },] }
-                                break
-                        case "document":
-                                ctxMsg = { role: "user", content: [{ type: 'file', data: source.metaData.url, mediaType: source.metaData.fileType || '' },] }
-                                break
-                        default:
-                                throw new Error("Invalid source type");
-                };
+                let ctxMsg: ModelMessage = { role: "user", content: [{ type: 'file', data: source.metaData.url, mediaType: source.type === "youtube" ? 'video/mp4' : source.metaData.fileType ?? '' }] }
 
                 const result = new ToolLoopAgent({
                         model: aiHelper.getModel('gemini', 'gemini-2.5-flash'),

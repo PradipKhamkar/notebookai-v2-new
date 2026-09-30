@@ -9,7 +9,7 @@ const SourceSchema = new mongoose.Schema<Source>({
         },
         type: {
                 type: String,
-                enum: ['youtube', "document"],
+                enum: ['youtube', "document", "text"],
                 required: true,
         },
         metaData: {

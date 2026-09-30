@@ -1,4 +1,3 @@
-import { string } from "zod";
 import youtubeHelper from "../helper/youtube.helper.ts";
 import { SourceModel } from "../models/source.model.ts";
 import type { NewSourcePayload, Source } from "../types/source.type.ts";
@@ -13,7 +12,7 @@ const add = async (userId: string, data: NewSourcePayload) => {
       url: data.url,
       fileType: ""
     };
-
+    console.log('data::', data)
     // handle source
     switch (data.type) {
       case "youtube":
@@ -22,7 +21,15 @@ const add = async (userId: string, data: NewSourcePayload) => {
         ctx.title = title;
         break;
       case "document":
-        const { name, type, uploadId, url } = await fileService.upload(data.document);
+      case "text":
+        let dataToUpload: any = {};
+        if (data.type === "document") dataToUpload = data.document;
+        else if (data.type) dataToUpload = {
+          data: Buffer.from(data.text as string, "utf-8"),
+          name: `paste-${Date.now()}.txt`,
+          mimetype: "text/plain",
+        };
+        const { name, type, uploadId, url } = await fileService.upload(dataToUpload);
         ctx['title'] = name;
         ctx['uploadId'] = uploadId;
         ctx['url'] = url;
@@ -38,7 +45,7 @@ const add = async (userId: string, data: NewSourcePayload) => {
       metaData: {
         url: ctx.url,
         uploadId: ctx.uploadId,
-        fileType: ctx.fileType
+        fileType: ctx.fileType,
       },
       type: data.type,
       createdBy: userId,

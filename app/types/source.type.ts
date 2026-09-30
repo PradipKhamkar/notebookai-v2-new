@@ -1,6 +1,6 @@
 import type { BaseDocument } from "./model.type.ts";
 import type { UploadedFile } from "express-fileupload"
-type SourceType = 'youtube' | "document"
+type SourceType = 'youtube' | "document" | "text"
 interface Source extends BaseDocument {
         type: SourceType;
         metaData: {
@@ -16,7 +16,8 @@ interface Source extends BaseDocument {
 interface NewSourcePayload {
         type: SourceType;
         url?: string;
-        document: UploadedFile
+        document: UploadedFile;
+        text?: string
 };
 
 export type { Source, NewSourcePayload }
