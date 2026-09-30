@@ -26,7 +26,7 @@ const add = async (userId: string, data: NewSourcePayload) => {
         if (data.type === "document") dataToUpload = data.document;
         else if (data.type) dataToUpload = {
           data: Buffer.from(data.text as string, "utf-8"),
-          name: `paste-${Date.now()}.txt`,
+          name: `Text-${Date.now()}.txt`,
           mimetype: "text/plain",
         };
         const { name, type, uploadId, url } = await fileService.upload(dataToUpload);
