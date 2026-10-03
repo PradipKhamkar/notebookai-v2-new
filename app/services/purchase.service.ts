@@ -1,8 +1,3 @@
-// import { TransactionModel } from "@/models/transaction.model";
-// import { UserModel } from "@/models/user.model";
-// import { sendSuccess } from "@/utils/response";
-// import { Request, Response } from "express";
-
 import { TranscationModel } from "../models/Transcation.model.ts";
 import { UserModel } from "../models/user.model.ts";
 import { UserUsesModel } from "../models/userUses.model.ts";
@@ -52,18 +47,3 @@ const revenuecatEvent = async (event: any) => {
         }
 };
 export default { revenuecatEvent }
-
-
-// const revenuecatEvent = (event: any) => {
-//         try {
-//                 const { type } = event;
-//                 switch(type){
-
-//                 }
-//                 console.log('evetn::', event)
-//         } catch (error) {
-//                 throw error
-//         }
-// };
-
-// export default { revenuecatEvent }
