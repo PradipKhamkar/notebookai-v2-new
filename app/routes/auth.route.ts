@@ -6,5 +6,6 @@ const route = Router();
 
 route.post('/google', authController.googleLogin);
 route.get('/me', authGurd, authController.getLoggedUser);
+route.get('/new-accessToken/:refreshToken', authController.getNewAccessToken);
 
 export default route;

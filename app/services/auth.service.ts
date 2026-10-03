@@ -2,7 +2,7 @@ import axios from "axios";
 import apiPathConstant from "../constants/apiPath.constant.ts";
 import envConfig from "../config/env.ts";
 import { UserModel } from "../models/user.model.ts";
-import { generateAccessToken, generateRefreshToken } from "../utils/token.ts";
+import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from "../utils/token.ts";
 
 const googleLogin = async (authCode: string) => {
         try {
@@ -53,5 +53,17 @@ const getLoggedUser = async (userId: string) => {
         } catch (error) {
                 throw error
         }
-}
-export default { googleLogin, getLoggedUser }
+};
+
+const getNewAccessToken = async (refreshToken: string) => {
+        try {
+                const isValidToken = verifyRefreshToken(refreshToken);
+                if (!isValidToken.userId) throw new Error('invalid refresh token!');
+                const newAccessToken = generateAccessToken({ userId: isValidToken.userId })
+                return { accessToken: newAccessToken };
+        } catch (error) {
+                throw error
+        }
+};
+
+export default { googleLogin, getLoggedUser, getNewAccessToken }
