@@ -4,11 +4,13 @@ import sourceRoute from "./source.route.ts";
 import { authGurd } from "../middleware/authGurd.ts";
 import contentRoute from "./content.route.ts";
 import conversationRoute from "./conversation.route.ts";
+import purchaseRoute from "./purchase.route.ts";
 const route = Router();
 
 route.use('/auth', authRoute);
 route.use('/source', authGurd, sourceRoute);
 route.use('/content', authGurd, contentRoute);
 route.use('/conversation', authGurd, conversationRoute);
+route.use('/purchase', purchaseRoute);
 
 export default route;

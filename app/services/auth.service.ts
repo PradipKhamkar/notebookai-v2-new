@@ -3,6 +3,8 @@ import apiPathConstant from "../constants/apiPath.constant.ts";
 import envConfig from "../config/env.ts";
 import { UserModel } from "../models/user.model.ts";
 import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from "../utils/token.ts";
+import { UserUsesModel } from "../models/userUses.model.ts";
+import usesConstant from "../constants/uses.constant.ts";
 
 const googleLogin = async (authCode: string) => {
         try {
@@ -23,10 +25,14 @@ const googleLogin = async (authCode: string) => {
                 const userInfo = await axios.get(apiPathConstant.GOOGLE_APIS.USERINFO.replace('{{access_token}}', access_token));
                 const { name, email, picture } = userInfo.data;
                 let user = await UserModel.findOne({ email: email });
-                if (!user) user = await UserModel.create({ avatar: picture, email: email, name: name });
+                if (!user) {
+                        user = await UserModel.create({ avatar: picture, email: email, name: name });
+                        await UserUsesModel.create({ createdBy: user._id, allowed: { content: usesConstant.freePlan.content, messages: usesConstant.freePlan.messages }, tier: "free", });
+                }
 
                 const accessToken = generateAccessToken({ userId: user._id });
                 const refreshToken = generateRefreshToken({ userId: user._id });
+                // const activeUses = await UserUsesModel.findOne({ createdBy: user._id });
 
                 return {
                         accessToken,
@@ -36,25 +42,28 @@ const googleLogin = async (authCode: string) => {
                                 email: user.email,
                                 avatar: user.avatar,
                         },
+                        // activeUses: activeUses
                 }
         } catch (error) {
+                console.log('ERROR in google login', error)
                 throw error
         }
 };
 const getLoggedUser = async (userId: string) => {
         try {
                 const user = await UserModel.findById(userId);
+                // const activeUses = await UserUsesModel.findOne({ createdBy: userId });
                 if (!user) throw new Error('User not found');
                 return {
                         name: user.name,
                         email: user.email,
                         avatar: user.avatar,
+                        // activeUses: activeUses
                 }
         } catch (error) {
                 throw error
         }
 };
-
 const getNewAccessToken = async (refreshToken: string) => {
         try {
                 const isValidToken = verifyRefreshToken(refreshToken);
