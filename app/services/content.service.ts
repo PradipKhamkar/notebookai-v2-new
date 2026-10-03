@@ -5,9 +5,13 @@ import { ContentModel } from "../models/content.model.ts";
 import { SourceModel } from "../models/source.model.ts";
 import type { Content, CreateContentPayload } from "../types/content.type.ts";
 import { generateText, Output, type ModelMessage } from 'ai';
+import purchaseHelper from "../helper/purchase.helper.ts";
 
 const create = async (userId: string, data: CreateContentPayload) => {
         try {
+
+                await purchaseHelper.checkUsesAndUpdate(userId as string, 'content');
+
                 const { type, sourceId, instruction: message, language } = data;
                 let instrucation = '', outputSchema: any, messages: ModelMessage[] = [];
 

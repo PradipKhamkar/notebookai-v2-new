@@ -6,7 +6,7 @@ import { pipeUIMessageStreamToResponse, toUIMessageStream } from "ai";
 const chat = async (req: Request, res: Response) => {
         try {
                 const { messages, sourceId } = req.body;
-                console.log('req,bod', req.body)
+
                 const result = await conversationService.chat({
                         messages,
                         sourceId,

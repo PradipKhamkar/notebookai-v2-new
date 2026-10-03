@@ -31,7 +31,6 @@ const create = async (req: Request, res: Response) => {
         }
 };
 
-
 const deleteContent = async (req: Request, res: Response) => {
         try {
                 const { contentId } = req.params

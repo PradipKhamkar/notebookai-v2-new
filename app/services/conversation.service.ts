@@ -4,12 +4,14 @@ import aiHelper from "../helper/ai.helper.ts";
 import { ConversationModel } from "../models/conversation.model.ts";
 import tools from "../ai/tools/index.ts";
 import sourcePrompt from "../ai/prompts/source.prompt.ts";
+import purchaseHelper from "../helper/purchase.helper.ts";
 
 const chat = async (payload: ChatRequestPayload) => {
         try {
                 const { messages, sourceId } = payload
                 const modelMsg = await convertToModelMessages(messages);
-
+                // check usese and procced
+                await purchaseHelper.checkUsesAndUpdate(payload.userId as string, 'messages')
                 // store user message
                 const oldMsg = await ConversationModel.findOne({ sourceId: sourceId, createdBy: payload.userId });
                 if (!oldMsg) {
