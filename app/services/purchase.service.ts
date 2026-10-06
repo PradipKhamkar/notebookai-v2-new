@@ -8,22 +8,29 @@ const revenuecatEvent = async (event: any) => {
                 console.log('event', event)
                 switch (type) {
                         case "NON_RENEWING_PURCHASE":
-                                const { app_user_id, product_id, price, currency, original_transaction_id, country_code } = event;
+                                const { app_user_id, product_id, price_in_purchased_currency, currency, original_transaction_id, country_code } = event;
                                 const userInfo = await UserModel.findOne({ email: app_user_id }).select('credits _id');
                                 if (!userInfo) throw new Error('User Not Found');
 
-                                // Calculate 1 month expiration from purchase date
                                 const purchaseDate = new Date(event.purchased_at_ms);
                                 const expirationDate = new Date(purchaseDate);
-                                expirationDate.setMonth(expirationDate.getMonth() + 1);
 
-                                const isoExpiryDate = expirationDate.toISOString();
+                                switch (event.product_id) {
+                                        case "pass_1m":
+                                                expirationDate.setMonth(expirationDate.getMonth() + 1);
+                                                break;
+                                        case "pass_2d":
+                                                expirationDate.setDate(expirationDate.getDate() + 2);
+                                                break;
+                                        default:
+                                                break;
+                                }
 
                                 await UserUsesModel.updateOne(
                                         { createdBy: userInfo._id },
                                         {
                                                 $set: {
-                                                        expiryDate: isoExpiryDate,
+                                                        expiryDate: expirationDate.toISOString(),
                                                         createdBy: userInfo._id,
                                                         tier: "pro",
                                                         allowed: {}
@@ -33,7 +40,7 @@ const revenuecatEvent = async (event: any) => {
 
                                 await TranscationModel.create({
                                         createdBy: userInfo._id,
-                                        amount: price,
+                                        amount: price_in_purchased_currency,
                                         plan: product_id,
                                         currency: currency,
                                         referenceId: original_transaction_id,
