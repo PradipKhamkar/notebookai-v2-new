@@ -1,3 +1,5 @@
+export const upgradeErrorMsg = 'upgrade'
+
 const freePlan = {
         messages: {
                 allowed: 3,

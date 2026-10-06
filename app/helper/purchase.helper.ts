@@ -1,4 +1,6 @@
+import { upgradeErrorMsg } from "../constants/uses.constant.ts";
 import { UserUsesModel } from "../models/userUses.model.ts"
+
 
 const checkUsesAndUpdate = async (userId: string, type: "content" | "messages" | "source") => {
         try {
@@ -7,15 +9,15 @@ const checkUsesAndUpdate = async (userId: string, type: "content" | "messages" |
                 const { content, messages, sources } = userUses.allowed
                 if (userUses.tier !== 'free') {
                         const isExpired = userUses?.expiryDate && new Date() > new Date(userUses.expiryDate);
-                        if (isExpired) throw new Error("Limit Reached, Upgrade To Continue")
+                        if (isExpired) throw new Error(upgradeErrorMsg)
                 } else {
                         switch (type) {
                                 case "content":
-                                        if (content.currentUsage >= content.allowed) throw new Error("Limit Reached, Upgrade To Continue");
+                                        if (content.currentUsage >= content.allowed) throw new Error(upgradeErrorMsg);
                                         await UserUsesModel.updateOne({ createdBy: userId }, { $inc: { 'allowed.content.currentUsage': 1 } });
                                         break;
                                 case "messages":
-                                        if (messages.currentUsage >= messages.allowed) throw new Error("Limit Reached, Upgrade To Continue");
+                                        if (messages.currentUsage >= messages.allowed) throw new Error(upgradeErrorMsg);
                                         await UserUsesModel.updateOne({ createdBy: userId }, { $inc: { 'allowed.messages.currentUsage': 1 } });
                                         break;
                                 default:
