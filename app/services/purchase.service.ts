@@ -5,6 +5,7 @@ import { UserUsesModel } from "../models/userUses.model.ts";
 const revenuecatEvent = async (event: any) => {
         try {
                 const { type } = event;
+                console.log('event', event)
                 switch (type) {
                         case "NON_RENEWING_PURCHASE":
                                 const { app_user_id, product_id, price, currency, original_transaction_id, country_code } = event;
@@ -16,16 +17,15 @@ const revenuecatEvent = async (event: any) => {
                                 const expirationDate = new Date(purchaseDate);
                                 expirationDate.setMonth(expirationDate.getMonth() + 1);
 
-                                // Formatted ISO string: "2026-10-03T18:16:10.984Z"
                                 const isoExpiryDate = expirationDate.toISOString();
 
                                 await UserUsesModel.updateOne(
                                         { createdBy: userInfo._id },
                                         {
                                                 $set: {
-                                                        expiryDate: isoExpiryDate, // <--- Saved as ISO String
+                                                        expiryDate: isoExpiryDate,
                                                         createdBy: userInfo._id,
-                                                        tier: "paid",
+                                                        tier: "pro",
                                                         allowed: {}
                                                 }
                                         }
@@ -46,4 +46,14 @@ const revenuecatEvent = async (event: any) => {
                 throw error;
         }
 };
-export default { revenuecatEvent }
+
+const getUserUsesAndTranscationHistory = async (userId: string) => {
+        try {
+                const data = await Promise.all([UserUsesModel.findOne({ createdBy: userId }).select('-createdBy'), TranscationModel.find({ createdBy: userId }).sort({ createdAt: -1 }).select('-createdBy')]);
+                return { uses: data[0], transcations: data[1] }
+        } catch (error) {
+                throw error
+        }
+};
+
+export default { revenuecatEvent, getUserUsesAndTranscationHistory }

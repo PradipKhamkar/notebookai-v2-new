@@ -1,7 +1,6 @@
 // utils/getYouTubeMetadata.ts
 async function getYouTubeTitle(videoUrl: string): Promise<string | null> {
         try {
-                console.log("youtube url:", videoUrl)
                 const oembedUrl = `https://www.youtube.com/oembed?url=${videoUrl}&format=json`;
                 const response = await fetch(oembedUrl);
 

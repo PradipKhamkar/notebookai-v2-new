@@ -11,5 +11,13 @@ const revenuecatEvent = async (req: Request, res: Response,) => {
                 apiResponse.error(res, error?.message, 500)
         }
 };
+const getUserUsesAndTranscationHistory = async (req: Request, res: Response) => {
+        try {
+                const result = await purchaseService.getUserUsesAndTranscationHistory(req.userId);
+                apiResponse.success(res, result, "User uses fetched successfully")
+        } catch (error: any) {
+                apiResponse.error(res, error?.message, 500)
+        }
+}
 
-export default { revenuecatEvent }
+export default { revenuecatEvent, getUserUsesAndTranscationHistory }

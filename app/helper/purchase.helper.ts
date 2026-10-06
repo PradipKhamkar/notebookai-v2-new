@@ -22,7 +22,6 @@ const checkUsesAndUpdate = async (userId: string, type: "content" | "messages" |
                                         throw new Error("Invalid type");
                         }
                 };
-
         } catch (error) {
                 throw error
         }
