@@ -27,7 +27,7 @@ const create = async (req: Request, res: Response) => {
                 const results = await contentService.create(req.userId as string, req.body)
                 apiResponse.success(res, results, results?.message, 201)
         } catch (error: any) {
-                apiResponse.error(res, error?.message || "Something went wrong")
+                apiResponse.error(res, error?.message || "Something went wrong", 400)
         }
 };
 

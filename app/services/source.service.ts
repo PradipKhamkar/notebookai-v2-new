@@ -1,3 +1,4 @@
+import purchaseHelper from "../helper/purchase.helper.ts";
 import youtubeHelper from "../helper/youtube.helper.ts";
 import { SourceModel } from "../models/source.model.ts";
 import type { NewSourcePayload, Source } from "../types/source.type.ts";
@@ -6,6 +7,8 @@ import fileService from "./file.service.ts";
 
 const add = async (userId: string, data: NewSourcePayload) => {
   try {
+    await purchaseHelper.checkUsesAndUpdate(userId as string, 'content');
+
     const ctx = {
       title: "Untitled",
       uploadId: '',
@@ -62,12 +65,12 @@ const add = async (userId: string, data: NewSourcePayload) => {
       }
     );
     // @ts-ignore
-    res.summary = content.data?.note as string;
+    res.summary = content?.data?.note as string;
     await res.save();
     const source = await SourceModel.findById(res._id).select("-createdBy")
     return { message: "Source added successfully", source };
   } catch (error) {
-    console.log(error);
+    throw error
   }
 };
 
