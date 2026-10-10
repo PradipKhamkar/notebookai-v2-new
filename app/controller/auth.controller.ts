@@ -13,7 +13,7 @@ const googleLogin = async (req: Request, res: Response) => {
 };
 const getLoggedUser = async (req: Request, res: Response) => {
         try {
-                console.log('LOGGED USER CALLED::')
+                // console.log('LOGGED USER CALLED::')
                 const results = await authService.getLoggedUser(req.userId as string);
                 apiResponse.success(res, results, "Logged User", 200)
         } catch (error: any) {
