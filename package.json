@@ -5,7 +5,7 @@
   "license": "ISC",
   "author": "Pradip Khamkar",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "build/index.js",
   "scripts": {
     "dev": "node --watch app/index.ts",
     "dev:nodemon": "nodemon --exec node app/index.ts",
