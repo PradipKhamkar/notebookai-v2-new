@@ -2,7 +2,7 @@ import apiResponse from "../utils/apiResponse.js";
 import authService from "../services/auth.service.js";
 const googleLogin = async (req, res) => {
     try {
-        console.log('request body::', req.body);
+        // console.log('request body::', req.body)
         const results = await authService.googleLogin(req.body.authCode);
         apiResponse.success(res, results, "Google Login Sucessfully", 200);
     }
