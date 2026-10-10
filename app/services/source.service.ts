@@ -1,9 +1,12 @@
+import { generateText, Output } from "ai";
 import purchaseHelper from "../helper/purchase.helper.ts";
 import youtubeHelper from "../helper/youtube.helper.ts";
 import { SourceModel } from "../models/source.model.ts";
 import type { NewSourcePayload, Source } from "../types/source.type.ts";
-import contentService from "./content.service.ts";
 import fileService from "./file.service.ts";
+import aiHelper from "../helper/ai.helper.ts";
+import sourcePrompt from "../ai/prompts/source.prompt.ts";
+import sourceSchema from "../ai/schema/source.schema.ts";
 
 const add = async (userId: string, data: NewSourcePayload) => {
   try {
@@ -15,6 +18,7 @@ const add = async (userId: string, data: NewSourcePayload) => {
       url: data.url,
       fileType: ""
     };
+
     // handle source
     switch (data.type) {
       case "youtube":
@@ -40,10 +44,21 @@ const add = async (userId: string, data: NewSourcePayload) => {
       default:
         throw new Error("Source type not support yet!");
     }
+    const model = aiHelper.getModel('gemini', 'gemini-2.5-flash');
+
+    // genearte summry
+    const { output } = await generateText({
+      model: model,
+      instructions: sourcePrompt.getSummryAndTitleOfPrompt,
+      messages: [{ role: "user", content: [{ type: 'file', data: ctx.url as string, mediaType: data.type === "youtube" ? 'video/mp4' : ctx.fileType ?? '' },] }],
+      output: Output.object({
+        schema: sourceSchema.createSummary
+      })
+    });
 
     // make source
     const res = await SourceModel.create({
-      title: ctx.title,
+      title: output.title,
       metaData: {
         url: ctx.url,
         uploadId: ctx.uploadId,
@@ -51,22 +66,8 @@ const add = async (userId: string, data: NewSourcePayload) => {
       },
       type: data.type,
       createdBy: userId,
-      summary: "This is a summary of the source",
+      summary: output.data.summary,
     });
-
-    // create content
-    const { content } = await contentService.create(
-      userId,
-      {
-        instruction: "create note from this source",
-        sourceId: res._id as string,
-        type: "note",
-        language: "en"
-      }
-    );
-    // @ts-ignore
-    res.summary = content?.data?.note as string;
-    await res.save();
     const source = await SourceModel.findById(res._id).select("-createdBy")
     return { message: "Source added successfully", source };
   } catch (error) {
