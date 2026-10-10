@@ -1,6 +1,6 @@
 import type { UploadedFile } from "express-fileupload";
 import { v2 as cloudinary, type UploadApiResponse } from "cloudinary";
-import env from "../config/env.ts";
+import env from "../config/env.js";
 
 // Configure Cloudinary
 cloudinary.config({

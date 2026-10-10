@@ -1,10 +1,10 @@
 import { Router } from "express";
-import authRoute from "./auth.route.ts";
-import sourceRoute from "./source.route.ts";
-import { authGurd } from "../middleware/authGurd.ts";
-import contentRoute from "./content.route.ts";
-import conversationRoute from "./conversation.route.ts";
-import purchaseRoute from "./purchase.route.ts";
+import authRoute from "./auth.route.js";
+import sourceRoute from "./source.route.js";
+import { authGurd } from "../middleware/authGurd.js";
+import contentRoute from "./content.route.js";
+import conversationRoute from "./conversation.route.js";
+import purchaseRoute from "./purchase.route.js";
 const route = Router();
 
 route.use('/auth', authRoute);

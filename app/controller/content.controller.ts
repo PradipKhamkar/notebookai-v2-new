@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import apiResponse from "../utils/apiResponse.ts";
-import contentService from "../services/content.service.ts";
+import apiResponse from "../utils/apiResponse.js";
+import contentService from "../services/content.service.js";
 
 const getAllContentByUserId = async (req: Request, res: Response) => {
         try {

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import purchaseController from "../controller/purchase.controller.ts";
-import { authGurd } from "../middleware/authGurd.ts";
+import purchaseController from "../controller/purchase.controller.js";
+import { authGurd } from "../middleware/authGurd.js";
 
 const route = Router();
 

@@ -1,6 +1,6 @@
-import app from "./app.ts";
-import { connectDatabase } from "./config/database.ts";
-import envConfig from "./config/env.ts";
+import app from "./app.js";
+import { connectDatabase } from "./config/database.js";
+import envConfig from "./config/env.js";
 
 async function bootstrap(): Promise<void> {
 

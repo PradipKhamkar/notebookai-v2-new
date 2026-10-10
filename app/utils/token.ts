@@ -1,4 +1,4 @@
-import env from '../config/env.ts';
+import env from '../config/env.js';
 import jwt from 'jsonwebtoken';
 import type { StringValue } from 'ms';
 

@@ -1,4 +1,4 @@
-import sourceTool from "./source.tool.ts";
+import sourceTool from "./source.tool.js";
 
 const toolRegistry = {
         search_into_source: sourceTool.searchSource

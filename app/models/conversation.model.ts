@@ -1,5 +1,5 @@
-import type { Conversation } from "../types/conversation.type.ts";
-import mongoose, { model } from "mongoose";
+import type { Conversation } from "../types/conversation.type.js";
+import mongoose from "mongoose";
 
 const ConversationSchema = new mongoose.Schema<Conversation>({
         sourceId: {

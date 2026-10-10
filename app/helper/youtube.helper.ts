@@ -6,7 +6,7 @@ async function getYouTubeTitle(videoUrl: string): Promise<string | null> {
 
                 if (!response.ok) return null;
 
-                const data = await response.json();
+                const data = await response.json() as { title: string };
                 return data.title; // Returns exact YouTube video title
         } catch (error) {
                 console.error("Failed to fetch YouTube title:", error);

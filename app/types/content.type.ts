@@ -1,4 +1,4 @@
-import type { BaseDocument } from "./model.type";
+import type { BaseDocument } from "./model.type.js";
 
 // 1. Derive ContentType directly from the union (no duplicate string literals)
 export type ContentType = Content["type"];

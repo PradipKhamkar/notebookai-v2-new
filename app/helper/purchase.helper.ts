@@ -1,12 +1,12 @@
-import { upgradeErrorMsg } from "../constants/uses.constant.ts";
-import { UserUsesModel } from "../models/userUses.model.ts"
+import { upgradeErrorMsg } from "../constants/uses.constant.js";
+import { UserUsesModel } from "../models/userUses.model.js"
 
 
 const checkUsesAndUpdate = async (userId: string, type: "content" | "messages" | "source") => {
         try {
                 const userUses = await UserUsesModel.findOne({ createdBy: userId });
                 if (!userUses) throw new Error("UserUses not found");
-                const { content, messages, sources } = userUses.allowed
+                const { content, messages } = userUses.allowed
                 if (userUses.tier !== 'free') {
                         const isExpired = userUses?.expiryDate && new Date() > new Date(userUses.expiryDate);
                         if (isExpired) throw new Error(upgradeErrorMsg)

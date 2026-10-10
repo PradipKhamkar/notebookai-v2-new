@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { verifyAccessToken } from "../utils/token.ts";
-import apiResponse from "../utils/apiResponse.ts";
+import { verifyAccessToken } from "../utils/token.js";
+import apiResponse from "../utils/apiResponse.js";
 
 declare global {
         namespace Express {

@@ -1,6 +1,6 @@
-import { TranscationModel } from "../models/Transcation.model.ts";
-import { UserModel } from "../models/user.model.ts";
-import { UserUsesModel } from "../models/userUses.model.ts";
+import { TranscationModel } from "../models/Transcation.model.js";
+import { UserModel } from "../models/user.model.js";
+import { UserUsesModel } from "../models/userUses.model.js";
 
 const revenuecatEvent = async (event: any) => {
         try {
@@ -8,7 +8,7 @@ const revenuecatEvent = async (event: any) => {
                 console.log('event', event)
                 switch (type) {
                         case "NON_RENEWING_PURCHASE":
-                                const { app_user_id, product_id, price_in_purchased_currency, currency, original_transaction_id, country_code } = event;
+                                const { app_user_id, product_id, price_in_purchased_currency, currency, original_transaction_id } = event;
                                 const userInfo = await UserModel.findOne({ email: app_user_id }).select('credits _id');
                                 if (!userInfo) throw new Error('User Not Found');
 

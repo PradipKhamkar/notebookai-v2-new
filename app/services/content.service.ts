@@ -1,11 +1,11 @@
-import contentPrompt from "../ai/prompts/content.prompt.ts";
-import contentSchema from "../ai/schema/content.schema.ts";
-import aiHelper from "../helper/ai.helper.ts";
-import { ContentModel } from "../models/content.model.ts";
-import { SourceModel } from "../models/source.model.ts";
-import type { Content, CreateContentPayload } from "../types/content.type.ts";
+import contentPrompt from "../ai/prompts/content.prompt.js";
+import contentSchema from "../ai/schema/content.schema.js";
+import aiHelper from "../helper/ai.helper.js";
+import { ContentModel } from "../models/content.model.js";
+import { SourceModel } from "../models/source.model.js";
+import type { Content, CreateContentPayload } from "../types/content.type.js";
 import { generateText, Output, type ModelMessage } from 'ai';
-import purchaseHelper from "../helper/purchase.helper.ts";
+import purchaseHelper from "../helper/purchase.helper.js";
 
 const create = async (userId: string, data: CreateContentPayload) => {
         try {

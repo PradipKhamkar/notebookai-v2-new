@@ -1,12 +1,12 @@
 import { generateText, Output } from "ai";
-import purchaseHelper from "../helper/purchase.helper.ts";
-import youtubeHelper from "../helper/youtube.helper.ts";
-import { SourceModel } from "../models/source.model.ts";
-import type { NewSourcePayload, Source } from "../types/source.type.ts";
-import fileService from "./file.service.ts";
-import aiHelper from "../helper/ai.helper.ts";
-import sourcePrompt from "../ai/prompts/source.prompt.ts";
-import sourceSchema from "../ai/schema/source.schema.ts";
+import purchaseHelper from "../helper/purchase.helper.js";
+import youtubeHelper from "../helper/youtube.helper.js";
+import { SourceModel } from "../models/source.model.js";
+import type { NewSourcePayload, Source } from "../types/source.type.js";
+import fileService from "./file.service.js";
+import aiHelper from "../helper/ai.helper.js";
+import sourcePrompt from "../ai/prompts/source.prompt.js";
+import sourceSchema from "../ai/schema/source.schema.js";
 
 const add = async (userId: string, data: NewSourcePayload) => {
   try {

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import conversationController from "../controller/conversation.controller.ts";
+import conversationController from "../controller/conversation.controller.js";
 
 const route = Router();
 

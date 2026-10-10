@@ -1,5 +1,5 @@
 import { Router } from "express";
-import contentController from "../controller/content.controller.ts";
+import contentController from "../controller/content.controller.js";
 
 const route = Router();
 

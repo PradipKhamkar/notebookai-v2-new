@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import apiResponse from "../utils/apiResponse.ts";
-import authService from "../services/auth.service.ts";
+import apiResponse from "../utils/apiResponse.js";
+import authService from "../services/auth.service.js";
 
 const googleLogin = async (req: Request, res: Response) => {
         try {

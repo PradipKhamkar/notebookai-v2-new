@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import apiResponse from "../utils/apiResponse.ts";
-import conversationService from "../services/conversation.service.ts";
+import apiResponse from "../utils/apiResponse.js";
+import conversationService from "../services/conversation.service.js";
 import { pipeUIMessageStreamToResponse, toUIMessageStream } from "ai";
 
 const chat = async (req: Request, res: Response) => {

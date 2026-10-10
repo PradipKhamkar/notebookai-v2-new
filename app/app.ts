@@ -1,5 +1,5 @@
 import express from "express";
-import routes from "./routes/index.ts";
+import routes from "./routes/index.js";
 import fileUpload from "express-fileupload";
 
 const app = express();

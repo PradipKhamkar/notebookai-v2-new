@@ -1,6 +1,6 @@
-import envConfig from "../config/env.ts";
-import type { Provider } from "../types/llm.type.ts";
-import { google, createGoogle } from "@ai-sdk/google";
+import envConfig from "../config/env.js";
+import type { Provider } from "../types/llm.type.js";
+import { createGoogle } from "@ai-sdk/google";
 
 const getModel = (provider: Provider, model: string) => {
         switch (provider) {

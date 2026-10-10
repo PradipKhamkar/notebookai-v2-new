@@ -1,10 +1,10 @@
 import axios from "axios";
-import apiPathConstant from "../constants/apiPath.constant.ts";
-import envConfig from "../config/env.ts";
-import { UserModel } from "../models/user.model.ts";
-import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from "../utils/token.ts";
-import { UserUsesModel } from "../models/userUses.model.ts";
-import usesConstant from "../constants/uses.constant.ts";
+import apiPathConstant from "../constants/apiPath.constant.js";
+import envConfig from "../config/env.js";
+import { UserModel } from "../models/user.model.js";
+import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from "../utils/token.js";
+import { UserUsesModel } from "../models/userUses.model.js";
+import usesConstant from "../constants/uses.constant.js";
 
 const googleLogin = async (authCode: string) => {
         try {

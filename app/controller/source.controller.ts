@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import apiResponse from "../utils/apiResponse.ts";
-import sourceService from "../services/source.service.ts";
+import apiResponse from "../utils/apiResponse.js";
+import sourceService from "../services/source.service.js";
 
 const add = async (req: Request, res: Response) => {
         try {

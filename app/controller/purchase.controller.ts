@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import apiResponse from "../utils/apiResponse.ts";
-import purchaseService from "../services/purchase.service.ts";
+import apiResponse from "../utils/apiResponse.js";
+import purchaseService from "../services/purchase.service.js";
 
 const revenuecatEvent = async (req: Request, res: Response,) => {
         try {
@@ -13,7 +13,7 @@ const revenuecatEvent = async (req: Request, res: Response,) => {
 };
 const getUserUsesAndTranscationHistory = async (req: Request, res: Response) => {
         try {
-                const result = await purchaseService.getUserUsesAndTranscationHistory(req.userId);
+                const result = await purchaseService.getUserUsesAndTranscationHistory(req.userId!);
                 apiResponse.success(res, result, "User uses fetched successfully")
         } catch (error: any) {
                 apiResponse.error(res, error?.message, 500)

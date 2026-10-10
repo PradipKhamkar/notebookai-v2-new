@@ -1,8 +1,8 @@
 import { generateText, type ModelMessage, Output, tool } from "ai"
 import z from "zod"
-import { SourceModel } from "../../models/source.model.ts";
-import aiHelper from "../../helper/ai.helper.ts";
-import sourcePrompt from "../prompts/source.prompt.ts";
+import { SourceModel } from "../../models/source.model.js";
+import aiHelper from "../../helper/ai.helper.js";
+import sourcePrompt from "../prompts/source.prompt.js";
 
 const searchSource = tool({
         description: "use this tool for answer user question from its source",
