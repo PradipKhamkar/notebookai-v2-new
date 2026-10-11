@@ -1,4 +1,4 @@
-import type { Source } from "../types/source.type.ts";
+import type { Source } from "../types/source.type.js";
 import mongoose from "mongoose";
 
 const SourceSchema = new mongoose.Schema<Source>({

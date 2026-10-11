@@ -2,7 +2,6 @@ import apiResponse from "../utils/apiResponse.js";
 import contentService from "../services/content.service.js";
 const getAllContentByUserId = async (req, res) => {
     try {
-        // @ts-ignore
         const results = await contentService.getAllContentByUserId(req.userId, req.params.sourceId);
         apiResponse.success(res, results, results?.message, 200);
     }
@@ -12,7 +11,6 @@ const getAllContentByUserId = async (req, res) => {
 };
 const getContentById = async (req, res) => {
     try {
-        // @ts-ignore
         const results = await contentService.getContentById(req.userId, req.params.contentId);
         apiResponse.success(res, results, results?.message, 200);
     }

@@ -8,7 +8,7 @@
   "main": "build/index.js",
   "scripts": {
     "dev": "node --watch app/index.ts",
-    "dev:nodemon": "nodemon --exec node app/index.ts",
+    "dev:nodemon": "nodemon --exec tsx app/index.ts",
     "build": "tsc",
     "start": "node build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -29,8 +29,9 @@
     "@types/express": "^5.0.6",
     "@types/express-fileupload": "^1.5.1",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^22.20.2",
+    "@types/node": "^26.6.5",
     "nodemon": "^3.1.14",
+    "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   }
 }

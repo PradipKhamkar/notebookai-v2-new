@@ -1,6 +1,5 @@
 import { v2 as cloudinary } from "cloudinary";
 import env from "../config/env.js";
-// Configure Cloudinary
 cloudinary.config({
     cloud_name: env.CLOUDINARY.CLOUD_NAME,
     api_key: env.CLOUDINARY.API_KEY,
@@ -12,7 +11,6 @@ const upload = async (file) => {
             cloudinary.uploader.upload_stream({ folder: 'claira_files', resource_type: "auto" }, (error, result) => {
                 if (error)
                     reject(error);
-                // @ts-ignore
                 resolve(result);
             }).end(file.data);
         });

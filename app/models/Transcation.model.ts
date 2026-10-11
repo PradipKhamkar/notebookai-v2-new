@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import type { TRANSACTION } from "../types/transcation.type.ts";
+import type { TRANSACTION } from "../types/transcation.type.js";
 
 const TranscationSchema = new mongoose.Schema<TRANSACTION>({
         createdBy: {

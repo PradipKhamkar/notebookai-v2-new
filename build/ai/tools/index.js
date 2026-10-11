@@ -8,7 +8,6 @@ const getTool = (names) => {
         if (!(name in toolRegistry)) {
             throw new Error(`Tool not found: ${name}`);
         }
-        // @ts-ignore: keeps each key mapped to its own tool
         tools[name] = toolRegistry[name];
     }
     return tools;

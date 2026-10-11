@@ -9,7 +9,6 @@ const ConversationSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.Mixed,
         default: []
     },
-    // @ts-ignore
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",

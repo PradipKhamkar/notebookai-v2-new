@@ -61,4 +61,4 @@ interface CreateContentPayload {
         language: string
 }
 
-export { CreateContentPayload }
+export type { CreateContentPayload }

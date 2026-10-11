@@ -39,7 +39,6 @@ const create = async (userId, data) => {
                 schema: outputSchema
             })
         });
-        // save content
         const newContent = await ContentModel.create({
             createdBy: userId,
             title: results.output.title,

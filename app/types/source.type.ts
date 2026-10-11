@@ -1,4 +1,4 @@
-import type { BaseDocument } from "./model.type.ts";
+import type { BaseDocument } from "./model.type.js";
 import type { UploadedFile } from "express-fileupload"
 type SourceType = 'youtube' | "document" | "text"
 interface Source extends BaseDocument {

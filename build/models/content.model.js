@@ -8,13 +8,11 @@ const ContentSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.Mixed,
         required: true
     },
-    // @ts-ignore
     createdBy: {
         type: mongoose.Types.ObjectId,
         ref: 'user',
         required: true
     },
-    // @ts-ignore
     sourceId: {
         type: mongoose.Types.ObjectId,
         ref: 'source',

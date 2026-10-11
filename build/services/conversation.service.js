@@ -8,9 +8,7 @@ const chat = async (payload) => {
     try {
         const { messages, sourceId } = payload;
         const modelMsg = await convertToModelMessages(messages);
-        // check usese and procced
         await purchaseHelper.checkUsesAndUpdate(payload.userId, 'messages');
-        // store user message
         const oldMsg = await ConversationModel.findOne({ sourceId: sourceId, createdBy: payload.userId });
         if (!oldMsg) {
             await ConversationModel.create({
@@ -38,7 +36,6 @@ const chat = async (payload) => {
                 }
             },
             tools: toolsSet,
-            // @ts-ignore
             toolsContext: tools.buildToolsContext(toolsSet, { sourceId })
         });
         return result.stream({ messages: modelMsg });

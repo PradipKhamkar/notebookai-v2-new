@@ -82,6 +82,7 @@ const getUserSources = async (userId: string) => {
       .select("-createdBy");
     return { message: "Source fetched successfully", sources };
   } catch (error) {
+    throw error
     console.log(error);
   }
 };
@@ -92,7 +93,7 @@ const sourceById = async (sourceId: string, userId: string) => {
     if (!source) throw new Error("Source not found make sure sourceId is correct and you have access to it");
     return { message: "Source fetched successfully", source };
   } catch (error) {
-    console.log(error);
+    throw error
   }
 };
 

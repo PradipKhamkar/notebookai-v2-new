@@ -1,4 +1,4 @@
-import type { BaseDocument } from "./model.type.ts";
+import type { BaseDocument } from "./model.type.js";
 
 export interface USER extends BaseDocument {
         name: string;

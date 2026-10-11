@@ -2,7 +2,6 @@ import apiResponse from "../utils/apiResponse.js";
 import sourceService from "../services/source.service.js";
 const add = async (req, res) => {
     try {
-        // @ts-ignore
         const results = await sourceService.add(req.userId, { ...req.body, document: req?.files?.document });
         apiResponse.success(res, results, '', 201);
     }
@@ -12,7 +11,6 @@ const add = async (req, res) => {
 };
 const getUserSources = async (req, res) => {
     try {
-        // @ts-ignore
         const results = await sourceService.getUserSources(req.userId);
         apiResponse.success(res, results, results?.message, 200);
     }
@@ -23,7 +21,6 @@ const getUserSources = async (req, res) => {
 const getSourceById = async (req, res) => {
     try {
         const { sourceId } = req.params;
-        // @ts-ignore
         const results = await sourceService.sourceById(sourceId, req.userId);
         apiResponse.success(res, results, results?.message, 200);
     }
@@ -34,7 +31,6 @@ const getSourceById = async (req, res) => {
 const deleteSource = async (req, res) => {
     try {
         const { sourceId } = req.params;
-        // @ts-ignore
         const results = await sourceService.deleteSource(sourceId, req.userId);
         apiResponse.success(res, results, results?.message, 200);
     }

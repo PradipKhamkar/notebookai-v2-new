@@ -1,5 +1,5 @@
 import type { UIMessage } from "ai"
-import type { BaseDocument } from "./model.type.ts";
+import type { BaseDocument } from "./model.type.js";
 
 interface ChatRequestPayload {
         sourceId: string;

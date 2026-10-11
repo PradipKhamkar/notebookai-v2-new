@@ -1,4 +1,4 @@
-import type { Content } from "../types/content.type.ts";
+import type { Content } from "../types/content.type.js";
 import mongoose from "mongoose";
 
 const ContentSchema = new mongoose.Schema<Content>({

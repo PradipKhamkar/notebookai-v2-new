@@ -15,7 +15,6 @@ const add = async (userId, data) => {
             url: data.url,
             fileType: ""
         };
-        // handle source
         switch (data.type) {
             case "youtube":
                 const title = await youtubeHelper.getYouTubeTitle(data.url);
@@ -44,7 +43,6 @@ const add = async (userId, data) => {
                 throw new Error("Source type not support yet!");
         }
         const model = aiHelper.getModel('gemini', 'gemini-2.5-flash');
-        // genearte summry
         const { output } = await generateText({
             model: model,
             instructions: sourcePrompt.getSummryAndTitleOfPrompt,
@@ -53,7 +51,6 @@ const add = async (userId, data) => {
                 schema: sourceSchema.createSummary
             })
         });
-        // make source
         const res = await SourceModel.create({
             title: output.title,
             metaData: {
@@ -80,6 +77,7 @@ const getUserSources = async (userId) => {
         return { message: "Source fetched successfully", sources };
     }
     catch (error) {
+        throw error;
         console.log(error);
     }
 };
@@ -91,7 +89,7 @@ const sourceById = async (sourceId, userId) => {
         return { message: "Source fetched successfully", source };
     }
     catch (error) {
-        console.log(error);
+        throw error;
     }
 };
 const deleteSource = async (sourceId, userId) => {
@@ -107,19 +105,15 @@ const deleteSource = async (sourceId, userId) => {
 };
 const updateSource = async (sourceId, userId, payload) => {
     try {
-        // 1. Remove undefined values or immutable fields (e.g. _id, createdBy)
         const updateFields = {};
         Object.entries(payload).forEach(([key, value]) => {
             if (value !== undefined && key !== "_id" && key !== "createdBy") {
                 updateFields[key] = value;
             }
         });
-        // 2. Prevent empty updates
         if (Object.keys(updateFields).length === 0)
             throw new Error("No valid fields provided for update");
-        // 3. Execute dynamic update query with $set
-        const source = await SourceModel.findByIdAndUpdate({ _id: sourceId, createdBy: userId }, { $set: updateFields }, { new: true, runValidators: true } // runValidators ensures updates respect Schema constraints
-        ).select("-createdBy");
+        const source = await SourceModel.findByIdAndUpdate({ _id: sourceId, createdBy: userId }, { $set: updateFields }, { new: true, runValidators: true }).select("-createdBy");
         console.log('source updated', source);
         return { message: "Source updated successfully", source };
     }

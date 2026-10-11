@@ -13,7 +13,6 @@ const searchSource = tool({
     }),
     execute: async ({ query }, { context }) => {
         try {
-            // fetch source info
             const source = await SourceModel.findById(context.sourceId);
             if (!source)
                 throw new Error("Source not found");

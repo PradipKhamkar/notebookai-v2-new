@@ -1,4 +1,4 @@
-import { BaseDocument } from "./model.type.js";
+import type { BaseDocument } from "./model.type.js";
 
 export interface TRANSACTION extends BaseDocument {
         createdBy: string;

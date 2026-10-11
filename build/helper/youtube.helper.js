@@ -1,4 +1,3 @@
-// utils/getYouTubeMetadata.ts
 async function getYouTubeTitle(videoUrl) {
     try {
         const oembedUrl = `https://www.youtube.com/oembed?url=${videoUrl}&format=json`;
@@ -6,7 +5,7 @@ async function getYouTubeTitle(videoUrl) {
         if (!response.ok)
             return null;
         const data = await response.json();
-        return data.title; // Returns exact YouTube video title
+        return data.title;
     }
     catch (error) {
         console.error("Failed to fetch YouTube title:", error);

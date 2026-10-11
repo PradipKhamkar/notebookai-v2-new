@@ -1,34 +1,36 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "lib": [
-      "ES2022"
-    ],
-    "outDir": "./build",
-    "rootDir": "./app",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "declaration": false,
-    "declarationMap": false,
+    /* Output */
+    "target": "es2023", // use es2025 if you're on Node 24+
+    "module": "nodenext", // correct ESM/CJS behavior for Node
+    "rootDir": "app", // set explicitly so dist/ mirrors src/
+    "outDir": "build",
     "sourceMap": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noFallthroughCasesInSwitch": true,
+    "removeComments": true,
+    /* Types */
+    "types": [
+      "node"
+    ], // required: @types are no longer auto-loaded
+    "lib": [
+      "es2023"
+    ], // no DOM, since this is Node, not a browser
+    /* Strictness */
+    "strict": true,
     "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": false,
-    "paths": {
-      "@/*": [
-        "./app/*"
-      ]
-    }
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    /* Module safety */
+    "verbatimModuleSyntax": true, // forces `import type` for type-only imports
+    "isolatedModules": true, // keeps code compatible with tsx, esbuild, SWC
+    "forceConsistentCasingInFileNames": true,
+    /* Performance */
+    "skipLibCheck": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./.cache/tsbuildinfo"
   },
   "include": [
-    "app/**/*.ts"
+    "app"
   ],
   "exclude": [
     "node_modules",

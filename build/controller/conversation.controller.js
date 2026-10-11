@@ -13,7 +13,7 @@ const chat = async (req, res) => {
             response: res,
             stream: toUIMessageStream({
                 stream: result.stream,
-                onError: () => 'Something went wrong.', // don't leak internals to the client
+                onError: () => 'Something went wrong.',
             }),
         });
     }
