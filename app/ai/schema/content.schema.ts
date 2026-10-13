@@ -1,11 +1,11 @@
 import z from "zod";
 
-const titleSchema = z.string().min(2).describe('Title of a content');
+const titleSchema = z.string().min(2).describe('A short descriptive title (max 8 words) prefixed with a single relevant emoji. Example: "🧠 Neural Networks Basics"');
 
 const createNote = z.object({
         title: titleSchema,
         data: z.object({
-                note: z.string().min(10).describe('Full of note with markdown format')
+                note: z.string().min(10).describe('A comprehensive study note in markdown format')
         })
 });
 
@@ -30,7 +30,7 @@ export const quizQuestionSchema = z.object({
 
 export const createQuiz = z.object({
         title: titleSchema,
-        data: z.array(quizQuestionSchema).describe("List of quiz questions"),
+        data: z.array(quizQuestionSchema).min(10).max(15).describe("10 to 15 multiple-choice quiz questions covering the breadth of the source, with mixed difficulty levels"),
 });
 
 export const flashcardSchema = z.object({
@@ -47,7 +47,7 @@ export const flashcardSchema = z.object({
 
 export const createFlashcards = z.object({
         title: titleSchema,
-        data: z.array(flashcardSchema).describe("List of flashcards"),
+        data: z.array(flashcardSchema).min(10).max(20).describe("10 to 20 flashcards covering key concepts, terms, and facts from the source with a mix of definition, concept, fact, and application cards"),
 });
 
 export type Flashcard = z.infer<typeof flashcardSchema>;
