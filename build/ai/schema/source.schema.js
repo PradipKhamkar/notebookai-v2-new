@@ -1,6 +1,6 @@
 import z from "zod";
-const summarySchema = z.string().min(2).describe('Summary of a source content');
-const titleSchema = z.string().min(2).describe('Title of a source with proper emoji as a prefix');
+const summarySchema = z.string().min(2).describe('A structured summary of the source content using markdown bullet points. Each bullet should start with a bold keyword followed by a colon and a concise explanation.');
+const titleSchema = z.string().min(2).describe('A short descriptive title (max 8 words) prefixed with a single relevant emoji. Example: "🧬 CRISPR Gene Editing Explained"');
 const createSummary = z.object({
     title: titleSchema,
     data: z.object({
