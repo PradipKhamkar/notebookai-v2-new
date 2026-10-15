@@ -42,6 +42,7 @@ ${titleInstructions}
 - Start each bullet point with a **bold keyword or phrase** followed by a colon, then the explanation.
 - Cover the breadth of the source — don't just focus on the beginning.
 - Use simple, student-friendly language.
+- Write the summary in the exact same language as the source.
 
 ### Example summary format:
 - **Main Topic**: The source covers [subject] and its significance in [field].

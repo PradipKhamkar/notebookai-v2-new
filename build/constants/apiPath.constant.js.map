@@ -1,1 +1,0 @@
-{"version":3,"file":"apiPath.constant.js","sourceRoot":"","sources":["../../app/constants/apiPath.constant.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,GAAG;IACZ,KAAK,EAAE,qCAAqC;IAC5C,QAAQ,EAAE,6EAA6E;CAC9F,CAAC;AAGF,MAAM,eAAe,GAAG;IAChB,YAAY,EAAE,6EAA6E;CAClG,CAAA;AACD,eAAe,EAAE,WAAW,EAAE,eAAe,EAAE,CAAA"}
