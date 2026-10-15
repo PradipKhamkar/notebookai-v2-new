@@ -23,6 +23,10 @@ const SourceSchema = new mongoose.Schema<Source>({
         summary: {
                 type: String,
                 required: true,
+        },
+        topics: {
+                type: [String],
+                default: []
         }
 }, { timestamps: true });
 

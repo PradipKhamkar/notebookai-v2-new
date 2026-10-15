@@ -52,6 +52,12 @@ ${titleInstructions}
 - **Practical Application**: [How this knowledge can be applied].
 - **Conclusion**: [The main takeaway or closing argument of the source].
 
+## Topics Instructions
+- Generate a list of topics that are covered in the source content with prefix with emoji.
+- Each topic should be **one concise sentence** — clear and easy to understand for a student.
+- Use simple, student-friendly language.
+- Write the topics in the exact same language as the source.
+
 Now analyze the provided source and generate the title and summary following the instructions above.`
 
 export default { sourceAssistent, searchAssistent, getSummryAndTitleOfPrompt }

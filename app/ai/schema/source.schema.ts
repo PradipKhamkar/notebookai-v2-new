@@ -6,7 +6,8 @@ const titleSchema = z.string().min(2).describe('A short descriptive title (max 8
 const createSummary = z.object({
         title: titleSchema,
         data: z.object({
-                summary: summarySchema
+                summary: summarySchema,
+                topics: z.array(z.string()).min(1).describe("List of topics covered in the source content").max(10, 'You can only provide 10 topics')
         })
 });
 
