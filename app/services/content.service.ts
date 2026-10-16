@@ -32,6 +32,10 @@ const create = async (userId: string, data: CreateContentPayload) => {
                                 instrucation = contentPrompt.createFlashcards;
                                 outputSchema = contentSchema.createFlashcards;
                                 break;
+                        case "mindmap":
+                                instrucation = contentPrompt.createMindmap;
+                                outputSchema = contentSchema.mindmap;
+                                break;
                         default:
                                 throw new Error("Type Not Supported!");
                 };

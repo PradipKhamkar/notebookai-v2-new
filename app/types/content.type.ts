@@ -25,15 +25,14 @@ export interface QuizQuestion {
 }
 
 
-
 export interface MindmapNode {
-        id: string;
         label: string;
         children?: MindmapNode[];
-}
-
-export interface MindmapContentData {
-        root: MindmapNode;
+        note: {
+                title: string;
+                content: string
+        },
+        id: string
 }
 
 
@@ -49,10 +48,10 @@ interface BaseContent<TType extends string, TData> extends BaseDocument {
 export type NoteContent = BaseContent<"note", NoteContentData>;
 export type FlashcardsContent = BaseContent<"flashcards", FlashcardItem[]>;
 export type QuizContent = BaseContent<"quiz", QuizQuestion[]>;
-export type MindmapContent = BaseContent<"mindmap", MindmapContentData>;
+export type MindMapContent = BaseContent<"mindmap", MindmapNode>;
 
 // 5. Union type
-export type Content = | NoteContent | FlashcardsContent | QuizContent | MindmapContent;
+export type Content = | NoteContent | FlashcardsContent | QuizContent | MindMapContent
 
 interface CreateContentPayload {
         type: ContentType;

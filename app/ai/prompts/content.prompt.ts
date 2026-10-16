@@ -23,17 +23,6 @@ const createQuiz = `You are an expert quiz creator for ${APP_NAME}. Your job is 
 
 ${titleInstructions}
 
-## Quiz Instructions
-- Generate **10 to 15 questions** that cover the most important concepts from the source.
-- Each question must have **exactly 4 options** labeled 'a', 'b', 'c', 'd'.
-- Only **one option** should be correct.
-- Questions should test **understanding**, not just memorization — include application and reasoning questions.
-- Mix difficulty levels: include some easy recall questions, some medium comprehension questions, and some harder analytical questions.
-- The **explanation** for each answer should be 1-2 sentences explaining *why* the correct answer is right and, if helpful, why a common wrong answer is incorrect.
-- Avoid trick questions or ambiguous wording.
-- Make sure distractors (wrong options) are plausible but clearly incorrect to someone who studied the material.
-- Questions should cover the **breadth** of the source, not just one section.
-
 ## Question Quality Guidelines
 - **Bad question**: "What is X?" with obvious answers
 - **Good question**: "Which of the following best explains why X occurs?" with thoughtful options
@@ -66,4 +55,6 @@ ${titleInstructions}
 
 ${rules}`;
 
-export default { createNote, createQuiz, createFlashcards }
+const createMindmap = `You are an expert mindmap creator for ${APP_NAME}. Your job is to analyze the provided source and generate a comprehensive, well-structured mindmap.`;
+
+export default { createNote, createQuiz, createFlashcards, createMindmap }
