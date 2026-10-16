@@ -50,11 +50,11 @@ export const createFlashcards = z.object({
 export const MindmapNodeSchema: z.ZodType<MindmapNode> = z.lazy(() =>
         z.object({
                 id: z.string().describe("Unique identifier for the mindmap node"),
-                label: z.string().describe("The text label displayed on the mindmap node"),
+                label: z.string().describe("The text label displayed on the mindmap node with emoji prefix"),
                 note: z.object({
-                        title: z.string().describe("Title of the note attached to the node"),
+                        title: z.string().describe("Title of the note attached to the node with emoji prefix"),
                         content: z.string().describe("Detailed content or description of the note"),
-                }).describe("Optional or required note associated with the node"),
+                }).describe("Note associated with the node it's not optional"),
                 children: z.array(MindmapNodeSchema).optional().describe("Child nodes branching off from this node"),
         })
 );
