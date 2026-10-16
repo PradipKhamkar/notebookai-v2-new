@@ -55,6 +55,19 @@ ${titleInstructions}
 
 ${rules}`;
 
-const createMindmap = `You are an expert mindmap creator for ${APP_NAME}. Your job is to analyze the provided source and generate a comprehensive, well-structured mindmap.`;
+const createMindmap = `You are an expert mindmap creator for ${APP_NAME}. Your job is to analyze the provided source and generate a comprehensive, well-structured mindmap that visually organizes all key concepts and their relationships.
+
+${titleInstructions}
+
+## Quality Guidelines
+- **Cover the full breadth** of the source material — don't focus on just one section.
+- **Labels should be scannable**: A student should understand the topic structure just by reading the labels.
+- **Notes should add depth**: The note content should provide the "why" and "how", not just repeat the label.
+- **Use markdown in note content**: Bold key terms, use bullet points for lists within notes where appropriate.
+- **Logical flow**: Organize branches in a way that follows the natural flow of the source (e.g. chronological, cause-effect, general-to-specific).
+- **Every node must have a note** — no empty or placeholder notes.
+
+${rules}`;
+
 
 export default { createNote, createQuiz, createFlashcards, createMindmap }
