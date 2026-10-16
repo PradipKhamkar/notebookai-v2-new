@@ -64,7 +64,6 @@ ${titleInstructions}
 - **Labels should be scannable**: A student should understand the topic structure just by reading the labels.
 - **Notes should add depth**: The note content should provide the "why" and "how", not just repeat the label.
 - **Use markdown in note content**: Bold key terms, use bullet points for lists within notes where appropriate.
-- **Logical flow**: Organize branches in a way that follows the natural flow of the source (e.g. chronological, cause-effect, general-to-specific).
 - **Every node must have a note** — no empty or placeholder notes.
 
 ${rules}`;
