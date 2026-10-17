@@ -1,9 +1,7 @@
 import { generateText, Output } from "ai";
 import purchaseHelper from "../helper/purchase.helper.js";
-import youtubeHelper from "../helper/youtube.helper.js";
 import { SourceModel } from "../models/source.model.js";
 import type { NewSourcePayload, Source } from "../types/source.type.js";
-import fileService from "./file.service.js";
 import aiHelper from "../helper/ai.helper.js";
 import sourcePrompt from "../ai/prompts/source.prompt.js";
 import sourceSchema from "../ai/schema/source.schema.js";
@@ -11,46 +9,13 @@ import sourceSchema from "../ai/schema/source.schema.js";
 const add = async (userId: string, data: NewSourcePayload) => {
   try {
     await purchaseHelper.checkUsesAndUpdate(userId as string, 'content');
-
-    const ctx = {
-      title: "Untitled",
-      uploadId: '',
-      url: data.url,
-      fileType: ""
-    };
-
-    // handle source
-    switch (data.type) {
-      case "youtube":
-        const title = await youtubeHelper.getYouTubeTitle(data.url as string);
-        if (!title) throw new Error("Failed to fetch youtube title");
-        ctx.title = title;
-        break;
-      case "document":
-      case "text":
-        let dataToUpload: any = {};
-        if (data.type === "document") dataToUpload = data.document;
-        else if (data.type) dataToUpload = {
-          data: Buffer.from(data.text as string, "utf-8"),
-          name: `Text-${Date.now()}.txt`,
-          mimetype: "text/plain",
-        };
-        const { name, type, uploadId, url } = await fileService.upload(dataToUpload);
-        ctx['title'] = name;
-        ctx['uploadId'] = uploadId;
-        ctx['url'] = url;
-        ctx['fileType'] = type;
-        break;
-      default:
-        throw new Error("Source type not support yet!");
-    }
     const model = aiHelper.getModel('gemini', 'gemini-2.5-flash');
 
     // genearte summry
     const { output } = await generateText({
       model: model,
       instructions: sourcePrompt.getSummryAndTitleOfPrompt,
-      messages: [{ role: "user", content: [{ type: 'file', data: ctx.url as string, mediaType: data.type === "youtube" ? 'video/mp4' : ctx.fileType ?? '' },] }],
+      messages: [{ role: "user", content: [{ type: 'file', data: data.url as string, mediaType: data.type === "youtube" ? 'video/mp4' : data.fileType ?? '' },] }],
       output: Output.object({
         schema: sourceSchema.createSummary
       })
@@ -60,9 +25,9 @@ const add = async (userId: string, data: NewSourcePayload) => {
     const res = await SourceModel.create({
       title: output.title,
       metaData: {
-        url: ctx.url,
-        uploadId: ctx.uploadId,
-        fileType: ctx.fileType,
+        url: data.url,
+        uploadId: data.uploadId,
+        fileType: data.fileType,
       },
       type: data.type,
       createdBy: userId,
@@ -72,6 +37,7 @@ const add = async (userId: string, data: NewSourcePayload) => {
     const source = await SourceModel.findById(res._id).select("-createdBy")
     return { message: "Source added successfully", source };
   } catch (error) {
+    console.log('Error In Create Source', error)
     throw error
   }
 };

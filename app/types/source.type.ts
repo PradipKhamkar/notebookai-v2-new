@@ -18,7 +18,9 @@ interface NewSourcePayload {
         type: SourceType;
         url?: string;
         document: UploadedFile;
-        text?: string
+        text?: string;
+        uploadId?: string;
+        fileType?: string
 };
 
 export type { Source, NewSourcePayload }

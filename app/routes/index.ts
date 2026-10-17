@@ -5,6 +5,8 @@ import { authGurd } from "../middleware/authGurd.js";
 import contentRoute from "./content.route.js";
 import conversationRoute from "./conversation.route.js";
 import purchaseRoute from "./purchase.route.js";
+import fileRouter from "./file.route.js";
+
 const route = Router();
 
 route.use('/auth', authRoute);
@@ -12,5 +14,6 @@ route.use('/source', authGurd, sourceRoute);
 route.use('/content', authGurd, contentRoute);
 route.use('/conversation', authGurd, conversationRoute);
 route.use('/purchase', purchaseRoute);
+route.use('/file', authGurd, fileRouter);
 
 export default route;

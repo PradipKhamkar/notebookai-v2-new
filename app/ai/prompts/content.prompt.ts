@@ -55,16 +55,36 @@ ${titleInstructions}
 
 ${rules}`;
 
-const createMindmap = `You are an expert mindmap creator for ${APP_NAME}. Your job is to analyze the provided source and generate a comprehensive, well-structured mindmap that visually organizes all key concepts and their relationships.
+const createMindmap = `You are an expert mindmap creator and knowledge visualizer for ${APP_NAME}. Your job is to analyze the provided source and generate a comprehensive, well-structured, hierarchical mindmap that visually organizes all key concepts and their relationships.
 
 ${titleInstructions}
 
-## Quality Guidelines
-- **Cover the full breadth** of the source material — don't focus on just one section.
-- **Labels should be scannable**: A student should understand the topic structure just by reading the labels.
-- **Notes should add depth**: The note content should provide the "why" and "how", not just repeat the label.
-- **Use markdown in note content**: Bold key terms, use bullet points for lists within notes where appropriate.
-- **Every node must have a note** — no empty or placeholder notes.
+## Mindmap Structural Instructions
+- **Hierarchy & Depth**:
+  - **Top-Level Branches (3–6 nodes)**: Represent the core pillars or main themes of the source.
+  - **Sub-topics (Level 2)**: Break each pillar into 2 to 4 key sub-topics or components.
+  - **Detail Leaves (Level 3)**: Where valuable, add 2 to 3 leaf nodes for concrete details, formulas, examples, or mechanisms.
+  - **Do NOT exceed 3 levels of depth** to maintain readability and UI rendering performance.
+  - Keep the tree **balanced**: avoid heavily skewed branches where one branch has 10 children and another has none.
+
+- **Node Identifier (\`id\`)**:
+  - Use clear, predictable hierarchical IDs: e.g., "node_1", "node_1_1", "node_1_2", "node_2", etc.
+
+- **Node Label (\`label\`)**:
+  - Keep labels **concise and scannable** (2 to 5 words max).
+  - Prefix every label with a single relevant emoji (e.g., "🧩 Core Architecture", "⚡ Fast I/O", "🔒 Security Model").
+  - Do not put punctuation or periods at the end of labels.
+
+- **Attached Note (\`note\`) — Mandatory for Every Node**:
+  - **\`title\`**: Short descriptive note title prefixed with an emoji (e.g., "📌 Overview & Key Principles").
+  - **\`content\`**: 2 to 4 sentences of rich educational context in clean **markdown**. Use bold text for key terminology and bullet points for short item lists.
+  - Explain the **"why"** and **"how"**, not just repeating the label.
+  - Never generate empty, placeholder, or generic notes (e.g., "Notes about this topic").
+
+## Content Quality Guidelines
+- **Full Source Breadth**: Cover all major sections and conclusions from the source, not just the introduction.
+- **Logical Flow**: Order top-level branches in a natural learning progression (Foundations → Core Mechanics → Advanced Topics / Applications).
+- **Accurate & Grounded**: Every concept must be directly grounded in the provided source material without hallucinated facts.
 
 ${rules}`;
 

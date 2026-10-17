@@ -1,6 +1,7 @@
 import type { UploadedFile } from "express-fileupload";
 import { v2 as cloudinary, type UploadApiResponse } from "cloudinary";
 import env from "../config/env.js";
+import type fileUpload from "express-fileupload";
 
 // Configure Cloudinary
 cloudinary.config({
@@ -25,7 +26,7 @@ const upload = async (file: UploadedFile) => {
                         name: file.name,
                 };
         } catch (error) {
-                console.log("error::", error);
+                console.log("error in upload file::", error);
                 throw error;
         }
 };
@@ -39,5 +40,7 @@ const remove = async (public_id: string) => {
                 throw error;
         }
 };
+
+
 
 export default { upload, remove }

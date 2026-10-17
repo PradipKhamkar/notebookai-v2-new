@@ -4,10 +4,8 @@ import sourceService from "../services/source.service.js";
 
 const add = async (req: Request, res: Response) => {
         try {
-                // @ts-ignore
-                const results = await sourceService.add(req.userId as string, { ...req.body, document: req?.files?.document });
+                const results = await sourceService.add(req.userId as string, req.body);
                 apiResponse.success(res, results, '', 201);
-
         } catch (error: any) {
                 apiResponse.error(res, error?.message || "Something went wrong")
         }
@@ -15,7 +13,6 @@ const add = async (req: Request, res: Response) => {
 
 const getUserSources = async (req: Request, res: Response) => {
         try {
-                // @ts-ignore
                 const results = await sourceService.getUserSources(req.userId as string)
                 apiResponse.success(res, results, results?.message, 200)
         } catch (error: any) {

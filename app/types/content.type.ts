@@ -48,7 +48,7 @@ interface BaseContent<TType extends string, TData> extends BaseDocument {
 export type NoteContent = BaseContent<"note", NoteContentData>;
 export type FlashcardsContent = BaseContent<"flashcards", FlashcardItem[]>;
 export type QuizContent = BaseContent<"quiz", QuizQuestion[]>;
-export type MindMapContent = BaseContent<"mindmap", MindmapNode>;
+export type MindMapContent = BaseContent<"mindmap", MindmapNode[]>;
 
 // 5. Union type
 export type Content = | NoteContent | FlashcardsContent | QuizContent | MindMapContent
