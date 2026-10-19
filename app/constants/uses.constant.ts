@@ -2,7 +2,7 @@ export const upgradeErrorMsg = 'upgrade'
 
 const freePlan = {
         messages: {
-                allowed: 5,
+                allowed: 3,
                 currentUsage: 0,
         },
         content: {
