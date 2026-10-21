@@ -6,5 +6,6 @@ const route = Router();
 
 route.post('/revenuecat/event', purchaseController.revenuecatEvent);
 route.get('/uses', authGurd, purchaseController.getUserUsesAndTranscationHistory)
+route.get('/reward-ad-watched', purchaseController.rewardAdWatched)
 
 export default route;

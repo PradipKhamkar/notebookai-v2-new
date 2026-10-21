@@ -20,4 +20,16 @@ const getUserUsesAndTranscationHistory = async (req: Request, res: Response) => 
         }
 }
 
-export default { revenuecatEvent, getUserUsesAndTranscationHistory }
+const rewardAdWatched = async (req: Request, res: Response) => {
+        try {
+                const { user_id: userMail, custom_data }: any = req.query;
+                const { source } = JSON.parse(custom_data);
+                const result = await purchaseService.rewardAdWatched(source, userMail);
+                apiResponse.success(res, {}, "Reward added successfully")
+        } catch (error: any) {
+                console.log('error::', error)
+                apiResponse.error(res, error?.message, 500)
+        }
+}
+
+export default { revenuecatEvent, getUserUsesAndTranscationHistory, rewardAdWatched }

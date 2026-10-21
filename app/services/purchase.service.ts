@@ -1,3 +1,4 @@
+import usesConstant from "../constants/uses.constant.js";
 import { TranscationModel } from "../models/Transcation.model.js";
 import { UserModel } from "../models/user.model.js";
 import { UserUsesModel } from "../models/userUses.model.js";
@@ -33,7 +34,6 @@ const revenuecatEvent = async (event: any) => {
                                                         expiryDate: expirationDate.toISOString(),
                                                         createdBy: userInfo._id,
                                                         tier: "pro",
-                                                        allowed: {}
                                                 }
                                         }
                                 );
@@ -53,7 +53,6 @@ const revenuecatEvent = async (event: any) => {
                 throw error;
         }
 };
-
 const getUserUsesAndTranscationHistory = async (userId: string) => {
         try {
                 const data = await Promise.all([UserUsesModel.findOne({ createdBy: userId }).select('-createdBy'), TranscationModel.find({ createdBy: userId }).sort({ createdAt: -1 }).select('-createdBy')]);
@@ -62,5 +61,24 @@ const getUserUsesAndTranscationHistory = async (userId: string) => {
                 throw error
         }
 };
+const rewardAdWatched = async (type: 'source_chat', userMail: string) => {
+        try {
+                const userInfo = await UserModel.findOne({ email: userMail })
+                if (!userInfo) throw new Error("User Not Found");
+                const userUses = await UserUsesModel.findOne({ createdBy: userInfo._id }).select('allowed');
+                if (!userUses) throw new Error("UserUses not found");
 
-export default { revenuecatEvent, getUserUsesAndTranscationHistory }
+                switch (type) {
+                        case "source_chat":
+                                const { messages } = userUses.allowed;
+                                if (messages.currentUsage >= messages.allowed) await UserUsesModel.findOneAndUpdate({ createdBy: userInfo._id }, { $inc: { 'allowed.messages.currentUsage': -usesConstant.freePlan.messages.allowed } });
+                                break;
+                        default:
+                                throw new Error('invalid type')
+                }
+                return { message: "Reward added successfully" }
+        } catch (error) {
+                throw error
+        }
+};
+export default { revenuecatEvent, getUserUsesAndTranscationHistory, rewardAdWatched }
