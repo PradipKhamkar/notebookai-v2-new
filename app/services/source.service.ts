@@ -10,6 +10,7 @@ const add = async (userId: string, data: NewSourcePayload) => {
   try {
     await purchaseHelper.checkUsesAndUpdate(userId as string, 'content');
     const model = aiHelper.getModel('gemini', 'gemini-2.5-flash');
+    console.log('data for source creation::', data);
 
     // genearte summry
     const { output } = await generateText({
