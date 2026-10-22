@@ -50,10 +50,23 @@ export const ICON_KEYS = [
   "infinity", "sigma", "binary", "scan", "qr"
 ] as const;
 
-const IconSchema = z
-   .enum(ICON_KEYS)
-   .describe("Icon that best represents the content. Choose only from the allowed list.");
+// const IconSchema = z
+//    .enum(ICON_KEYS)
+//    .describe("Icon that best represents the content. Choose only from the allowed list.");
 
+const IconSchema = z
+  .string()
+  .describe(
+    `Icon that best represents the content. Allowed values: ${ICON_KEYS.join(", ")}`
+  )
+  .transform((val): (typeof ICON_KEYS)[number] => {
+    // Check if the returned string is a valid icon key
+    const isValid = ICON_KEYS.includes(val as (typeof ICON_KEYS)[number]);
+    
+    // If valid, return it; otherwise, fall back safely
+    return isValid ? (val as (typeof ICON_KEYS)[number]) : 'book';
+  });
+  
 /* ----------------------------- Building blocks ----------------------------- */
 
 const StudyCardSchema = z.object({
