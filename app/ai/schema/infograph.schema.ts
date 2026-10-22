@@ -5,8 +5,49 @@ import { titleSchema } from "./content.schema.js";
 /* ----------------------------- Icons (must match ICONS map) ----------------------------- */
 
 export const ICON_KEYS = [
-   "rocket", "globe", "trending", "award", "target", "pin",
-   "book", "idea", "clock", "compare", "activity", "alert",
+  // base
+  "rocket", "globe", "trending", "award", "target", "pin",
+  "book", "idea", "clock", "compare", "activity", "alert",
+  // navigation & layout
+  "home", "menu", "search", "filter", "list", "grid",
+  // data & analytics
+  "chart", "bar-chart", "pie-chart", "stats", "percent", "hash",
+  // communication
+  "message", "mail", "bell", "share", "link", "users", "user",
+  // content & media
+  "image", "video", "mic", "headphones", "music", "file", "folder",
+  // actions & status
+  "check", "close", "plus", "minus", "edit", "trash", "download", "upload",
+  "lock", "unlock", "eye", "star", "heart", "flag", "tag",
+  // tech & science
+  "cpu", "code", "terminal", "database", "cloud", "wifi", "layers",
+  "atom", "flask", "dna", "microscope", "calculator", "math",
+  // nature & world
+  "sun", "moon", "leaf", "tree", "zap", "fire", "water",
+  // money & time
+  "dollar", "coin", "calendar", "timer", "hourglass", "map",
+  // education
+  "graduation", "school", "backpack", "bookmarked", "notebook", "pen", "ruler",
+  // health & medical
+  "stethoscope", "pill", "heartbeat", "pulse", "syringe", "brain", "bone",
+  // transport
+  "car", "plane", "train", "bike", "ship", "bus", "truck",
+  // building & place
+  "building", "landmark", "store", "factory", "hotel",
+  // settings & system
+  "settings", "settings-alt", "sliders", "toggle", "wrench", "gauge", "power", "refresh",
+  // social & emotion
+  "thumbs-up", "thumbs-down", "smile", "frown", "party", "trophy", "medal",
+  // weather
+  "wind", "snow", "umbrella", "rain", "lightning", "thermometer",
+  // security
+  "shield", "shield-check", "key", "fingerprint",
+  // productivity & workflow
+  "inbox", "send", "bookmark", "clipboard", "briefcase", "package",
+  "boxes", "git-branch", "git-merge", "network", "workflow",
+  // shapes & misc
+  "circle", "triangle", "square", "pentagon", "hexagon",
+  "infinity", "sigma", "binary", "scan", "qr"
 ] as const;
 
 const IconSchema = z
