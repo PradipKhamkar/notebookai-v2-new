@@ -92,9 +92,7 @@ export const UIBlockSchema = z.discriminatedUnion("type", [
    StatBlocksSchema,
 ]);
 
-/* ----------------------------- Page & Overview ----------------------------- */
-
-export const StudyPageSchema = z.object({
+const StudyPageSchema = z.object({
    chapter: z.string().describe("Chapter label, e.g. 'Chapter 1: The Space Race'."),
    heading: z.string().describe("Catchy page heading, max ~6 words."),
    intro: z.string().describe("1-2 sentence introduction to this page."),
@@ -105,13 +103,10 @@ export const StudyPageSchema = z.object({
       ),
 });
 
-
  export const StudyOverviewSchema  = z.object({
    title: titleSchema,
-   pages: z.array(StudyPageSchema).describe("In logical learning order."),
+   data:  z.array(StudyPageSchema).describe("In logical learning order."),
 });
-
-/* ----------------------------- Inferred types (replace your manual ones) ----------------------------- */
 
 export type StudyOverview = z.infer<typeof StudyOverviewSchema>;
 export type StudyPage = z.infer<typeof StudyPageSchema>;
@@ -125,4 +120,4 @@ export type TextBlockType = Extract<UIBlock, { type: "text" }>;
 export type ExamBlockType = Extract<UIBlock, { type: "exam" }>;
 export type RememberBlockType = Extract<UIBlock, { type: "remember" }>;
 
-export default { StudyOverviewSchema, StudyPageSchema, UIBlockSchema, GridBlockSchema, TimelineBlockSchema, ComparisonBlockSchema, StatBlocksSchema, KeyPointBlockSchema, TextBlockSchema, ExamBlockSchema, RememberBlockSchema }
+export default { StudyOverviewSchema}
