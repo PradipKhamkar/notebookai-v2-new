@@ -1,7 +1,7 @@
 import z from "zod";
 import type { MindmapNode } from "../../types/content.type.js";
 
-const titleSchema = z.string().min(2).describe('A short descriptive title (max 8 words) prefixed with a single relevant emoji. Example: "🧠 Neural Networks Basics"');
+export const titleSchema = z.string().min(2).describe('A short descriptive title (max 8 words) prefixed with a single relevant emoji. Example: "🧠 Neural Networks Basics"');
 
 const createNote = z.object({
         title: titleSchema,
@@ -63,4 +63,4 @@ export const mindmap = z.object({
         data: z.array(MindmapNodeSchema)
 });
 
-export default { createNote, createQuiz, createFlashcards, mindmap }
+export default { createNote, createQuiz, createFlashcards, mindmap, }

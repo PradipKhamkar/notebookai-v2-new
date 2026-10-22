@@ -1,4 +1,21 @@
+import type { StudyOverview, StudyPage } from "../ai/schema/infograph.schema.js";
 import type { BaseDocument } from "./model.type.js";
+
+// Re-export the schema-derived types so consumers import from one place
+export type {
+  StudyOverview,
+  StudyPage,
+  UIBlock,
+  GridBlock,
+  TimelineBlock,
+  ComparisonBlock,
+  StatBlockType,
+  KeyPointBlock,
+  TextBlockType,
+  ExamBlockType,
+  RememberBlockType,
+} from "../ai/schema/infograph.schema.js";
+
 
 // 1. Derive ContentType directly from the union (no duplicate string literals)
 export type ContentType = Content["type"];
@@ -49,9 +66,10 @@ export type NoteContent = BaseContent<"note", NoteContentData>;
 export type FlashcardsContent = BaseContent<"flashcards", FlashcardItem[]>;
 export type QuizContent = BaseContent<"quiz", QuizQuestion[]>;
 export type MindMapContent = BaseContent<"mindmap", MindmapNode[]>;
+export type InfographContent = BaseContent<"infograph", StudyPage[]>;
 
 // 5. Union type
-export type Content = | NoteContent | FlashcardsContent | QuizContent | MindMapContent
+export type Content = | NoteContent | FlashcardsContent | QuizContent | MindMapContent | InfographContent;
 
 interface CreateContentPayload {
         type: ContentType;

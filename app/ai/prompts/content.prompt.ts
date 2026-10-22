@@ -88,5 +88,6 @@ ${titleInstructions}
 
 ${rules}`;
 
+const createInfograph = `You are an expert infograph creator for ${APP_NAME}. Your job is to analyze the provided source and generate a visually engaging, swipeable infograph that summarizes the key concepts, comparisons, timelines, and statistics.`
 
-export default { createNote, createQuiz, createFlashcards, createMindmap }
+export default { createNote, createQuiz, createFlashcards, createMindmap,createInfograph }

@@ -1,5 +1,6 @@
 import contentPrompt from "../ai/prompts/content.prompt.js";
 import contentSchema from "../ai/schema/content.schema.js";
+import infograph from "../ai/schema/infograph.schema.js";
 import aiHelper from "../helper/ai.helper.js";
 import { ContentModel } from "../models/content.model.js";
 import { SourceModel } from "../models/source.model.js";
@@ -35,6 +36,10 @@ const create = async (userId: string, data: CreateContentPayload) => {
                         case "mindmap":
                                 instrucation = contentPrompt.createMindmap;
                                 outputSchema = contentSchema.mindmap;
+                                break;
+                        case "infograph":
+                                instrucation = contentPrompt.createInfograph;
+                                outputSchema = infograph.StudyOverviewSchema
                                 break;
                         default:
                                 throw new Error("Type Not Supported!");
