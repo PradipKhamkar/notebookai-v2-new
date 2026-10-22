@@ -8,9 +8,10 @@ import sourceSchema from "../ai/schema/source.schema.js";
 
 const add = async (userId: string, data: NewSourcePayload) => {
   try {
+    console.log('data for source creation::', data,userId);
     await purchaseHelper.checkUsesAndUpdate(userId as string, 'content');
     const model = aiHelper.getModel('gemini', 'gemini-2.5-flash');
-    console.log('data for source creation::', data,userId);
+    
 
     // genearte summry
     const { output } = await generateText({
