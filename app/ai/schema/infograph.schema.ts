@@ -43,7 +43,7 @@ const StatSchema = z.object({
 
 const TextBlockSchema = z.object({
    type: z.literal("text"),
-   text: z.string().describe("A short explanatory paragraph (2-3 sentences)."),
+   text: z.string().describe("A explanatory paragraph"),
 });
 
 const KeyPointBlockSchema = z.object({
@@ -63,22 +63,22 @@ const RememberBlockSchema = z.object({
 
 const GridBlockSchema = z.object({
    type: z.literal("grid"),
-   cards: z.array(StudyCardSchema).describe("2 to 6 cards. Prefer an even number."),
+   cards: z.array(StudyCardSchema).describe(""),
 });
 
 const TimelineBlockSchema = z.object({
    type: z.literal("timeline"),
-   events: z.array(TimelineEventSchema).describe("3 to 6 events in chronological order."),
+   events: z.array(TimelineEventSchema).describe("chronological order."),
 });
 
 const ComparisonBlockSchema = z.object({
    type: z.literal("comparison"),
-   comparisons: z.array(ComparisonItemSchema).describe("2 to 5 comparison rows."),
+   comparisons: z.array(ComparisonItemSchema).describe("comparison rows."),
 });
 
 const StatBlocksSchema = z.object({
    type: z.literal("stat-blocks"),
-   stats: z.array(StatSchema).describe("2 to 4 statistics."),
+   stats: z.array(StatSchema).describe("statistics."),
 });
 
 export const UIBlockSchema = z.discriminatedUnion("type", [
@@ -96,11 +96,7 @@ const StudyPageSchema = z.object({
    chapter: z.string().describe("Chapter label, e.g. 'Chapter 1: The Space Race'."),
    heading: z.string().describe("Catchy page heading, max ~6 words."),
    intro: z.string().describe("1-2 sentence introduction to this page."),
-   blocks: z
-      .array(UIBlockSchema)
-      .describe(
-         "4 to 6 blocks per page. Mix block types for variety, start with 'text', and end with 'key-point', 'exam' or 'remember'. Do not repeat the same block type more than twice."
-      ),
+   blocks: z.array(UIBlockSchema).describe("Do not repeat the same block type more than twice."),
 });
 
  export const StudyOverviewSchema  = z.object({

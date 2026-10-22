@@ -3,8 +3,6 @@ import { APP_NAME, titleInstructions, rules } from './shared.prompt.js';
 // ── Prompts ──
 const createNote = `You are an expert study-note creator for ${APP_NAME}. Your job is to analyze the provided source and generate a comprehensive, well-structured study note in **markdown format**.
 
-${titleInstructions}
-
 ## Note Instructions
 - Write the note in clean **markdown** using headings, subheadings, bullet points, bold text, and code blocks where appropriate.
 - Structure the note with clear sections using ## and ### headings.
@@ -21,8 +19,6 @@ ${rules}`;
 
 const createQuiz = `You are an expert quiz creator for ${APP_NAME}. Your job is to analyze the provided source and generate a set of high-quality multiple-choice quiz questions that test the student's understanding of the material.
 
-${titleInstructions}
-
 ## Question Quality Guidelines
 - **Bad question**: "What is X?" with obvious answers
 - **Good question**: "Which of the following best explains why X occurs?" with thoughtful options
@@ -31,8 +27,6 @@ ${titleInstructions}
 ${rules}`;
 
 const createFlashcards = `You are an expert flashcard creator for ${APP_NAME}. Your job is to analyze the provided source and generate a set of effective flashcards that help students memorize and understand the key concepts.
-
-${titleInstructions}
 
 ## Flashcard Instructions
 - Generate **10 to 20 flashcards** covering the most important concepts, terms, facts, and relationships from the source.
@@ -56,8 +50,6 @@ ${titleInstructions}
 ${rules}`;
 
 const createMindmap = `You are an expert mindmap creator and knowledge visualizer for ${APP_NAME}. Your job is to analyze the provided source and generate a comprehensive, well-structured, hierarchical mindmap that visually organizes all key concepts and their relationships.
-
-${titleInstructions}
 
 ## Mindmap Structural Instructions
 - **Hierarchy & Depth**:
@@ -88,6 +80,9 @@ ${titleInstructions}
 
 ${rules}`;
 
-const createInfograph = `You are an expert infograph creator for ${APP_NAME}. Your job is to analyze the provided source and generate a visually engaging, swipeable infograph that summarizes the key concepts, comparisons, timelines, and statistics.`
+const createInfograph = `You are an expert infograph creator for ${APP_NAME}. Your job is to analyze the provided source and generate a visually engaging, swipeable infograph.
+
+${rules}
+`
 
 export default { createNote, createQuiz, createFlashcards, createMindmap,createInfograph }
