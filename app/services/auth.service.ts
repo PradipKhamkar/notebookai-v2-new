@@ -33,29 +33,25 @@ const googleLogin = async (authCode: string) => {
                         if (!user) throw new Error('Failed to create user');
                         await UserUsesModel.create({ createdBy: user._id, allowed: { content: usesConstant.freePlan.content, messages: usesConstant.freePlan.messages }, tier: "free", });
                         try {
-                                await Promise.all(
-                                        sourceConstant.examples.map(async (item) => {
-                                                // 1. Create the source
-                                                const newSource = await SourceModel.create({
-                                                        ...item.sources,
+                                for (const item of sourceConstant.examples) {
+                                        // 1. Create the source and wait for it to finish
+                                        const newSource = await SourceModel.create({
+                                                ...item.sources,
+                                                createdBy: user?._id,
+                                                isExample: true,
+                                        });
+
+                                        // 2. Create materials one by one and wait for each
+                                        for (const material of item.material) {
+                                                await ContentModel.create({
+                                                        ...material,
                                                         createdBy: user?._id,
+                                                        sourceId: newSource._id,
                                                         isExample: true,
                                                 });
-
-                                                // 2. Create all materials for this source concurrently
-                                                await Promise.all(
-                                                        item.material.map((material) =>
-                                                                ContentModel.create({
-                                                                        ...material,
-                                                                        createdBy: user?._id,
-                                                                        sourceId: newSource._id,
-                                                                        isExample: true,
-                                                                })
-                                                        )
-                                                );
-                                        })
-                                );
-                                console.log("All example sources and materials created successfully!");
+                                        }
+                                }
+                                console.log("All example sources and materials created sequentially!");
                         } catch (err) {
                                 console.log("Error creating example source", err);
                         }
