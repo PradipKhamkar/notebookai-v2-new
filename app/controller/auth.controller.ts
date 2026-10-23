@@ -22,7 +22,7 @@ const getLoggedUser = async (req: Request, res: Response) => {
 };
 const getNewAccessToken = async (req: Request, res: Response) => {
         try {
-                console.log('get-access token is called!', req.params)
+                // console.log('get-access token is called!', req.params)
                 const results = await authService.getNewAccessToken(req.params.refreshToken as string);
                 apiResponse.success(res, results, "New Access Token Generated Successfully", 200)
         } catch (error: any) {
