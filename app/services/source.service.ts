@@ -9,7 +9,7 @@ import fileService from "./file.service.js";
 
 const add = async (userId: string, data: NewSourcePayload) => {
   try {
-    console.log('data for source new creation::', data, userId);
+    // console.log('data for source new creation::', data, userId);
 
     await purchaseHelper.checkUsesAndUpdate(userId as string, 'content');
 
@@ -48,7 +48,7 @@ const add = async (userId: string, data: NewSourcePayload) => {
 
 const legacyAdd = async (userId: string, data: LegacySourcePayload) => {
   try {
-    console.log('data for legacy source creation::', data, userId);
+    // console.log('data for legacy source creation::', data, userId);
     await purchaseHelper.checkUsesAndUpdate(userId as string, 'content');
 
     const ctx = {
