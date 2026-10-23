@@ -709,264 +709,264 @@ const examples= [
 
         type: "mindmap",
       },
-      // {
-      //   title: "🦠 The Human Immune System",
-      //   data: [
-      //     {
-      //       chapter: "Chapter 1: Your Body Under Attack",
-      //       heading: "An Ever-Present Threat",
-      //       intro:
-      //         "Every second, your body is under attack from billions of bacteria, viruses, and fungi trying to establish a home.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "To defend itself, your body has developed a highly complex immune system. Think of it as a miniature army with specialized units, factories, and communication networks, all working to protect you from harm.",
-      //         },
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "book",
-      //               title: "Bacteria",
-      //               text: "Microscopic organisms that can cause infection and disease.",
-      //             },
-      //             {
-      //               icon: "book",
-      //               title: "Viruses",
-      //               text: "Even smaller agents that hijack host cells to replicate.",
-      //             },
-      //             {
-      //               icon: "book",
-      //               title: "Fungi",
-      //               text: "Organisms that can cause various infections in the body.",
-      //             },
-      //           ],
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 2: The Immune System's Roles",
-      //       heading: "A Multitasking Defense Force",
-      //       intro:
-      //         "The human immune system is incredibly intricate, with numerous cells and proteins performing a wide array of vital tasks to maintain health.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "The immune system has 12 different primary jobs, including communication, eliminating threats, managing inflammation, and remembering past enemies. These tasks are carried out by 21 distinct cell types and 2 protein forces, each with up to four specialized functions, all interacting in a complex network.",
-      //         },
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "message",
-      //               title: "Communicate",
-      //               text: "Cells relay urgent messages across the body.",
-      //             },
-      //             {
-      //               icon: "target",
-      //               title: "Kill Enemies",
-      //               text: "Directly destroy pathogens and infected cells.",
-      //             },
-      //             {
-      //               icon: "activity",
-      //               title: "Activate Cells",
-      //               text: "Trigger other immune cells to join the fight.",
-      //             },
-      //             {
-      //               icon: "brain",
-      //               title: "Remember Enemies",
-      //               text: "Store information for faster future responses.",
-      //             },
-      //             {
-      //               icon: "zap",
-      //               title: "Cause Inflammation",
-      //               text: "Direct resources to infection sites.",
-      //             },
-      //           ],
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 3: An Infection Scenario",
-      //       heading: "Breaching the First Barrier",
-      //       intro:
-      //         "Imagine a simple cut, like from a rusty nail. This event is enough to breach the body's primary physical barrier: your skin.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Bacteria quickly seize the opportunity to enter the wound. They begin to multiply rapidly, doubling their numbers approximately every 20 minutes, using the body's resources. Initially, they might go unnoticed, but once their population reaches a certain threshold, they alter their behavior, actively damaging surrounding tissues.",
-      //         },
-      //         {
-      //           type: "stat-blocks",
-      //           stats: [
-      //             {
-      //               icon: "alert",
-      //               value: "Skin Breach",
-      //               caption: "The initial physical barrier is compromised.",
-      //             },
-      //             {
-      //               icon: "clock",
-      //               value: "20 Minutes",
-      //               caption:
-      //                 "Bacteria can double their numbers within this time.",
-      //             },
-      //             {
-      //               icon: "chart",
-      //               value: "Critical Mass",
-      //               caption:
-      //                 "Bacteria become damaging once a certain population is reached.",
-      //             },
-      //           ],
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: Macrophages: The Guards",
-      //       heading: "First Responders on Duty",
-      //       intro:
-      //         "The first immune cells to respond to an infection are the macrophages, essentially the 'guard cells' of your immune system.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Macrophages are large cells constantly patrolling the body's border regions. They act as immediate defenders, capable of engulfing up to 100 intruders each. Inside, the trapped pathogens are broken down by enzymes and eliminated. Macrophages also initiate inflammation by signaling blood vessels to release fluid, causing mild swelling to aid the fight.",
-      //         },
-      //         {
-      //           type: "stat-blocks",
-      //           stats: [
-      //             {
-      //               icon: "home",
-      //               value: "Guard Cells",
-      //               caption:
-      //                 "Macrophages patrol all border regions of the body.",
-      //             },
-      //             {
-      //               icon: "target",
-      //               value: "100 Intruders",
-      //               caption: "Each macrophage can devour this many pathogens.",
-      //             },
-      //             {
-      //               icon: "zap",
-      //               value: "Inflammation",
-      //               caption:
-      //                 "Caused by macrophages releasing messenger proteins.",
-      //             },
-      //           ],
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 5: Neutrophils: Aggressive Backup",
-      //       heading: "Reinforcements Arrive",
-      //       intro:
-      //         "When macrophages are overwhelmed, they send out distress signals, calling for aggressive reinforcements: the neutrophils.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Neutrophils, guided by messenger proteins, leave their blood vessel patrol routes and rush to the infection site. They fight ferociously, sometimes even killing healthy body cells in their destructive process. They also create barriers to trap and destroy bacteria. To prevent excessive collateral damage, neutrophils are programmed to commit suicide after about five days.",
-      //         },
-      //         {
-      //           type: "key-point",
-      //           text: "Neutrophils are highly aggressive soldiers that can cause collateral damage but are essential for overwhelming initial bacterial invaders, programmed for self-destruction to limit harm.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 6: Dendritic Cells: The Strategists",
-      //       heading: "Making Crucial Decisions",
-      //       intro:
-      //         "If the initial 'guard' and 'soldier' cells aren't enough, the immune system's 'brain,' the dendritic cell, steps in to make strategic decisions.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Dendritic cells react to the initial battle signals, collecting samples from the enemies and presenting their unique parts on their outer layer. They then travel to the nearest lymph node, a journey that takes about a day, to present these samples to waiting T-cells.",
-      //         },
-      //         {
-      //           type: "remember",
-      //           text: "The dendritic cell is like the intelligence officer, collecting enemy intel (antigens) and delivering it to the central command (lymph node) for a strategic response.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 7: T-Cells: Training & Duplication",
-      //       heading: "Activating Specialized Units",
-      //       intro:
-      //         "At the lymph node, T-cells undergo a rigorous training process, preparing them to recognize and fight specific threats.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Helper T-cells are activated when a dendritic cell presents a matching intruder part. This triggers a chain reaction: the Helper T-cell rapidly duplicates thousands of times. Some become Memory T-cells for long-term immunity, others join the battle, and a third group activates powerful 'weapons factories' called B-cells.",
-      //         },
-      //         {
-      //           type: "stat-blocks",
-      //           stats: [
-      //             {
-      //               icon: "school",
-      //               value: "25% Survival",
-      //               caption:
-      //                 "Only a quarter of T-cells survive the training process.",
-      //             },
-      //             {
-      //               icon: "refresh",
-      //               value: "Thousands of Copies",
-      //               caption:
-      //                 "Activated Helper T-cells quickly duplicate to build an army.",
-      //             },
-      //           ],
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 8: B-Cells & Antibodies: The Weapons",
-      //       heading: "Mass Production of Attack Tools",
-      //       intro:
-      //         "With Helper T-cells' guidance, B-cells transform into antibody-producing powerhouses, flooding the body with tailored weapons.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Similar to T-cells, B-cells have a specific setup. When a B-cell encounters a matching Helper T-cell, it rapidly multiplies and starts producing millions of antibodies. These Y-shaped proteins are engineered to bind to the surface of specific intruders, disabling them or making them easier targets for macrophages. Helper T-cells also instruct B-cells on which type of antibody is most effective.",
-      //         },
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "factory",
-      //               title: "B-Cells",
-      //               text: "Weapon factories that produce millions of antibodies.",
-      //             },
-      //             {
-      //               icon: "target",
-      //               title: "Antibodies",
-      //               text: "Proteins designed to bind to and disable specific pathogens.",
-      //             },
-      //             {
-      //               icon: "link",
-      //               title: "Targeting",
-      //               text: "Antibodies mark pathogens for destruction by other immune cells.",
-      //             },
-      //           ],
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 9: Victory and Long-Term Immunity",
-      //       heading: "Clearing the Battlefield",
-      //       intro:
-      //         "The combined efforts of immune cells and antibodies eventually turn the tide, wiping out the infection and leaving behind a lasting memory.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "With billions of antibodies flooding the bloodstream and disabling the intruders, coupled with the aggressive efforts of macrophages and neutrophils, the balance of power shifts. The infection is eventually wiped out. Although millions of body cells may have died, they are quickly replenished.",
-      //         },
-      //         {
-      //           type: "key-point",
-      //           text: "After the infection is cleared, most active immune cells commit suicide to conserve resources, but Memory T-cells and B-cells remain, ready to rapidly respond if the same enemy is ever encountered again, providing long-term immunity.",
-      //         },
-      //       ],
-      //     },
-      //   ],
+      {
+        title: "🦠 The Human Immune System",
+        data: [
+          {
+            chapter: "Chapter 1: Your Body Under Attack",
+            heading: "An Ever-Present Threat",
+            intro:
+              "Every second, your body is under attack from billions of bacteria, viruses, and fungi trying to establish a home.",
+            blocks: [
+              {
+                type: "text",
+                text: "To defend itself, your body has developed a highly complex immune system. Think of it as a miniature army with specialized units, factories, and communication networks, all working to protect you from harm.",
+              },
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "book",
+                    title: "Bacteria",
+                    text: "Microscopic organisms that can cause infection and disease.",
+                  },
+                  {
+                    icon: "book",
+                    title: "Viruses",
+                    text: "Even smaller agents that hijack host cells to replicate.",
+                  },
+                  {
+                    icon: "book",
+                    title: "Fungi",
+                    text: "Organisms that can cause various infections in the body.",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 2: The Immune System's Roles",
+            heading: "A Multitasking Defense Force",
+            intro:
+              "The human immune system is incredibly intricate, with numerous cells and proteins performing a wide array of vital tasks to maintain health.",
+            blocks: [
+              {
+                type: "text",
+                text: "The immune system has 12 different primary jobs, including communication, eliminating threats, managing inflammation, and remembering past enemies. These tasks are carried out by 21 distinct cell types and 2 protein forces, each with up to four specialized functions, all interacting in a complex network.",
+              },
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "message",
+                    title: "Communicate",
+                    text: "Cells relay urgent messages across the body.",
+                  },
+                  {
+                    icon: "target",
+                    title: "Kill Enemies",
+                    text: "Directly destroy pathogens and infected cells.",
+                  },
+                  {
+                    icon: "activity",
+                    title: "Activate Cells",
+                    text: "Trigger other immune cells to join the fight.",
+                  },
+                  {
+                    icon: "brain",
+                    title: "Remember Enemies",
+                    text: "Store information for faster future responses.",
+                  },
+                  {
+                    icon: "zap",
+                    title: "Cause Inflammation",
+                    text: "Direct resources to infection sites.",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 3: An Infection Scenario",
+            heading: "Breaching the First Barrier",
+            intro:
+              "Imagine a simple cut, like from a rusty nail. This event is enough to breach the body's primary physical barrier: your skin.",
+            blocks: [
+              {
+                type: "text",
+                text: "Bacteria quickly seize the opportunity to enter the wound. They begin to multiply rapidly, doubling their numbers approximately every 20 minutes, using the body's resources. Initially, they might go unnoticed, but once their population reaches a certain threshold, they alter their behavior, actively damaging surrounding tissues.",
+              },
+              {
+                type: "stat-blocks",
+                stats: [
+                  {
+                    icon: "alert",
+                    value: "Skin Breach",
+                    caption: "The initial physical barrier is compromised.",
+                  },
+                  {
+                    icon: "clock",
+                    value: "20 Minutes",
+                    caption:
+                      "Bacteria can double their numbers within this time.",
+                  },
+                  {
+                    icon: "chart",
+                    value: "Critical Mass",
+                    caption:
+                      "Bacteria become damaging once a certain population is reached.",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: Macrophages: The Guards",
+            heading: "First Responders on Duty",
+            intro:
+              "The first immune cells to respond to an infection are the macrophages, essentially the 'guard cells' of your immune system.",
+            blocks: [
+              {
+                type: "text",
+                text: "Macrophages are large cells constantly patrolling the body's border regions. They act as immediate defenders, capable of engulfing up to 100 intruders each. Inside, the trapped pathogens are broken down by enzymes and eliminated. Macrophages also initiate inflammation by signaling blood vessels to release fluid, causing mild swelling to aid the fight.",
+              },
+              {
+                type: "stat-blocks",
+                stats: [
+                  {
+                    icon: "home",
+                    value: "Guard Cells",
+                    caption:
+                      "Macrophages patrol all border regions of the body.",
+                  },
+                  {
+                    icon: "target",
+                    value: "100 Intruders",
+                    caption: "Each macrophage can devour this many pathogens.",
+                  },
+                  {
+                    icon: "zap",
+                    value: "Inflammation",
+                    caption:
+                      "Caused by macrophages releasing messenger proteins.",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 5: Neutrophils: Aggressive Backup",
+            heading: "Reinforcements Arrive",
+            intro:
+              "When macrophages are overwhelmed, they send out distress signals, calling for aggressive reinforcements: the neutrophils.",
+            blocks: [
+              {
+                type: "text",
+                text: "Neutrophils, guided by messenger proteins, leave their blood vessel patrol routes and rush to the infection site. They fight ferociously, sometimes even killing healthy body cells in their destructive process. They also create barriers to trap and destroy bacteria. To prevent excessive collateral damage, neutrophils are programmed to commit suicide after about five days.",
+              },
+              {
+                type: "key-point",
+                text: "Neutrophils are highly aggressive soldiers that can cause collateral damage but are essential for overwhelming initial bacterial invaders, programmed for self-destruction to limit harm.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 6: Dendritic Cells: The Strategists",
+            heading: "Making Crucial Decisions",
+            intro:
+              "If the initial 'guard' and 'soldier' cells aren't enough, the immune system's 'brain,' the dendritic cell, steps in to make strategic decisions.",
+            blocks: [
+              {
+                type: "text",
+                text: "Dendritic cells react to the initial battle signals, collecting samples from the enemies and presenting their unique parts on their outer layer. They then travel to the nearest lymph node, a journey that takes about a day, to present these samples to waiting T-cells.",
+              },
+              {
+                type: "remember",
+                text: "The dendritic cell is like the intelligence officer, collecting enemy intel (antigens) and delivering it to the central command (lymph node) for a strategic response.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 7: T-Cells: Training & Duplication",
+            heading: "Activating Specialized Units",
+            intro:
+              "At the lymph node, T-cells undergo a rigorous training process, preparing them to recognize and fight specific threats.",
+            blocks: [
+              {
+                type: "text",
+                text: "Helper T-cells are activated when a dendritic cell presents a matching intruder part. This triggers a chain reaction: the Helper T-cell rapidly duplicates thousands of times. Some become Memory T-cells for long-term immunity, others join the battle, and a third group activates powerful 'weapons factories' called B-cells.",
+              },
+              {
+                type: "stat-blocks",
+                stats: [
+                  {
+                    icon: "school",
+                    value: "25% Survival",
+                    caption:
+                      "Only a quarter of T-cells survive the training process.",
+                  },
+                  {
+                    icon: "refresh",
+                    value: "Thousands of Copies",
+                    caption:
+                      "Activated Helper T-cells quickly duplicate to build an army.",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 8: B-Cells & Antibodies: The Weapons",
+            heading: "Mass Production of Attack Tools",
+            intro:
+              "With Helper T-cells' guidance, B-cells transform into antibody-producing powerhouses, flooding the body with tailored weapons.",
+            blocks: [
+              {
+                type: "text",
+                text: "Similar to T-cells, B-cells have a specific setup. When a B-cell encounters a matching Helper T-cell, it rapidly multiplies and starts producing millions of antibodies. These Y-shaped proteins are engineered to bind to the surface of specific intruders, disabling them or making them easier targets for macrophages. Helper T-cells also instruct B-cells on which type of antibody is most effective.",
+              },
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "factory",
+                    title: "B-Cells",
+                    text: "Weapon factories that produce millions of antibodies.",
+                  },
+                  {
+                    icon: "target",
+                    title: "Antibodies",
+                    text: "Proteins designed to bind to and disable specific pathogens.",
+                  },
+                  {
+                    icon: "link",
+                    title: "Targeting",
+                    text: "Antibodies mark pathogens for destruction by other immune cells.",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 9: Victory and Long-Term Immunity",
+            heading: "Clearing the Battlefield",
+            intro:
+              "The combined efforts of immune cells and antibodies eventually turn the tide, wiping out the infection and leaving behind a lasting memory.",
+            blocks: [
+              {
+                type: "text",
+                text: "With billions of antibodies flooding the bloodstream and disabling the intruders, coupled with the aggressive efforts of macrophages and neutrophils, the balance of power shifts. The infection is eventually wiped out. Although millions of body cells may have died, they are quickly replenished.",
+              },
+              {
+                type: "key-point",
+                text: "After the infection is cleared, most active immune cells commit suicide to conserve resources, but Memory T-cells and B-cells remain, ready to rapidly respond if the same enemy is ever encountered again, providing long-term immunity.",
+              },
+            ],
+          },
+        ],
 
-      //   type: "infograph",
-      // },
+        type: "infograph",
+      },
     ] as Content[],
   },
   {
@@ -1777,708 +1777,708 @@ const examples= [
         ],
         type: "mindmap",
       },
-      // {
-      //   title: "🧬 Nucleus, Cell Division & Cell Cycle",
-      //   data: [
-      //     {
-      //       chapter: "Chapter 4: The Nucleus",
-      //       heading: "Meet the Cell's Control Center",
-      //       intro:
-      //         "The nucleus is the largest and most vital organelle, housing the cell's genetic material and directing its essential activities.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "The nucleus is a membranous organelle that contains chromosomes, serving as the machinery for DNA replication, RNA transcription, and processing. Most cells have one nucleus, but some like liver cells are binucleated, and mature RBCs lack nuclei entirely.",
-      //         },
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "dna",
-      //               title: "DNA Replication",
-      //               text: "The nucleus is the site where DNA is copied, ensuring genetic continuity.",
-      //             },
-      //             {
-      //               icon: "code",
-      //               title: "RNA Transcription",
-      //               text: "Genetic information from DNA is converted into RNA within the nucleus.",
-      //             },
-      //             {
-      //               icon: "settings",
-      //               title: "RNA Processing",
-      //               text: "RNA molecules undergo modifications before exiting the nucleus to perform their functions.",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "key-point",
-      //           text: "The nucleus is the cell's command center, orchestrating DNA and RNA activities essential for cell life.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: The Nucleus",
-      //       heading: "Interphase Nucleus Components",
-      //       intro:
-      //         "During interphase, the nucleus is comprised of four main parts, each playing a crucial role in maintaining nuclear function.",
-      //       blocks: [
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "layers",
-      //               title: "Nuclear Envelope",
-      //               text: "A double membrane enclosing the nucleus, perforated by nuclear pores for communication.",
-      //             },
-      //             {
-      //               icon: "dna",
-      //               title: "Chromatin",
-      //               text: "DNA conjugated with histone proteins, responsible for genetic information storage.",
-      //             },
-      //             {
-      //               icon: "circle",
-      //               title: "Nucleolus",
-      //               text: "A spherical body within the nucleus, vital for ribosomal RNA synthesis.",
-      //             },
-      //             {
-      //               icon: "water",
-      //               title: "Nucleoplasm",
-      //               text: "A colloidal protein solution facilitating metabolite and RNA diffusion.",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "text",
-      //           text: "The nuclear envelope consists of outer and inner membranes separated by a perinuclear cisterna, forming nuclear pores for cytoplasm-nucleus exchange. The outer membrane is continuous with the rough endoplasmic reticulum.",
-      //         },
-      //         {
-      //           type: "exam",
-      //           text: "Nuclear pores are critical for bidirectional transport between the nucleus and cytoplasm, essential for cell function.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: The Nucleus",
-      //       heading: "Chromatin: DNA Packaging",
-      //       intro:
-      //         "Chromatin, a complex of DNA and proteins, undergoes extensive packaging to fit within the nucleus, affecting gene activity.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Chromatin is formed by DNA associated with histone proteins. DNA is extensively packaged into various forms to achieve high compaction within the nucleus.",
-      //         },
-      //         {
-      //           type: "timeline",
-      //           events: [
-      //             {
-      //               date: "Basic Unit",
-      //               title: "Nucleosome Formation",
-      //               description:
-      //                 "DNA double helix wraps twice around eight histone proteins, forming a nucleosome.",
-      //             },
-      //             {
-      //               date: "First Level",
-      //               title: "11nm Fiber (Beads)",
-      //               description:
-      //                 "Repeating nucleosomes with linker DNA form a 'beads on a string' structure.",
-      //             },
-      //             {
-      //               date: "Second Level",
-      //               title: "30nm Fiber",
-      //               description:
-      //                 "The chain of nucleosomes packs together to form a thicker 30nm fiber.",
-      //             },
-      //             {
-      //               date: "Highest Level",
-      //               title: "700nm Chromatid",
-      //               description:
-      //                 "Further packaging leads to the highly compact 700nm chromatid, visible during metaphase.",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "remember",
-      //           text: "The nucleolus is the site of ribosomal RNA (rRNA) transcription and assembly into ribosomal subunits, crucial for protein synthesis.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: The Nucleus",
-      //       heading: "Active vs. Inactive Chromatin",
-      //       intro:
-      //         "Chromatin exists in two functional forms: euchromatin (active) and heterochromatin (inactive), dictating gene expression.",
-      //       blocks: [
-      //         {
-      //           type: "comparison",
-      //           comparisons: [
-      //             {
-      //               feature: "Function",
-      //               itemA: "Active part, transcribed DNA",
-      //               itemB: "Inactive part, condensed DNA",
-      //             },
-      //             {
-      //               feature: "LM Picture",
-      //               itemA: "Lightly stained basophilic areas",
-      //               itemB: "Dense basophilic clumps",
-      //             },
-      //             {
-      //               feature: "EM Picture",
-      //               itemA: "Dispersed filaments/granules",
-      //               itemB: "Condensed filaments/granules",
-      //             },
-      //             {
-      //               feature: "Location",
-      //               itemA: "Scattered in nucleoplasm",
-      //               itemB: "Nucleolar, peripheral, islands",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "text",
-      //           text: "The proportion of euchromatin to heterochromatin varies by cell activity. Active cells, such as dividing cells or those with high synthetic activity, display more euchromatin and prominent nucleoli.",
-      //         },
-      //         {
-      //           type: "key-point",
-      //           text: "Euchromatin is stretched and transcriptionally active, while heterochromatin is condensed and largely inactive but can transform.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: The Cell Cycle",
-      //       heading: "Cell Cycle: Life of a Cell",
-      //       intro:
-      //         "The cell cycle is a fundamental process, representing the ordered sequence of events that divide a cell into two daughter cells.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Most cells undergo repeated cell cycles, each divided into two major events: Interphase and Mitosis. This regulated sequence controls cell growth, function, and division.",
-      //         },
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "clock",
-      //               title: "Interphase",
-      //               text: "A longer period of cell growth, normal function, and genetic material replication (G1, S, G2 phases).",
-      //             },
-      //             {
-      //               icon: "activity",
-      //               title: "Mitosis",
-      //               text: "A shorter period where the parent cell divides into two identical daughter cells (M phase).",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "stat-blocks",
-      //           stats: [
-      //             {
-      //               icon: "dna",
-      //               value: "46",
-      //               caption:
-      //                 "Number of chromosomes in human somatic cells during interphase.",
-      //             },
-      //             {
-      //               icon: "percent",
-      //               value: "2n",
-      //               caption: "Diploid number of chromosomes in somatic cells.",
-      //             },
-      //             {
-      //               icon: "percent",
-      //               value: "1n",
-      //               caption:
-      //                 "Haploid number of chromosomes in gametes (23 chromosomes).",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "exam",
-      //           text: "In interphase, cells grow and replicate DNA. Mitosis is for division, creating genetically identical daughter cells.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: The Cell Cycle",
-      //       heading: "Interphase: Preparation for Division",
-      //       intro:
-      //         "Interphase is the crucial preparatory stage before cell division, divided into three distinct phases where the cell grows and duplicates its DNA.",
-      //       blocks: [
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "plus",
-      //               title: "G1 Phase",
-      //               text: "Cell growth, RNA and protein synthesis, cell attains full size. Centriole duplication begins.",
-      //             },
-      //             {
-      //               icon: "dna",
-      //               title: "S Phase",
-      //               text: "DNA replication occurs, duplicating DNA content. Chromosome number remains 46.",
-      //             },
-      //             {
-      //               icon: "settings-alt",
-      //               title: "G2 Phase",
-      //               text: "Brief period for storing essential proteins and energy for mitosis. Centrosome duplication completes.",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "text",
-      //           text: "Many differentiated cells enter the G0 phase, where they perform specialized functions and do not divide. These quiescent cells can re-enter the cell cycle in response to stimuli.",
-      //         },
-      //         {
-      //           type: "comparison",
-      //           comparisons: [
-      //             {
-      //               feature: "S-Chromosomes",
-      //               itemA: "One DNA molecule",
-      //               itemB: "Interphase",
-      //             },
-      //             {
-      //               feature: "D-Chromosomes",
-      //               itemA: "Two sister chromatids (DNA)",
-      //               itemB: "Mitotic metaphase",
-      //             },
-      //           ],
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: The Cell Cycle",
-      //       heading: "Karyotyping & Cell Cycle Control",
-      //       intro:
-      //         "Karyotyping arranges chromosomes for analysis, while strict checkpoints regulate the cell cycle, ensuring proper division and preventing errors.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Karyotyping is the systematic arrangement of metaphase chromosomes into homologous pairs, used for genetic analysis. Humans have 22 pairs of autosomes and one pair of sex chromosomes (XX for females, XY for males).",
-      //         },
-      //         {
-      //           type: "remember",
-      //           text: "In females, one inactive X chromosome forms a dense chromatin mass called the 'Barr body,' visible in interphase nuclei.",
-      //         },
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "shield-check",
-      //               title: "Restriction Checkpoint (G1)",
-      //               text: "Most important. Sensitive to cell size and extracellular matrix; stops cells without growth stimuli.",
-      //             },
-      //             {
-      //               icon: "alert",
-      //               title: "DNA Damage Checkpoints",
-      //               text: "Occur in G1, S, G2; halt progression until DNA is repaired or apoptosis occurs.",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "key-point",
-      //           text: "Cell cycle checkpoints are essential quality control mechanisms that prevent division until conditions are favorable and DNA is intact.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: Cell Division",
-      //       heading: "Mitosis: Somatic Cell Division",
-      //       intro:
-      //         "Mitosis is the process by which somatic cells divide into two genetically identical daughter cells, crucial for growth, development, and tissue repair.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Mitosis ensures that each daughter cell receives a complete set of 46 chromosomes, identical to the parent cell. It is vital for maintaining organismal integrity and replacing old or damaged cells.",
-      //         },
-      //         {
-      //           type: "timeline",
-      //           events: [
-      //             {
-      //               date: "Prophase",
-      //               title: "Chromatin Condensation",
-      //               description:
-      //                 "Nucleolus disappears, chromatin condenses into d-chromosomes, centrioles migrate, and nuclear envelope breaks down.",
-      //             },
-      //             {
-      //               date: "Metaphase",
-      //               title: "Equatorial Alignment",
-      //               description:
-      //                 "Chromosomes align at the equatorial plate, attached to spindle microtubules via kinetochores.",
-      //             },
-      //             {
-      //               date: "Anaphase",
-      //               title: "Sister Chromatid Separation",
-      //               description:
-      //                 "Centromeres divide, sister chromatids separate and move to opposite poles; cleavage furrow begins to form.",
-      //             },
-      //             {
-      //               date: "Telophase",
-      //               title: "Nuclear Reformation",
-      //               description:
-      //                 "Mitotic spindle disappears, nucleolus reappears, chromosomes uncoil, nuclear envelope reforms, followed by cytokinesis.",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "key-point",
-      //           text: "Mitosis yields two diploid daughter cells, ensuring genetic stability across somatic cell generations.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: Cell Division",
-      //       heading: "Meiosis: Gamete Formation",
-      //       intro:
-      //         "Meiosis is a specialized cell division in germ cells, producing four haploid daughter cells (gametes) with genetic variation.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Meiosis involves two successive divisions without an intervening S phase. It reduces the chromosome number by half, restoring the diploid number upon fertilization.",
-      //         },
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "book",
-      //               title: "First Meiotic Division (Meiosis I)",
-      //               text: "Reductional division, separates homologous chromosomes, resulting in two haploid cells.",
-      //             },
-      //             {
-      //               icon: "book",
-      //               title: "Second Meiotic Division (Meiosis II)",
-      //               text: "Equatorial division, separates sister chromatids, yielding four haploid gametes.",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "timeline",
-      //           events: [
-      //             {
-      //               date: "Prophase I",
-      //               title: "Pairing & Crossing-Over",
-      //               description:
-      //                 "Homologous chromosomes pair (tetrads) and exchange genetic material, increasing variation.",
-      //             },
-      //             {
-      //               date: "Anaphase I",
-      //               title: "Homolog Separation",
-      //               description:
-      //                 "Centromeres don't divide; homologous chromosomes move to opposite poles.",
-      //             },
-      //             {
-      //               date: "Anaphase II",
-      //               title: "Chromatid Separation",
-      //               description:
-      //                 "Centromeres split, and sister chromatids move to opposite poles, similar to mitosis.",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "key-point",
-      //           text: "Crossing-over during Prophase I is unique to meiosis and generates genetic diversity in gametes.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: Cell Proliferation & Differentiation",
-      //       heading: "Cell Proliferation & Specialization",
-      //       intro:
-      //         "Cell proliferation and differentiation are coordinated processes that drive development and maintain tissue homeostasis in multicellular organisms.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Early development features rapid embryonic cell proliferation followed by differentiation into specialized cell types. As cells differentiate, their proliferation rate generally decreases, with many adult cells entering a quiescent G0 stage.",
-      //         },
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "tree",
-      //               title: "Cell Proliferation",
-      //               text: "The process of cell multiplication, balancing with cell death to maintain organ size.",
-      //             },
-      //             {
-      //               icon: "star",
-      //               title: "Cell Differentiation",
-      //               text: "Unspecialized cells acquire specific structural and functional features, becoming specialized.",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "remember",
-      //           text: "Chemotherapeutic drugs target rapidly proliferating cells, including cancer cells, but also destroy healthy labile cells, leading to side effects like bone marrow suppression.",
-      //         },
-      //         {
-      //           type: "exam",
-      //           text: "Many adult cells in G0 can re-enter the cell cycle in response to appropriate stimuli, such as injury.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: Cell Proliferation & Differentiation",
-      //       heading: "Types of Cell Populations",
-      //       intro:
-      //         "Adult somatic cells are categorized into three populations based on their proliferative capacity, reflecting diverse tissue needs and renewal strategies.",
-      //       blocks: [
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "lock",
-      //               title: "Static Cell Population",
-      //               text: "Non-dividing, permanent cells that leave the cell cycle; e.g., cardiac muscle fibers, neurons.",
-      //             },
-      //             {
-      //               icon: "refresh",
-      //               title: "Stable Cell Population",
-      //               text: "Quiescent (G0) cells that usually don't divide but can be stimulated for renewal; e.g., liver, kidney cells.",
-      //             },
-      //             {
-      //               icon: "activity",
-      //               title: "Labile Cell Population",
-      //               text: "Continuously renewing cells with short lifespans, replaced by stem cells; e.g., blood cells, skin epidermis.",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "key-point",
-      //           text: "The balance between cell proliferation and death is critical for maintaining constant cell numbers in adult tissues.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: Cell Proliferation & Differentiation",
-      //       heading: "Stem Cells: Master Cells",
-      //       intro:
-      //         "Stem cells are unique primal cells with the remarkable ability to self-renew and differentiate into various specialized cell types.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Stem cells are the source for all specialized cells that form organs and tissues. They possess two key properties that distinguish them from other cells.",
-      //         },
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "refresh",
-      //               title: "Self-Renewal",
-      //               text: "Ability to undergo numerous cell divisions while maintaining an undifferentiated state.",
-      //             },
-      //             {
-      //               icon: "award",
-      //               title: "Potency",
-      //               text: "Capacity to differentiate into different types of specialized cells.",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "key-point",
-      //           text: "Stem cells' unique properties make them crucial for development, tissue repair, and regenerative medicine.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: Cell Proliferation & Differentiation",
-      //       heading: "Potency of Stem Cells",
-      //       intro:
-      //         "Stem cells are categorized by their differentiation potential, ranging from totipotent (forming a whole organism) to unipotent (forming a single cell type).",
-      //       blocks: [
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "globe",
-      //               title: "Totipotent",
-      //               text: "Can generate all cell types and construct a complete, viable organism (e.g., morula cells).",
-      //             },
-      //             {
-      //               icon: "layers",
-      //               title: "Pluripotent",
-      //               text: "Differentiate into derivatives of all three primary germ layers (e.g., blastocyst inner cell mass).",
-      //             },
-      //             {
-      //               icon: "users",
-      //               title: "Multipotent",
-      //               text: "Produce cells of a closely related family (e.g., hematopoietic stem cells, mesenchymal stem cells).",
-      //             },
-      //             {
-      //               icon: "user",
-      //               title: "Unipotent",
-      //               text: "Produce mature cells of a single type, but retain self-renewal ability (e.g., skin epidermis stem cells).",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "text",
-      //           text: "Potential sources for clinical application include embryonic (pluripotent, ethical restrictions), adult (mostly multipotent), amniotic fluid (multipotent), and umbilical cord blood (HSCs and MSCs) stem cells.",
-      //         },
-      //         {
-      //           type: "exam",
-      //           text: "Pluripotent stem cells are a key focus in research due to their broad differentiation capacity into adult body cell types.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: Cell Death",
-      //       heading: "Cellular Adaptation & Death",
-      //       intro:
-      //         "Cells respond to stress through adaptation, but persistent severe stimuli can lead to irreversible cell death via necrosis or apoptosis.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Normal cells adapt to physiologic demands, but if stress persists beyond a 'point of no return', cell death occurs. This ensures tissue health by removing damaged or unwanted cells.",
-      //         },
-      //         {
-      //           type: "key-point",
-      //           text: "Cell death is a crucial process, either accidental (necrosis) due to injury or programmed (apoptosis) for tissue homeostasis.",
-      //         },
-      //         {
-      //           type: "comparison",
-      //           comparisons: [
-      //             {
-      //               feature: "Cause",
-      //               itemA: "Accidental cell injury (hypoxia, toxins)",
-      //               itemB: "Programmed genetic cascade",
-      //             },
-      //             {
-      //               feature: "Cell Size",
-      //               itemA: "Swelling & rupture",
-      //               itemB: "Shrinkage & blebbing",
-      //             },
-      //             {
-      //               feature: "Membrane",
-      //               itemA: "Damage, loss of integrity",
-      //               itemB: "Intact but altered characteristics",
-      //             },
-      //             {
-      //               feature: "Inflammation",
-      //               itemA: "Extensive in surrounding tissue",
-      //               itemB: "No inflammation",
-      //             },
-      //           ],
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: Cell Death",
-      //       heading: "Necrosis: Accidental Cell Demise",
-      //       intro:
-      //         "Necrosis is a pathological process of accidental cell death triggered by unfavorable factors, leading to cellular breakdown and inflammation.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Necrosis occurs due to factors like hypoxia, radiation, or pathogens. It is characterized by severe cellular damage, making it distinct from programmed cell death.",
-      //         },
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "alert",
-      //               title: "Membrane Damage",
-      //               text: "Severe cell swelling and rupture of the cell membrane occur.",
-      //             },
-      //             {
-      //               icon: "dna",
-      //               title: "Protein Coagulation",
-      //               text: "Cytoplasmic proteins denature and coagulate, and organelles break down.",
-      //             },
-      //             {
-      //               icon: "fire",
-      //               title: "Inflammation",
-      //               text: "Extensive damage to surrounding tissue, leading to an inflammatory response.",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "exam",
-      //           text: "Key features distinguishing necrosis are cell swelling, membrane rupture, and extensive inflammation.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: Cell Death",
-      //       heading: "Apoptosis: Programmed Cell Suicide",
-      //       intro:
-      //         "Apoptosis is a genetically controlled, physiological process of programmed cell death, vital for development and maintaining tissue balance.",
-      //       blocks: [
-      //         {
-      //           type: "text",
-      //           text: "Apoptosis is regulated by genes, leading to mitochondrial dysfunction and a cascade of reactions that culminate in cell death. It occurs in specific conditions to remove unnecessary or damaged cells without causing inflammation.",
-      //         },
-      //         {
-      //           type: "grid",
-      //           cards: [
-      //             {
-      //               icon: "leaf",
-      //               title: "Embryonic Development",
-      //               text: "Removes excess cells during morphogenesis and determines organ size.",
-      //             },
-      //             {
-      //               icon: "timer",
-      //               title: "Adult Tissue Homeostasis",
-      //               text: "Maintains constant cell numbers in proliferating populations, e.g., intestinal crypt epithelium.",
-      //             },
-      //             {
-      //               icon: "settings",
-      //               title: "Cell Cycle Control",
-      //               text: "Eliminates cells with irreparable DNA damage during cell cycle checkpoints.",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "key-point",
-      //           text: "Apoptosis is a clean, regulated process that disposes of cells without triggering an immune response, unlike necrosis.",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       chapter: "Chapter 4: Cell Death",
-      //       heading: "Apoptosis: Morphological Features",
-      //       intro:
-      //         "Apoptosis is characterized by specific morphological changes, including DNA breakdown, cell shrinkage, and the formation of apoptotic bodies.",
-      //       blocks: [
-      //         {
-      //           type: "timeline",
-      //           events: [
-      //             {
-      //               date: "Step 1",
-      //               title: "Chromatin Condensation",
-      //               description:
-      //                 "DNA breaks down, and nuclear chromatin hypercondenses, collapsing against the nuclear periphery.",
-      //             },
-      //             {
-      //               date: "Step 2",
-      //               title: "Cell Shrinkage",
-      //               description:
-      //                 "Cells shrink, and the membrane blebs, losing microvilli and intercellular junctions.",
-      //             },
-      //             {
-      //               date: "Step 3",
-      //               title: "Organelle Clumping",
-      //               description:
-      //                 "Cell organelles remain largely normal but clump within the cytoplasm.",
-      //             },
-      //             {
-      //               date: "Step 4",
-      //               title: "Apoptotic Body Formation",
-      //               description:
-      //                 "The cell fragments into membrane-enclosed apoptotic bodies containing nuclear and organelle fragments.",
-      //             },
-      //             {
-      //               date: "Step 5",
-      //               title: "Phagocytosis",
-      //               description:
-      //                 "Apoptotic bodies are rapidly removed by surrounding phagocytic cells, preventing inflammation.",
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: "remember",
-      //           text: "Unlike necrosis, apoptosis maintains cell membrane integrity throughout the process, ensuring no cellular contents spill to cause inflammation.",
-      //         },
-      //       ],
-      //     },
-      //   ],
-      //   type: "infograph",
-      // },
+      {
+        title: "🧬 Nucleus, Cell Division & Cell Cycle",
+        data: [
+          {
+            chapter: "Chapter 4: The Nucleus",
+            heading: "Meet the Cell's Control Center",
+            intro:
+              "The nucleus is the largest and most vital organelle, housing the cell's genetic material and directing its essential activities.",
+            blocks: [
+              {
+                type: "text",
+                text: "The nucleus is a membranous organelle that contains chromosomes, serving as the machinery for DNA replication, RNA transcription, and processing. Most cells have one nucleus, but some like liver cells are binucleated, and mature RBCs lack nuclei entirely.",
+              },
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "dna",
+                    title: "DNA Replication",
+                    text: "The nucleus is the site where DNA is copied, ensuring genetic continuity.",
+                  },
+                  {
+                    icon: "code",
+                    title: "RNA Transcription",
+                    text: "Genetic information from DNA is converted into RNA within the nucleus.",
+                  },
+                  {
+                    icon: "settings",
+                    title: "RNA Processing",
+                    text: "RNA molecules undergo modifications before exiting the nucleus to perform their functions.",
+                  },
+                ],
+              },
+              {
+                type: "key-point",
+                text: "The nucleus is the cell's command center, orchestrating DNA and RNA activities essential for cell life.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: The Nucleus",
+            heading: "Interphase Nucleus Components",
+            intro:
+              "During interphase, the nucleus is comprised of four main parts, each playing a crucial role in maintaining nuclear function.",
+            blocks: [
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "layers",
+                    title: "Nuclear Envelope",
+                    text: "A double membrane enclosing the nucleus, perforated by nuclear pores for communication.",
+                  },
+                  {
+                    icon: "dna",
+                    title: "Chromatin",
+                    text: "DNA conjugated with histone proteins, responsible for genetic information storage.",
+                  },
+                  {
+                    icon: "circle",
+                    title: "Nucleolus",
+                    text: "A spherical body within the nucleus, vital for ribosomal RNA synthesis.",
+                  },
+                  {
+                    icon: "water",
+                    title: "Nucleoplasm",
+                    text: "A colloidal protein solution facilitating metabolite and RNA diffusion.",
+                  },
+                ],
+              },
+              {
+                type: "text",
+                text: "The nuclear envelope consists of outer and inner membranes separated by a perinuclear cisterna, forming nuclear pores for cytoplasm-nucleus exchange. The outer membrane is continuous with the rough endoplasmic reticulum.",
+              },
+              {
+                type: "exam",
+                text: "Nuclear pores are critical for bidirectional transport between the nucleus and cytoplasm, essential for cell function.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: The Nucleus",
+            heading: "Chromatin: DNA Packaging",
+            intro:
+              "Chromatin, a complex of DNA and proteins, undergoes extensive packaging to fit within the nucleus, affecting gene activity.",
+            blocks: [
+              {
+                type: "text",
+                text: "Chromatin is formed by DNA associated with histone proteins. DNA is extensively packaged into various forms to achieve high compaction within the nucleus.",
+              },
+              {
+                type: "timeline",
+                events: [
+                  {
+                    date: "Basic Unit",
+                    title: "Nucleosome Formation",
+                    description:
+                      "DNA double helix wraps twice around eight histone proteins, forming a nucleosome.",
+                  },
+                  {
+                    date: "First Level",
+                    title: "11nm Fiber (Beads)",
+                    description:
+                      "Repeating nucleosomes with linker DNA form a 'beads on a string' structure.",
+                  },
+                  {
+                    date: "Second Level",
+                    title: "30nm Fiber",
+                    description:
+                      "The chain of nucleosomes packs together to form a thicker 30nm fiber.",
+                  },
+                  {
+                    date: "Highest Level",
+                    title: "700nm Chromatid",
+                    description:
+                      "Further packaging leads to the highly compact 700nm chromatid, visible during metaphase.",
+                  },
+                ],
+              },
+              {
+                type: "remember",
+                text: "The nucleolus is the site of ribosomal RNA (rRNA) transcription and assembly into ribosomal subunits, crucial for protein synthesis.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: The Nucleus",
+            heading: "Active vs. Inactive Chromatin",
+            intro:
+              "Chromatin exists in two functional forms: euchromatin (active) and heterochromatin (inactive), dictating gene expression.",
+            blocks: [
+              {
+                type: "comparison",
+                comparisons: [
+                  {
+                    feature: "Function",
+                    itemA: "Active part, transcribed DNA",
+                    itemB: "Inactive part, condensed DNA",
+                  },
+                  {
+                    feature: "LM Picture",
+                    itemA: "Lightly stained basophilic areas",
+                    itemB: "Dense basophilic clumps",
+                  },
+                  {
+                    feature: "EM Picture",
+                    itemA: "Dispersed filaments/granules",
+                    itemB: "Condensed filaments/granules",
+                  },
+                  {
+                    feature: "Location",
+                    itemA: "Scattered in nucleoplasm",
+                    itemB: "Nucleolar, peripheral, islands",
+                  },
+                ],
+              },
+              {
+                type: "text",
+                text: "The proportion of euchromatin to heterochromatin varies by cell activity. Active cells, such as dividing cells or those with high synthetic activity, display more euchromatin and prominent nucleoli.",
+              },
+              {
+                type: "key-point",
+                text: "Euchromatin is stretched and transcriptionally active, while heterochromatin is condensed and largely inactive but can transform.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: The Cell Cycle",
+            heading: "Cell Cycle: Life of a Cell",
+            intro:
+              "The cell cycle is a fundamental process, representing the ordered sequence of events that divide a cell into two daughter cells.",
+            blocks: [
+              {
+                type: "text",
+                text: "Most cells undergo repeated cell cycles, each divided into two major events: Interphase and Mitosis. This regulated sequence controls cell growth, function, and division.",
+              },
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "clock",
+                    title: "Interphase",
+                    text: "A longer period of cell growth, normal function, and genetic material replication (G1, S, G2 phases).",
+                  },
+                  {
+                    icon: "activity",
+                    title: "Mitosis",
+                    text: "A shorter period where the parent cell divides into two identical daughter cells (M phase).",
+                  },
+                ],
+              },
+              {
+                type: "stat-blocks",
+                stats: [
+                  {
+                    icon: "dna",
+                    value: "46",
+                    caption:
+                      "Number of chromosomes in human somatic cells during interphase.",
+                  },
+                  {
+                    icon: "percent",
+                    value: "2n",
+                    caption: "Diploid number of chromosomes in somatic cells.",
+                  },
+                  {
+                    icon: "percent",
+                    value: "1n",
+                    caption:
+                      "Haploid number of chromosomes in gametes (23 chromosomes).",
+                  },
+                ],
+              },
+              {
+                type: "exam",
+                text: "In interphase, cells grow and replicate DNA. Mitosis is for division, creating genetically identical daughter cells.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: The Cell Cycle",
+            heading: "Interphase: Preparation for Division",
+            intro:
+              "Interphase is the crucial preparatory stage before cell division, divided into three distinct phases where the cell grows and duplicates its DNA.",
+            blocks: [
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "plus",
+                    title: "G1 Phase",
+                    text: "Cell growth, RNA and protein synthesis, cell attains full size. Centriole duplication begins.",
+                  },
+                  {
+                    icon: "dna",
+                    title: "S Phase",
+                    text: "DNA replication occurs, duplicating DNA content. Chromosome number remains 46.",
+                  },
+                  {
+                    icon: "settings-alt",
+                    title: "G2 Phase",
+                    text: "Brief period for storing essential proteins and energy for mitosis. Centrosome duplication completes.",
+                  },
+                ],
+              },
+              {
+                type: "text",
+                text: "Many differentiated cells enter the G0 phase, where they perform specialized functions and do not divide. These quiescent cells can re-enter the cell cycle in response to stimuli.",
+              },
+              {
+                type: "comparison",
+                comparisons: [
+                  {
+                    feature: "S-Chromosomes",
+                    itemA: "One DNA molecule",
+                    itemB: "Interphase",
+                  },
+                  {
+                    feature: "D-Chromosomes",
+                    itemA: "Two sister chromatids (DNA)",
+                    itemB: "Mitotic metaphase",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: The Cell Cycle",
+            heading: "Karyotyping & Cell Cycle Control",
+            intro:
+              "Karyotyping arranges chromosomes for analysis, while strict checkpoints regulate the cell cycle, ensuring proper division and preventing errors.",
+            blocks: [
+              {
+                type: "text",
+                text: "Karyotyping is the systematic arrangement of metaphase chromosomes into homologous pairs, used for genetic analysis. Humans have 22 pairs of autosomes and one pair of sex chromosomes (XX for females, XY for males).",
+              },
+              {
+                type: "remember",
+                text: "In females, one inactive X chromosome forms a dense chromatin mass called the 'Barr body,' visible in interphase nuclei.",
+              },
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "shield-check",
+                    title: "Restriction Checkpoint (G1)",
+                    text: "Most important. Sensitive to cell size and extracellular matrix; stops cells without growth stimuli.",
+                  },
+                  {
+                    icon: "alert",
+                    title: "DNA Damage Checkpoints",
+                    text: "Occur in G1, S, G2; halt progression until DNA is repaired or apoptosis occurs.",
+                  },
+                ],
+              },
+              {
+                type: "key-point",
+                text: "Cell cycle checkpoints are essential quality control mechanisms that prevent division until conditions are favorable and DNA is intact.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: Cell Division",
+            heading: "Mitosis: Somatic Cell Division",
+            intro:
+              "Mitosis is the process by which somatic cells divide into two genetically identical daughter cells, crucial for growth, development, and tissue repair.",
+            blocks: [
+              {
+                type: "text",
+                text: "Mitosis ensures that each daughter cell receives a complete set of 46 chromosomes, identical to the parent cell. It is vital for maintaining organismal integrity and replacing old or damaged cells.",
+              },
+              {
+                type: "timeline",
+                events: [
+                  {
+                    date: "Prophase",
+                    title: "Chromatin Condensation",
+                    description:
+                      "Nucleolus disappears, chromatin condenses into d-chromosomes, centrioles migrate, and nuclear envelope breaks down.",
+                  },
+                  {
+                    date: "Metaphase",
+                    title: "Equatorial Alignment",
+                    description:
+                      "Chromosomes align at the equatorial plate, attached to spindle microtubules via kinetochores.",
+                  },
+                  {
+                    date: "Anaphase",
+                    title: "Sister Chromatid Separation",
+                    description:
+                      "Centromeres divide, sister chromatids separate and move to opposite poles; cleavage furrow begins to form.",
+                  },
+                  {
+                    date: "Telophase",
+                    title: "Nuclear Reformation",
+                    description:
+                      "Mitotic spindle disappears, nucleolus reappears, chromosomes uncoil, nuclear envelope reforms, followed by cytokinesis.",
+                  },
+                ],
+              },
+              {
+                type: "key-point",
+                text: "Mitosis yields two diploid daughter cells, ensuring genetic stability across somatic cell generations.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: Cell Division",
+            heading: "Meiosis: Gamete Formation",
+            intro:
+              "Meiosis is a specialized cell division in germ cells, producing four haploid daughter cells (gametes) with genetic variation.",
+            blocks: [
+              {
+                type: "text",
+                text: "Meiosis involves two successive divisions without an intervening S phase. It reduces the chromosome number by half, restoring the diploid number upon fertilization.",
+              },
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "book",
+                    title: "First Meiotic Division (Meiosis I)",
+                    text: "Reductional division, separates homologous chromosomes, resulting in two haploid cells.",
+                  },
+                  {
+                    icon: "book",
+                    title: "Second Meiotic Division (Meiosis II)",
+                    text: "Equatorial division, separates sister chromatids, yielding four haploid gametes.",
+                  },
+                ],
+              },
+              {
+                type: "timeline",
+                events: [
+                  {
+                    date: "Prophase I",
+                    title: "Pairing & Crossing-Over",
+                    description:
+                      "Homologous chromosomes pair (tetrads) and exchange genetic material, increasing variation.",
+                  },
+                  {
+                    date: "Anaphase I",
+                    title: "Homolog Separation",
+                    description:
+                      "Centromeres don't divide; homologous chromosomes move to opposite poles.",
+                  },
+                  {
+                    date: "Anaphase II",
+                    title: "Chromatid Separation",
+                    description:
+                      "Centromeres split, and sister chromatids move to opposite poles, similar to mitosis.",
+                  },
+                ],
+              },
+              {
+                type: "key-point",
+                text: "Crossing-over during Prophase I is unique to meiosis and generates genetic diversity in gametes.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: Cell Proliferation & Differentiation",
+            heading: "Cell Proliferation & Specialization",
+            intro:
+              "Cell proliferation and differentiation are coordinated processes that drive development and maintain tissue homeostasis in multicellular organisms.",
+            blocks: [
+              {
+                type: "text",
+                text: "Early development features rapid embryonic cell proliferation followed by differentiation into specialized cell types. As cells differentiate, their proliferation rate generally decreases, with many adult cells entering a quiescent G0 stage.",
+              },
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "tree",
+                    title: "Cell Proliferation",
+                    text: "The process of cell multiplication, balancing with cell death to maintain organ size.",
+                  },
+                  {
+                    icon: "star",
+                    title: "Cell Differentiation",
+                    text: "Unspecialized cells acquire specific structural and functional features, becoming specialized.",
+                  },
+                ],
+              },
+              {
+                type: "remember",
+                text: "Chemotherapeutic drugs target rapidly proliferating cells, including cancer cells, but also destroy healthy labile cells, leading to side effects like bone marrow suppression.",
+              },
+              {
+                type: "exam",
+                text: "Many adult cells in G0 can re-enter the cell cycle in response to appropriate stimuli, such as injury.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: Cell Proliferation & Differentiation",
+            heading: "Types of Cell Populations",
+            intro:
+              "Adult somatic cells are categorized into three populations based on their proliferative capacity, reflecting diverse tissue needs and renewal strategies.",
+            blocks: [
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "lock",
+                    title: "Static Cell Population",
+                    text: "Non-dividing, permanent cells that leave the cell cycle; e.g., cardiac muscle fibers, neurons.",
+                  },
+                  {
+                    icon: "refresh",
+                    title: "Stable Cell Population",
+                    text: "Quiescent (G0) cells that usually don't divide but can be stimulated for renewal; e.g., liver, kidney cells.",
+                  },
+                  {
+                    icon: "activity",
+                    title: "Labile Cell Population",
+                    text: "Continuously renewing cells with short lifespans, replaced by stem cells; e.g., blood cells, skin epidermis.",
+                  },
+                ],
+              },
+              {
+                type: "key-point",
+                text: "The balance between cell proliferation and death is critical for maintaining constant cell numbers in adult tissues.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: Cell Proliferation & Differentiation",
+            heading: "Stem Cells: Master Cells",
+            intro:
+              "Stem cells are unique primal cells with the remarkable ability to self-renew and differentiate into various specialized cell types.",
+            blocks: [
+              {
+                type: "text",
+                text: "Stem cells are the source for all specialized cells that form organs and tissues. They possess two key properties that distinguish them from other cells.",
+              },
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "refresh",
+                    title: "Self-Renewal",
+                    text: "Ability to undergo numerous cell divisions while maintaining an undifferentiated state.",
+                  },
+                  {
+                    icon: "award",
+                    title: "Potency",
+                    text: "Capacity to differentiate into different types of specialized cells.",
+                  },
+                ],
+              },
+              {
+                type: "key-point",
+                text: "Stem cells' unique properties make them crucial for development, tissue repair, and regenerative medicine.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: Cell Proliferation & Differentiation",
+            heading: "Potency of Stem Cells",
+            intro:
+              "Stem cells are categorized by their differentiation potential, ranging from totipotent (forming a whole organism) to unipotent (forming a single cell type).",
+            blocks: [
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "globe",
+                    title: "Totipotent",
+                    text: "Can generate all cell types and construct a complete, viable organism (e.g., morula cells).",
+                  },
+                  {
+                    icon: "layers",
+                    title: "Pluripotent",
+                    text: "Differentiate into derivatives of all three primary germ layers (e.g., blastocyst inner cell mass).",
+                  },
+                  {
+                    icon: "users",
+                    title: "Multipotent",
+                    text: "Produce cells of a closely related family (e.g., hematopoietic stem cells, mesenchymal stem cells).",
+                  },
+                  {
+                    icon: "user",
+                    title: "Unipotent",
+                    text: "Produce mature cells of a single type, but retain self-renewal ability (e.g., skin epidermis stem cells).",
+                  },
+                ],
+              },
+              {
+                type: "text",
+                text: "Potential sources for clinical application include embryonic (pluripotent, ethical restrictions), adult (mostly multipotent), amniotic fluid (multipotent), and umbilical cord blood (HSCs and MSCs) stem cells.",
+              },
+              {
+                type: "exam",
+                text: "Pluripotent stem cells are a key focus in research due to their broad differentiation capacity into adult body cell types.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: Cell Death",
+            heading: "Cellular Adaptation & Death",
+            intro:
+              "Cells respond to stress through adaptation, but persistent severe stimuli can lead to irreversible cell death via necrosis or apoptosis.",
+            blocks: [
+              {
+                type: "text",
+                text: "Normal cells adapt to physiologic demands, but if stress persists beyond a 'point of no return', cell death occurs. This ensures tissue health by removing damaged or unwanted cells.",
+              },
+              {
+                type: "key-point",
+                text: "Cell death is a crucial process, either accidental (necrosis) due to injury or programmed (apoptosis) for tissue homeostasis.",
+              },
+              {
+                type: "comparison",
+                comparisons: [
+                  {
+                    feature: "Cause",
+                    itemA: "Accidental cell injury (hypoxia, toxins)",
+                    itemB: "Programmed genetic cascade",
+                  },
+                  {
+                    feature: "Cell Size",
+                    itemA: "Swelling & rupture",
+                    itemB: "Shrinkage & blebbing",
+                  },
+                  {
+                    feature: "Membrane",
+                    itemA: "Damage, loss of integrity",
+                    itemB: "Intact but altered characteristics",
+                  },
+                  {
+                    feature: "Inflammation",
+                    itemA: "Extensive in surrounding tissue",
+                    itemB: "No inflammation",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: Cell Death",
+            heading: "Necrosis: Accidental Cell Demise",
+            intro:
+              "Necrosis is a pathological process of accidental cell death triggered by unfavorable factors, leading to cellular breakdown and inflammation.",
+            blocks: [
+              {
+                type: "text",
+                text: "Necrosis occurs due to factors like hypoxia, radiation, or pathogens. It is characterized by severe cellular damage, making it distinct from programmed cell death.",
+              },
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "alert",
+                    title: "Membrane Damage",
+                    text: "Severe cell swelling and rupture of the cell membrane occur.",
+                  },
+                  {
+                    icon: "dna",
+                    title: "Protein Coagulation",
+                    text: "Cytoplasmic proteins denature and coagulate, and organelles break down.",
+                  },
+                  {
+                    icon: "fire",
+                    title: "Inflammation",
+                    text: "Extensive damage to surrounding tissue, leading to an inflammatory response.",
+                  },
+                ],
+              },
+              {
+                type: "exam",
+                text: "Key features distinguishing necrosis are cell swelling, membrane rupture, and extensive inflammation.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: Cell Death",
+            heading: "Apoptosis: Programmed Cell Suicide",
+            intro:
+              "Apoptosis is a genetically controlled, physiological process of programmed cell death, vital for development and maintaining tissue balance.",
+            blocks: [
+              {
+                type: "text",
+                text: "Apoptosis is regulated by genes, leading to mitochondrial dysfunction and a cascade of reactions that culminate in cell death. It occurs in specific conditions to remove unnecessary or damaged cells without causing inflammation.",
+              },
+              {
+                type: "grid",
+                cards: [
+                  {
+                    icon: "leaf",
+                    title: "Embryonic Development",
+                    text: "Removes excess cells during morphogenesis and determines organ size.",
+                  },
+                  {
+                    icon: "timer",
+                    title: "Adult Tissue Homeostasis",
+                    text: "Maintains constant cell numbers in proliferating populations, e.g., intestinal crypt epithelium.",
+                  },
+                  {
+                    icon: "settings",
+                    title: "Cell Cycle Control",
+                    text: "Eliminates cells with irreparable DNA damage during cell cycle checkpoints.",
+                  },
+                ],
+              },
+              {
+                type: "key-point",
+                text: "Apoptosis is a clean, regulated process that disposes of cells without triggering an immune response, unlike necrosis.",
+              },
+            ],
+          },
+          {
+            chapter: "Chapter 4: Cell Death",
+            heading: "Apoptosis: Morphological Features",
+            intro:
+              "Apoptosis is characterized by specific morphological changes, including DNA breakdown, cell shrinkage, and the formation of apoptotic bodies.",
+            blocks: [
+              {
+                type: "timeline",
+                events: [
+                  {
+                    date: "Step 1",
+                    title: "Chromatin Condensation",
+                    description:
+                      "DNA breaks down, and nuclear chromatin hypercondenses, collapsing against the nuclear periphery.",
+                  },
+                  {
+                    date: "Step 2",
+                    title: "Cell Shrinkage",
+                    description:
+                      "Cells shrink, and the membrane blebs, losing microvilli and intercellular junctions.",
+                  },
+                  {
+                    date: "Step 3",
+                    title: "Organelle Clumping",
+                    description:
+                      "Cell organelles remain largely normal but clump within the cytoplasm.",
+                  },
+                  {
+                    date: "Step 4",
+                    title: "Apoptotic Body Formation",
+                    description:
+                      "The cell fragments into membrane-enclosed apoptotic bodies containing nuclear and organelle fragments.",
+                  },
+                  {
+                    date: "Step 5",
+                    title: "Phagocytosis",
+                    description:
+                      "Apoptotic bodies are rapidly removed by surrounding phagocytic cells, preventing inflammation.",
+                  },
+                ],
+              },
+              {
+                type: "remember",
+                text: "Unlike necrosis, apoptosis maintains cell membrane integrity throughout the process, ensuring no cellular contents spill to cause inflammation.",
+              },
+            ],
+          },
+        ],
+        type: "infograph",
+      },
     ] as Content[],
   },
 ];
