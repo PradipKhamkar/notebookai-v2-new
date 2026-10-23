@@ -13,6 +13,7 @@ interface Source extends BaseDocument {
         summary: string;
         topics: string[];
         suggestedQuestions: string[];
+        isExample?: boolean;
 };
 
 interface NewSourcePayload {

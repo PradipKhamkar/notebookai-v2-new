@@ -42,6 +42,7 @@ interface BaseContent<TType extends string, TData> extends BaseDocument {
         createdBy: string; // use your user id type instead of `any`
         title: string;
         data: TData;
+        isExample?: boolean;
 }
 
 // 4. Discriminated union members
