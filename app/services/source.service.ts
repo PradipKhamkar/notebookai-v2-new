@@ -1,17 +1,19 @@
 import { generateText, Output } from "ai";
 import purchaseHelper from "../helper/purchase.helper.js";
 import { SourceModel } from "../models/source.model.js";
-import type { NewSourcePayload, Source } from "../types/source.type.js";
+import type { LegacySourcePayload, NewSourcePayload, Source } from "../types/source.type.js";
 import aiHelper from "../helper/ai.helper.js";
 import sourcePrompt from "../ai/prompts/source.prompt.js";
 import sourceSchema from "../ai/schema/source.schema.js";
+import fileService from "./file.service.js";
 
 const add = async (userId: string, data: NewSourcePayload) => {
   try {
-    console.log('data for source creation::', data,userId);
+    console.log('data for source new creation::', data, userId);
+
     await purchaseHelper.checkUsesAndUpdate(userId as string, 'content');
+
     const model = aiHelper.getModel('gemini', 'gemini-2.5-flash');
-    
 
     // genearte summry
     const { output } = await generateText({
@@ -43,6 +45,72 @@ const add = async (userId: string, data: NewSourcePayload) => {
     throw error
   }
 };
+
+const legacyAdd = async (userId: string, data: LegacySourcePayload) => {
+  try {
+    console.log('data for legacy source creation::', data, userId);
+    await purchaseHelper.checkUsesAndUpdate(userId as string, 'content');
+
+    const ctx = {
+      uploadId: '',
+      url: data.url,
+      fileType: ""
+    };
+
+    // handle source
+    switch (data.type) {
+      case "youtube":
+        ctx['fileType'] = 'video/mp4';
+        break;
+      case "document":
+      case "text":
+        let dataToUpload: any = {};
+        if (data.type === "document") dataToUpload = data.document;
+        else if (data.type) dataToUpload = {
+          data: Buffer.from(data.text as string, "utf-8"),
+          name: `Text-${Date.now()}.txt`,
+          mimetype: "text/plain",
+        };
+        const { type, uploadId, url } = await fileService.upload(dataToUpload);
+        ctx['uploadId'] = uploadId;
+        ctx['url'] = url;
+        ctx['fileType'] = type;
+        break;
+      default:
+        throw new Error("Source type not support yet!");
+    }
+    const model = aiHelper.getModel('gemini', 'gemini-2.5-flash');
+
+    // genearte summry
+    const { output } = await generateText({
+      model: model,
+      instructions: sourcePrompt.getSummryAndTitleOfPrompt,
+      messages: [{ role: "user", content: [{ type: 'file', data: ctx.url as string, mediaType: ctx.fileType },] }],
+      output: Output.object({
+        schema: sourceSchema.createSummary
+      })
+    });
+
+    // make source
+    const res = await SourceModel.create({
+      title: output.title,
+      metaData: {
+        url: ctx.url,
+        uploadId: ctx.uploadId,
+        fileType: ctx.fileType,
+      },
+      type: data.type,
+      createdBy: userId,
+      summary: output.data.summary,
+      topics: output.data.topics
+    });
+    const source = await SourceModel.findById(res._id).select("-createdBy")
+    return { message: "Source added successfully", source };
+  } catch (error) {
+    throw error
+  }
+};
+
 
 const getUserSources = async (userId: string) => {
   try {
@@ -103,4 +171,4 @@ const updateSource = async (sourceId: string, userId: string, payload: Partial<S
     throw error;
   }
 };
-export default { add, getUserSources, sourceById, deleteSource, updateSource };
+export default { add, getUserSources, sourceById, deleteSource, updateSource,legacyAdd };

@@ -4,7 +4,13 @@ import sourceService from "../services/source.service.js";
 
 const add = async (req: Request, res: Response) => {
         try {
-                const results = await sourceService.add(req.userId as string, req.body);
+                const { type, uploadId } = req.body;
+                let results;
+                if ((type === "document" || type === "text") && !uploadId) {
+                        results = await sourceService.legacyAdd(req.userId as string, { ...req.body, document: req?.files?.document });
+                } else {
+                        results = await sourceService.add(req.userId as string, req.body);
+                }
                 apiResponse.success(res, results, '', 201);
         } catch (error: any) {
                 apiResponse.error(res, error?.message || "Something went wrong")

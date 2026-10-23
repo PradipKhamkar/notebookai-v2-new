@@ -17,10 +17,16 @@ interface Source extends BaseDocument {
 interface NewSourcePayload {
         type: SourceType;
         url?: string;
-        document: UploadedFile;
         text?: string;
         uploadId?: string;
         fileType?: string
 };
 
-export type { Source, NewSourcePayload }
+interface LegacySourcePayload {
+        type: SourceType;
+        url?: string;
+        document: UploadedFile;
+        text?: string
+}
+
+export type { Source, NewSourcePayload,LegacySourcePayload }
