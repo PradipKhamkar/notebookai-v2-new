@@ -7,7 +7,8 @@ const createSummary = z.object({
         title: titleSchema,
         data: z.object({
                 summary: summarySchema,
-                topics: z.array(z.string()).min(1).describe("List of topics covered in the source content").max(10, 'You can only provide 10 topics')
+                topics: z.array(z.string()).min(1).describe("List of important topics covered in the source content").max(10),
+                suggestedQuestions: z.array(z.string()).min(1).describe("List of suggested questions based on the source content which used to show user to start chat").max(6)
         })
 });
 

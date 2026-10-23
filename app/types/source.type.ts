@@ -12,6 +12,7 @@ interface Source extends BaseDocument {
         createdBy: any;
         summary: string;
         topics: string[];
+        suggestedQuestions: string[];
 };
 
 interface NewSourcePayload {

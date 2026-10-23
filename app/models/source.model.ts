@@ -27,6 +27,10 @@ const SourceSchema = new mongoose.Schema<Source>({
         topics: {
                 type: [String],
                 default: []
+        },
+        suggestedQuestions: {
+                type: [String],
+                default: []
         }
 }, { timestamps: true });
 

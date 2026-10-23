@@ -36,7 +36,8 @@ const add = async (userId: string, data: NewSourcePayload) => {
       type: data.type,
       createdBy: userId,
       summary: output.data.summary,
-      topics: output.data.topics
+      topics: output.data.topics,
+      suggestedQuestions: output.data.suggestedQuestions
     });
     const source = await SourceModel.findById(res._id).select("-createdBy")
     return { message: "Source added successfully", source };
