@@ -27,6 +27,7 @@ const rewardAdWatched = async (req: Request, res: Response) => {
                 await purchaseService.rewardAdWatched(source, userMail);
                 apiResponse.success(res, {}, "Reward added successfully")
         } catch (error: any) {
+                console.log('Error In RewardAdWacther::',error);
                 apiResponse.error(res, error?.message, 500)
         }
 }
