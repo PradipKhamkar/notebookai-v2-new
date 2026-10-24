@@ -51,7 +51,7 @@ const googleLogin = async (authCode: string) => {
                                                 });
                                         }
                                 }
-                                console.log("All example sources and materials created sequentially!");
+                                // console.log("All example sources and materials created sequentially!");
                         } catch (err) {
                                 console.log("Error creating example source", err);
                         }
