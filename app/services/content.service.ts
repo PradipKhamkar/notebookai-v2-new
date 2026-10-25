@@ -48,7 +48,7 @@ const create = async (userId: string, data: CreateContentPayload) => {
                 const results: any = await generateText({
                         instructions: instrucation,
                         model: aiHelper.getModel('gemini', 'gemini-2.5-flash'),
-                        messages: [...messages, { role: "user", content: `${message} must be in => ${language} language` }],
+                        messages: [...messages, { role: "user", content: `student want to focus on ==> ${message} in => ${language} language` }],
                         output: Output.object({
                                 schema: outputSchema
                         })

@@ -147,10 +147,10 @@ export const UIBlockSchema = z.discriminatedUnion("type", [
 ]);
 
 const StudyPageSchema = z.object({
-   chapter: z.string().describe("Chapter label, e.g. 'Chapter 1: The Space Race'."),
+   chapter: z.string().describe("Chapter label, e.g. 'The Space Race'."),
    heading: z.string().describe("Catchy page heading, max ~6 words."),
-   intro: z.string().describe("1-2 sentence introduction to this page."),
-   blocks: z.array(UIBlockSchema).describe("Do not repeat the same block type more than twice."),
+   intro: z.string().describe("introduction to this page."),
+   blocks: z.array(UIBlockSchema).describe(""),
 });
 
  export const StudyOverviewSchema  = z.object({

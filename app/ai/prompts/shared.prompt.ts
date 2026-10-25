@@ -12,3 +12,8 @@ export const rules = `## Important
 - All content must be in the language specified by the user.
 - Cover the full breadth of the source, not just the beginning.
 - Every piece of content must be directly based on the source material.`;
+
+export const newRules = `
+## Important
+- never say like according text
+`

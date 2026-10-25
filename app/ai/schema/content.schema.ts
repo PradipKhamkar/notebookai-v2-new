@@ -1,12 +1,12 @@
 import z from "zod";
 import type { MindmapNode } from "../../types/content.type.js";
 
-export const titleSchema = z.string().min(2).describe('A short descriptive title (max 8 words) prefixed with a single relevant emoji. Example: "🧠 Neural Networks Basics"');
+export const titleSchema = z.string().min(2).describe('A short descriptive title of content like quiz about photosynthesis');
 
 const createNote = z.object({
         title: titleSchema,
         data: z.object({
-                note: z.string().min(10).describe('A comprehensive study note in markdown format')
+                note: z.string().min(10).describe('study note in markdown format')
         })
 });
 
