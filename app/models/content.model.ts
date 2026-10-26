@@ -24,7 +24,7 @@ const ContentSchema = new mongoose.Schema<Content>({
         },
         type: {
                 type: String,
-                enum: ["note", "quiz", "flashcards", 'mindmap',"infograph"],
+                enum: ["note", "quiz", "flashcards", 'mindmap',"infograph","lesson"],
                 required: true
         },
         isExample: {

@@ -7,12 +7,12 @@ import { SourceModel } from "../models/source.model.js";
 import type { Content, CreateContentPayload } from "../types/content.type.js";
 import { generateText, Output, type ModelMessage } from 'ai';
 import purchaseHelper from "../helper/purchase.helper.js";
+import lessonSchema from "../ai/schema/lesson.schema.js";
 
 const create = async (userId: string, data: CreateContentPayload) => {
         try {
-
-                await purchaseHelper.checkUsesAndUpdate(userId as string, 'content');
-
+                // await purchaseHelper.checkUsesAndUpdate(userId as string, 'content');
+                console.log('data::', data)
                 const { type, sourceId, instruction: message, language } = data;
                 let instrucation = '', outputSchema: any, messages: ModelMessage[] = [];
 
@@ -40,6 +40,10 @@ const create = async (userId: string, data: CreateContentPayload) => {
                         case "infograph":
                                 instrucation = contentPrompt.createInfograph;
                                 outputSchema = infograph.StudyOverviewSchema
+                                break;
+                        case "lesson":
+                                instrucation = contentPrompt.createLesson;
+                                outputSchema = lessonSchema.LessonSchema
                                 break;
                         default:
                                 throw new Error("Type Not Supported!");

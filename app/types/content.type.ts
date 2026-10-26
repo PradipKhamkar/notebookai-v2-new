@@ -1,4 +1,5 @@
 import type { StudyPage } from "../ai/schema/infograph.schema.js";
+import type {LessonStep, LessonStepSchema } from "../ai/schema/lesson.schema.js";
 import type { BaseDocument } from "./model.type.js";
 
 export type ContentType = Content["type"];
@@ -51,9 +52,10 @@ export type FlashcardsContent = BaseContent<"flashcards", FlashcardItem[]>;
 export type QuizContent = BaseContent<"quiz", QuizQuestion[]>;
 export type MindMapContent = BaseContent<"mindmap", MindmapNode[]>;
 export type InfographContent = BaseContent<"infograph", StudyPage[]>;
+export type LessonContent = BaseContent<"lesson", LessonStep[]>;
 
 // 5. Union type
-export type Content = | NoteContent | FlashcardsContent | QuizContent | MindMapContent | InfographContent;
+export type Content = | NoteContent | FlashcardsContent | QuizContent | MindMapContent | InfographContent | LessonContent;
 
 interface CreateContentPayload {
         type: ContentType;
