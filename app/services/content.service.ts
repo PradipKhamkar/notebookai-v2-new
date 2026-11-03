@@ -11,8 +11,7 @@ import lessonSchema from "../ai/schema/lesson.schema.js";
 
 const create = async (userId: string, data: CreateContentPayload) => {
         try {
-                // await purchaseHelper.checkUsesAndUpdate(userId as string, 'content');
-                console.log('data::', data)
+                await purchaseHelper.checkUsesAndUpdate(userId as string, 'content');
                 const { type, sourceId, instruction: message, language } = data;
                 let instrucation = '', outputSchema: any, messages: ModelMessage[] = [];
 
