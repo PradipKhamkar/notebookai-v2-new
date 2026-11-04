@@ -14,4 +14,13 @@ const upload = async (req: Request, res: Response) => {
         }
 };
 
-export default { upload }
+const addFile = async (req: Request, res: Response) => {
+        try {
+                const results = await fileService.addFile(req.userId as string, req.files?.document as UploadedFile)
+                apiResponse.success(res, results, "File uploaded successfully!", 200)
+        } catch (error: any) {
+                apiResponse.error(res, error?.message || "Something went wrong")
+        }
+};
+
+export default { upload, addFile }

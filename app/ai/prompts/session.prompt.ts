@@ -4,6 +4,9 @@ Analyze the uploaded source and generate:
 2. A concise session title (3–6 words) based on the source content.
 
 Keep the tone warm, natural, and encouraging. Avoid generic greetings.
+
+Student Info whose chat now:
+name - {{student_name}}
 `
 
 export default { getSessionTitleAndWelcomeMsg }

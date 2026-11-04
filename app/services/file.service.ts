@@ -1,6 +1,7 @@
 import type { UploadedFile } from "express-fileupload";
 import { v2 as cloudinary, type UploadApiResponse } from "cloudinary";
 import env from "../config/env.js";
+import FileModel from "../models/file.model.js";
 
 // Configure Cloudinary
 cloudinary.config({
@@ -23,6 +24,7 @@ const upload = async (file: UploadedFile) => {
                         url: result.secure_url,
                         type: file.mimetype,
                         name: file.name,
+                        size: file.size
                 };
         } catch (error) {
                 console.log("error in upload file::", error);
@@ -40,4 +42,24 @@ const remove = async (public_id: string) => {
         }
 };
 
-export default { upload, remove }
+const addFile = async (userId: string, fileData: UploadedFile) => {
+        try {
+                const uploadRes = await upload(fileData);
+                const newFile = await FileModel.create({
+                        mimeType: uploadRes.type,
+                        size: uploadRes.size,
+                        uploadId: uploadRes.uploadId,
+                        url: uploadRes.url,
+                        createdBy: userId
+                });
+                return {
+                        message: 'file upload sucessfully!',
+                        fileId: newFile._id
+                };
+        } catch (error) {
+                throw error
+        }
+};
+
+
+export default { upload, remove, addFile }

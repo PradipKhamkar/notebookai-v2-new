@@ -1,5 +1,6 @@
 import type { UIMessage } from "ai";
 import type { BaseDocument } from "./model.type.js";
+import type { SourceType } from "./new-source.type.js";
 
 interface Session extends BaseDocument {
         _id: string;
@@ -11,13 +12,11 @@ interface Session extends BaseDocument {
 }
 
 interface NewSessionPayload {
-        type: 'file' | "text" | 'youtube',
-        fileInfo?: {
-                uploadId: string,
-                url: string,
-                fileType: string
-        },
+        type: SourceType;
+        fileId?: string;
+        url?: string;
         text?: string
+
 };
 
 export type { Session, NewSessionPayload }

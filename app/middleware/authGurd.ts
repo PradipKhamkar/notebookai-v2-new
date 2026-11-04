@@ -20,10 +20,9 @@ export function authGurd(
                 if (!authHeader || !authHeader.startsWith("Bearer ")) throw new Error('Token Not Found!');
                 const token = authHeader.split(" ")[1];
                 if (!token) throw new Error('Token Not Found!');
-
+                console.log("token::", token)
                 const decoded = verifyAccessToken(token);
                 req.userId = decoded.userId;
-
                 next();
         } catch (err) {
                 if (err instanceof jwt.TokenExpiredError) apiResponse.error(_res, "Access token has expired", 401)
