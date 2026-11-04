@@ -40,6 +40,4 @@ const remove = async (public_id: string) => {
         }
 };
 
-
-
 export default { upload, remove }

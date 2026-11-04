@@ -47,6 +47,7 @@ const add = async (userId: string, data: NewSourcePayload) => {
   }
 };
 
+
 const legacyAdd = async (userId: string, data: LegacySourcePayload) => {
   try {
     // console.log('data for legacy source creation::', data, userId);
@@ -172,4 +173,4 @@ const updateSource = async (sourceId: string, userId: string, payload: Partial<S
     throw error;
   }
 };
-export default { add, getUserSources, sourceById, deleteSource, updateSource,legacyAdd };
+export default { add, getUserSources, sourceById, deleteSource, updateSource, legacyAdd };

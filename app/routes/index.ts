@@ -6,6 +6,7 @@ import contentRoute from "./content.route.js";
 import conversationRoute from "./conversation.route.js";
 import purchaseRoute from "./purchase.route.js";
 import fileRouter from "./file.route.js";
+import sessionRouter from "./session.route.js";
 
 const route = Router();
 
@@ -15,5 +16,6 @@ route.use('/content', authGurd, contentRoute);
 route.use('/conversation', authGurd, conversationRoute);
 route.use('/purchase', purchaseRoute);
 route.use('/file', authGurd, fileRouter);
+route.use('/session', authGurd, sessionRouter);
 
 export default route;
