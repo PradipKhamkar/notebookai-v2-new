@@ -67,4 +67,16 @@ const AddSession = async (userId: string, data: NewSessionPayload) => {
         }
 };
 
-export default { AddSession }
+const getAllSessionByUserId = async (userId: string) => {
+        try {
+                const sessions = await SessionModel.find({ createdBy: userId }).select('-createdBy -__v -messages');
+                return {
+                        message: "session feteched sucessfully!",
+                        sessions: sessions
+                };
+        } catch (error) {
+                console.log('error::', error)
+                throw error
+        }
+}
+export default { AddSession, getAllSessionByUserId }

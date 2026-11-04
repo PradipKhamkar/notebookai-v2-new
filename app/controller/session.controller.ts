@@ -11,4 +11,14 @@ const AddSession = async (req: Request, res: Response) => {
         }
 }
 
-export default { AddSession }
+const getAllSessionByUserId = async (req: Request, res: Response) => {
+        try {
+                const results = await sessionService.getAllSessionByUserId(req.userId as string);
+                return apiResponse.success(res, results, results.message, 201)
+        } catch (error: any) {
+                return apiResponse.error(res, error?.message || "something's wrong.")
+        }
+}
+
+
+export default { AddSession, getAllSessionByUserId }
