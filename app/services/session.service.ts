@@ -1,12 +1,11 @@
 import { convertToModelMessages, generateText, Output, ToolLoopAgent, type UIMessage, type UIMessagePart } from "ai";
-import type { ArtifactToolResponse, AskQuestionPaylod, NewSessionPayload, SessionUIMessage } from "../types/session.type.js";
+import type { ArtifactMsgMetaData, ArtifactToolResponse, AskQuestionPaylod, NewSessionPayload, SessionUIMessage, } from "../types/session.type.js";
 import aiHelper from "../helper/ai.helper.js";
 import sessionPrompt from "../ai/prompts/session.prompt.js";
 import sessionSchems from "../ai/schema/session.schems.js";
 import SessionModel from "../models/session.model.js";
 import FileModel from "../models/file.model.js";
 import { UserModel } from "../models/user.model.js";
-import sourcePrompt from "../ai/prompts/source.prompt.js";
 import tools from "../ai/tools/index.js";
 
 
@@ -132,7 +131,7 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
                                                                         id: output.artifactId,
                                                                         type: output.artifactType,
                                                                         title: output.title,
-                                                                };
+                                                                } as ArtifactMsgMetaData;
                                                         })
                                         );
 

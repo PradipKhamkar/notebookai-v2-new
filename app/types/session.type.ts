@@ -30,8 +30,8 @@ interface AskQuestionPaylod {
 
 
 type ArtifactMsgMetaData = {
-        artifactId?: string;
-        artifactType?: string;
+        id?: string;
+        type?: string;
         title?: string;
 };
 
@@ -47,4 +47,4 @@ type MessageMetaData = {
 
 type SessionUIMessage = UIMessage<MessageMetaData>;
 
-export type { Session, NewSessionPayload, AskQuestionPaylod, SessionUIMessage, ArtifactToolResponse }
+export type { Session, NewSessionPayload, AskQuestionPaylod, SessionUIMessage, ArtifactToolResponse, ArtifactMsgMetaData }
