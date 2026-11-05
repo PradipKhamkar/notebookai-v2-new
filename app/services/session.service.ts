@@ -128,7 +128,7 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
                                                                 // @ts-ignore
                                                                 const output = item.output as ArtifactToolResponse;
                                                                 return {
-                                                                        id: output.artifactId,
+                                                                        _id: output.artifactId,
                                                                         type: output.artifactType,
                                                                         title: output.title,
                                                                 } as ArtifactMsgMetaData;
@@ -213,4 +213,5 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
                 throw error
         }
 };
+
 export default { AddSession, getAllSessionByUserId, getSessionByIdAndUserId, tutor }

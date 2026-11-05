@@ -30,7 +30,7 @@ interface AskQuestionPaylod {
 
 
 type ArtifactMsgMetaData = {
-        id?: string;
+        _id?: string;
         type?: string;
         title?: string;
 };
