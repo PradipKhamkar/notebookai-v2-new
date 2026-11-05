@@ -1,12 +1,12 @@
-import { convertToModelMessages, generateText, Output, type UIMessage } from "ai";
-import type { NewSessionPayload } from "../types/session.type.js";
+import { convertToModelMessages, generateText, Output, ToolLoopAgent, type UIMessage } from "ai";
+import type { AskQuestionPaylod, NewSessionPayload } from "../types/session.type.js";
 import aiHelper from "../helper/ai.helper.js";
 import sessionPrompt from "../ai/prompts/session.prompt.js";
 import sessionSchems from "../ai/schema/session.schems.js";
 import SessionModel from "../models/session.model.js";
-import purchaseHelper from "../helper/purchase.helper.js";
 import FileModel from "../models/file.model.js";
 import { UserModel } from "../models/user.model.js";
+import sourcePrompt from "../ai/prompts/source.prompt.js";
 
 
 const AddSession = async (userId: string, data: NewSessionPayload) => {
@@ -95,4 +95,30 @@ const getSessionByIdAndUserId = async (userId: string, sessionId: string) => {
                 throw error
         }
 }
-export default { AddSession, getAllSessionByUserId, getSessionByIdAndUserId }
+
+const askQuestion = async (userId: string, data: AskQuestionPaylod) => {
+        try {
+                const { message, sessionId } = data;
+
+                const session = await SessionModel.findOne({ createdBy: userId, _id: sessionId });
+                if (!session) throw new Error('Session Not Found!');
+                await SessionModel.updateOne({ _id: sessionId, createdBy: userId }, { $push: { messages: message } });
+
+                const updatedMsg = [...session.messages, message];
+                const modelMsg = await convertToModelMessages(updatedMsg);
+
+                const result = new ToolLoopAgent({
+                        model: aiHelper.getModel('gemini', 'gemini-2.5-flash'),
+                        instructions: sourcePrompt.sourceAssistent,
+                        onStepEnd: async ({ text }) => {
+                                //  await SessionModel.updateOne({ _id: sessionId, createdBy: userId }, { $push: { messages: message } });
+                        },
+                });
+
+                return result.stream({ messages: modelMsg });
+
+        } catch (error) {
+                throw error
+        }
+};
+export default { AddSession, getAllSessionByUserId, getSessionByIdAndUserId, askQuestion }

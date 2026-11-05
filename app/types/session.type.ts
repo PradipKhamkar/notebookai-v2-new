@@ -20,4 +20,10 @@ interface NewSessionPayload {
 
 };
 
-export type { Session, NewSessionPayload }
+
+interface AskQuestionPaylod {
+        message: UIMessage,
+        sessionId: string,
+}
+
+export type { Session, NewSessionPayload, AskQuestionPaylod }
