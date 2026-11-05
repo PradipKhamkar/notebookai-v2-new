@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import apiResponse from "../utils/apiResponse.js";
 import sessionService from "../services/session.service.js";
 import { createUIMessageStream, pipeUIMessageStreamToResponse, toUIMessageStream, type ToolExecutionEndEvent } from "ai";
+import type { ArtifactMsgMetaData } from "../types/session.type.js";
 
 const AddSession = async (req: Request, res: Response) => {
         try {
@@ -38,20 +39,20 @@ const tutor = async (req: Request, res: Response) => {
                 const stream = createUIMessageStream({
                         execute: async ({ writer }) => {
 
-                                const onToolExecutionEnd = async (tool: ToolExecutionEndEvent) => {
-                                        if (tool.toolOutput.toolName.startsWith('create')) {
-                                                writer.write({
-                                                        type: "data-artifact",
-                                                        // @ts-ignore
-                                                        data: tool.toolOutput.output,
-                                                });
-                                        }
+                                const emitArtifact = async (artifact: ArtifactMsgMetaData[]) => {
+                                        writer.write({
+                                                type: "message-metadata",
+                                                messageMetadata: {
+                                                        artifacts: artifact,
+                                                },
+                                        });
+
                                 };
 
                                 const result = await sessionService.tutor(req.userId as string, {
                                         sessionId: req.params.sessionId as string,
                                         message: req.body.messages[req.body.messages.length - 1],
-                                        onToolExecutionEnd: onToolExecutionEnd
+                                        emitArtifact: emitArtifact
                                 });
 
                                 writer.merge(result.toUIMessageStream());

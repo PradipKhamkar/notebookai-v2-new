@@ -113,6 +113,7 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
                         model: aiHelper.getModel('gemini', 'gemini-2.5-flash'),
                         instructions: sessionPrompt.studyTutor,
                         tools: toolsSet,
+
                         onEnd: async ({ steps }) => {
                                 try {
                                         const assistantText = steps.map((step) => step.text).filter(Boolean).join("\n\n");
@@ -135,6 +136,8 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
                                                         })
                                         );
 
+                                        if (artifacts && artifacts?.length > 0) data?.emitArtifact?.(artifacts);
+
                                         const assistantMessage: SessionUIMessage = {
                                                 id: crypto.randomUUID(),
                                                 role: "assistant",
@@ -143,7 +146,6 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
                                                         artifacts: artifacts || []
                                                 },
                                         };
-
 
                                         await SessionModel.updateOne(
                                                 { _id: sessionId, createdBy: userId },

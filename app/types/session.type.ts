@@ -1,4 +1,4 @@
-import type { ToolExecutionEndEvent, UIMessage } from "ai";
+import type { GenerateTextOnEndCallback, ToolExecutionEndEvent, UIMessage } from "ai";
 import type { BaseDocument } from "./model.type.js";
 import type { SourceType } from "./new-source.type.js";
 
@@ -24,7 +24,7 @@ interface NewSessionPayload {
 interface AskQuestionPaylod {
         message: UIMessage,
         sessionId: string,
-        onToolExecutionEnd?: (tool: ToolExecutionEndEvent) => void
+        emitArtifact?: (artifact: ArtifactMsgMetaData[]) => void
 }
 
 
