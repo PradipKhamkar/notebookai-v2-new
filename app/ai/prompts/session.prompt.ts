@@ -1,6 +1,6 @@
 const getSessionTitleAndWelcomeMsg = `
 Analyze the uploaded source and generate:
-1. A short, friendly welcome message (1–2 sentences) that mentions the main topic and invites the student to learn.
+1. A short, friendly welcome message (1–2 sentences) that mentions the main topic and invites the student to learn. Example: '🌱 Hi Aryan!\n\nI\'ve analyzed the lecture on **Photosynthesis.** What would you like to learn today?'
 2. A concise session title (3–6 words) based on the source content.
 
 Keep the tone warm, natural, and encouraging. Avoid generic greetings.

@@ -50,7 +50,8 @@ const addFile = async (userId: string, fileData: UploadedFile) => {
                         size: uploadRes.size,
                         uploadId: uploadRes.uploadId,
                         url: uploadRes.url,
-                        createdBy: userId
+                        createdBy: userId,
+                        name: uploadRes.name,
                 });
                 return {
                         message: 'file upload sucessfully!',

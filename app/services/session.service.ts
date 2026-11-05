@@ -25,7 +25,8 @@ const AddSession = async (userId: string, data: NewSessionPayload) => {
                                 parts: [{
                                         type: "file",
                                         url: fileRes.url as string,
-                                        mediaType: fileRes.mimeType
+                                        mediaType: fileRes.mimeType,
+                                        filename: fileRes.name,
                                 }],
                                 role: "user"
                         })
@@ -55,6 +56,7 @@ const AddSession = async (userId: string, data: NewSessionPayload) => {
                         messages: messages,
                         name: output.title,
                         createdBy: userId,
+                        icon: output.data.icon
                 });
 
                 if (data?.fileId) await FileModel.updateOne({ _id: data.fileId }, { $set: { sessionId: newSession?._id } })
@@ -79,4 +81,18 @@ const getAllSessionByUserId = async (userId: string) => {
                 throw error
         }
 }
-export default { AddSession, getAllSessionByUserId }
+
+const getSessionByIdAndUserId = async (userId: string, sessionId: string) => {
+        try {
+                const session = await SessionModel.findOne({ _id: sessionId, createdBy: userId }).select('-createdBy -__v');
+                if (!session) throw new Error("Session Not Found!")
+                return {
+                        message: "session feteched sucessfully!",
+                        session: session
+                }
+        } catch (error) {
+                console.log('error::', error)
+                throw error
+        }
+}
+export default { AddSession, getAllSessionByUserId, getSessionByIdAndUserId }

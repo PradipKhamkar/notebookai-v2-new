@@ -28,6 +28,10 @@ const fileSchema = new mongoose.Schema<File>({
                 ref: "sessions",
                 default: null
         },
+        name: {
+                type: String,
+                default: "Untitled"
+        }
 
 }, {
         timestamps: true

@@ -7,6 +7,7 @@ interface File extends BaseDocument {
         size: number;
         createdBy: string;
         sessionId?: string;
+        name: string;
 };
 
 
