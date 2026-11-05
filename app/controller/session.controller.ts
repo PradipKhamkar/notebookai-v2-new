@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import apiResponse from "../utils/apiResponse.js";
 import sessionService from "../services/session.service.js";
-import { pipeUIMessageStreamToResponse, toUIMessageStream } from "ai";
+import { createUIMessageStream, pipeUIMessageStreamToResponse, toUIMessageStream, type ToolExecutionEndEvent } from "ai";
 
 const AddSession = async (req: Request, res: Response) => {
         try {
@@ -32,19 +32,38 @@ const getSessionByIdAndUserId = async (req: Request, res: Response) => {
 }
 
 
-const askQuestion = async (req: Request, res: Response) => {
+const tutor = async (req: Request, res: Response) => {
         try {
-                const result = await sessionService.askQuestion(req.userId as string, {
-                        sessionId: req.params.sessionId as string,
-                        message: req.body.messages[req.body.messages.length - 1],
+
+                const stream = createUIMessageStream({
+                        execute: async ({ writer }) => {
+
+                                const onToolExecutionEnd = async (tool: ToolExecutionEndEvent) => {
+                                        if (tool.toolOutput.toolName.startsWith('create')) {
+                                                writer.write({
+                                                        type: "data-artifact",
+                                                        // @ts-ignore
+                                                        data: tool.toolOutput.output,
+                                                });
+                                        }
+                                };
+
+                                const result = await sessionService.tutor(req.userId as string, {
+                                        sessionId: req.params.sessionId as string,
+                                        message: req.body.messages[req.body.messages.length - 1],
+                                        onToolExecutionEnd: onToolExecutionEnd
+                                });
+
+                                writer.merge(result.toUIMessageStream());
+                        },
+                        onEnd: ({ responseMessage, isAborted }) => {
+                                console.log('responseMessage::', responseMessage)
+                        }
                 });
 
                 pipeUIMessageStreamToResponse({
                         response: res,
-                        stream: toUIMessageStream({
-                                stream: result.stream,
-                                onError: () => 'Something went wrong.', // don't leak internals to the client
-                        }),
+                        stream,
                 });
 
         } catch (error: any) {
@@ -57,4 +76,4 @@ const askQuestion = async (req: Request, res: Response) => {
         }
 }
 
-export default { AddSession, getAllSessionByUserId, getSessionByIdAndUserId, askQuestion }
+export default { AddSession, getAllSessionByUserId, getSessionByIdAndUserId, tutor }

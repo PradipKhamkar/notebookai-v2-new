@@ -1,5 +1,5 @@
-import { convertToModelMessages, generateText, Output, ToolLoopAgent, type UIMessage } from "ai";
-import type { AskQuestionPaylod, NewSessionPayload } from "../types/session.type.js";
+import { convertToModelMessages, generateText, Output, ToolLoopAgent, type UIMessage, type UIMessagePart } from "ai";
+import type { ArtifactToolResponse, AskQuestionPaylod, NewSessionPayload, SessionUIMessage } from "../types/session.type.js";
 import aiHelper from "../helper/ai.helper.js";
 import sessionPrompt from "../ai/prompts/session.prompt.js";
 import sessionSchems from "../ai/schema/session.schems.js";
@@ -7,6 +7,7 @@ import SessionModel from "../models/session.model.js";
 import FileModel from "../models/file.model.js";
 import { UserModel } from "../models/user.model.js";
 import sourcePrompt from "../ai/prompts/source.prompt.js";
+import tools from "../ai/tools/index.js";
 
 
 const AddSession = async (userId: string, data: NewSessionPayload) => {
@@ -96,7 +97,7 @@ const getSessionByIdAndUserId = async (userId: string, sessionId: string) => {
         }
 }
 
-const askQuestion = async (userId: string, data: AskQuestionPaylod) => {
+const tutor = async (userId: string, data: AskQuestionPaylod) => {
         try {
                 const { message, sessionId } = data;
 
@@ -107,12 +108,104 @@ const askQuestion = async (userId: string, data: AskQuestionPaylod) => {
                 const updatedMsg = [...session.messages, message];
                 const modelMsg = await convertToModelMessages(updatedMsg);
 
+                // GET TOOL SET
+                const toolsSet = tools.getTool(["create_quiz"])
                 const result = new ToolLoopAgent({
                         model: aiHelper.getModel('gemini', 'gemini-2.5-flash'),
-                        instructions: sourcePrompt.sourceAssistent,
-                        onStepEnd: async ({ text }) => {
-                                //  await SessionModel.updateOne({ _id: sessionId, createdBy: userId }, { $push: { messages: message } });
+                        instructions: sessionPrompt.studyTutor,
+                        tools: toolsSet,
+                        onEnd: async ({ steps }) => {
+                                try {
+                                        const assistantText = steps.map((step) => step.text).filter(Boolean).join("\n\n");
+
+                                        const artifacts = steps.flatMap((step) =>
+                                                step.content
+                                                        .filter(
+                                                                (item) =>
+                                                                        item.type === "tool-result" &&
+                                                                        item.toolName.startsWith("create_")
+                                                        )
+                                                        .map((item) => {
+                                                                // @ts-ignore
+                                                                const output = item.output as ArtifactToolResponse;
+                                                                return {
+                                                                        id: output.artifactId,
+                                                                        type: output.artifactType,
+                                                                        title: output.title,
+                                                                };
+                                                        })
+                                        );
+
+                                        const assistantMessage: SessionUIMessage = {
+                                                id: crypto.randomUUID(),
+                                                role: "assistant",
+                                                parts: [{ type: "text", text: assistantText }],
+                                                metadata: {
+                                                        artifacts: artifacts || []
+                                                },
+                                        };
+
+
+                                        await SessionModel.updateOne(
+                                                { _id: sessionId, createdBy: userId },
+                                                {
+                                                        $push: {
+                                                                messages: assistantMessage,
+                                                        },
+                                                }
+                                        );
+
+
+                                } catch (error) {
+                                }
                         },
+                        // onStepEnd: async ({ text, content }) => {
+                        //         try {
+                        //                 const assistantParts: any[] = [];
+                        //                 for (let item of content) {
+                        //                         switch (item.type) {
+                        //                                 case "text":
+                        //                                         assistantParts.push({
+                        //                                                 type: "text",
+                        //                                                 text,
+                        //                                         });
+                        //                                         break
+                        //                                 case "tool-result":
+                        //                                         if (item.toolName.startsWith('create') && item.output) {
+                        //                                                 assistantParts.push({
+                        //                                                         type: "data-artifact",
+                        //                                                         data: {
+                        //                                                                 // @ts-ignore
+                        //                                                                 artifactId: item.output?.artifactId,
+                        //                                                                 // @ts-ignore
+                        //                                                                 artifactType: item.output?.artifactType,
+                        //                                                                 // @ts-ignore
+                        //                                                                 title: item?.output?.title,
+                        //                                                         },
+                        //                                                 });
+                        //                                         }
+                        //                         }
+                        //                 }
+
+                        //                 // After the complete agent stream finishes:
+                        //                 await SessionModel.updateOne(
+                        //                         { _id: sessionId, createdBy: userId },
+                        //                         {
+                        //                                 $push: {
+                        //                                         messages: {
+                        //                                                 id: crypto.randomUUID(),
+                        //                                                 role: "assistant",
+                        //                                                 parts: assistantParts,
+                        //                                         },
+                        //                                 },
+                        //                         }
+                        //                 )
+                        //         } catch (error) {
+                        //                 console.log('FAILED TO STORE MESSAGE::', error)
+                        //         }
+                        // },
+                        // @ts-ignore
+                        toolsContext: tools.buildToolsContext(toolsSet, { sessionId: sessionId, ownerId: userId })
                 });
 
                 return result.stream({ messages: modelMsg });
@@ -121,4 +214,4 @@ const askQuestion = async (userId: string, data: AskQuestionPaylod) => {
                 throw error
         }
 };
-export default { AddSession, getAllSessionByUserId, getSessionByIdAndUserId, askQuestion }
+export default { AddSession, getAllSessionByUserId, getSessionByIdAndUserId, tutor }

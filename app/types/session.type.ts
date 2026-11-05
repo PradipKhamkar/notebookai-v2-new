@@ -1,4 +1,4 @@
-import type { UIMessage } from "ai";
+import type { ToolExecutionEndEvent, UIMessage } from "ai";
 import type { BaseDocument } from "./model.type.js";
 import type { SourceType } from "./new-source.type.js";
 
@@ -24,6 +24,27 @@ interface NewSessionPayload {
 interface AskQuestionPaylod {
         message: UIMessage,
         sessionId: string,
+        onToolExecutionEnd?: (tool: ToolExecutionEndEvent) => void
 }
 
-export type { Session, NewSessionPayload, AskQuestionPaylod }
+
+
+type ArtifactMsgMetaData = {
+        artifactId?: string;
+        artifactType?: string;
+        title?: string;
+};
+
+type ArtifactToolResponse = {
+        artifactId?: string;
+        artifactType?: string;
+        title?: string;
+};
+
+type MessageMetaData = {
+        artifacts: ArtifactMsgMetaData[]
+}
+
+type SessionUIMessage = UIMessage<MessageMetaData>;
+
+export type { Session, NewSessionPayload, AskQuestionPaylod, SessionUIMessage, ArtifactToolResponse }

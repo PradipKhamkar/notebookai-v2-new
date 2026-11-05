@@ -5,6 +5,6 @@ const router = express.Router();
 router.post('/', sessionController.AddSession);
 router.get('/', sessionController.getAllSessionByUserId);
 router.get('/:sessionId', sessionController.getSessionByIdAndUserId);
-router.post('/ask/:sessionId', sessionController.askQuestion);
+router.post('/tutor/:sessionId', sessionController.tutor);
 
 export default router

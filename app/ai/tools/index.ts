@@ -1,7 +1,10 @@
 import sourceTool from "./source.tool.js";
+import quizTool from "./study-content/quiz.tool.js";
+
 
 const toolRegistry = {
-        search_into_source: sourceTool.searchSource
+        search_into_source: sourceTool.searchSource,
+        create_quiz: quizTool.createQuiz
 }
 
 

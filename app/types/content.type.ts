@@ -1,5 +1,5 @@
 import type { StudyPage } from "../ai/schema/infograph.schema.js";
-import type {LessonStep, LessonStepSchema } from "../ai/schema/lesson.schema.js";
+import type { LessonStep, LessonStepSchema } from "../ai/schema/lesson.schema.js";
 import type { BaseDocument } from "./model.type.js";
 
 export type ContentType = Content["type"];
@@ -39,7 +39,7 @@ export interface MindmapNode {
 
 interface BaseContent<TType extends string, TData> extends BaseDocument {
         type: TType;
-        sourceId: string;
+        sessionId: string;
         createdBy: string; // use your user id type instead of `any`
         title: string;
         data: TData;

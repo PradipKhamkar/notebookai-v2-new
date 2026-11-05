@@ -17,14 +17,14 @@ const ContentSchema = new mongoose.Schema<Content>({
                 required: true
         },
         // @ts-ignore
-        sourceId: {
+        sessionId: {
                 type: mongoose.Types.ObjectId,
-                ref: 'source',
+                ref: 'session',
                 required: true
         },
         type: {
                 type: String,
-                enum: ["note", "quiz", "flashcards", 'mindmap',"infograph","lesson"],
+                enum: ["note", "quiz", "flashcards", 'mindmap', "infograph", "lesson"],
                 required: true
         },
         isExample: {
