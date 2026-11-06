@@ -74,7 +74,6 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
         try {
                 const { message, sessionId } = data;
 
-                console.log('jnj', message)
                 const session = await SessionModel.findOne({ createdBy: userId, _id: sessionId });
                 if (!session) throw new Error('Session Not Found!');
                 await SessionModel.updateOne({ _id: sessionId, createdBy: userId }, { $push: { messages: message } });
@@ -83,7 +82,7 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
                 const modelMsg = await convertToModelMessages(updatedMsg);
 
                 // GET TOOL SET
-                const toolsSet = tools.getTool(["create_quiz"])
+                const toolsSet = tools.getTool(["create_quiz", "create_flashcards", "create_mindmap", "create_note"])
                 const result = new ToolLoopAgent({
                         model: aiHelper.getModel('gemini', 'gemini-2.5-flash'),
                         instructions: sessionPrompt.studyTutor,
