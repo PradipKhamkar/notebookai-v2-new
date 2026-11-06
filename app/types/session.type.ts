@@ -5,7 +5,6 @@ import type { SourceType } from "./new-source.type.js";
 interface Session extends BaseDocument {
         _id: string;
         name: string;
-        icon: string;
         createdBy: string;
         messages: UIMessage[],
         updatedAt: string;
@@ -13,11 +12,8 @@ interface Session extends BaseDocument {
 }
 
 interface NewSessionPayload {
-        type: SourceType;
-        fileId?: string;
-        url?: string;
-        text?: string
-
+        messages: UIMessage[];
+        fileId?: string
 };
 
 

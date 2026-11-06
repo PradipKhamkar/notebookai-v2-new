@@ -13,50 +13,24 @@ const AddSession = async (userId: string, data: NewSessionPayload) => {
         try {
                 const model = aiHelper.getModel('gemini', 'gemini-2.5-flash');
                 const userInfo = await UserModel.findById(userId);
-                if (!userInfo) throw new Error("Invaild User!");
+                if (!userInfo) throw new Error("Invaild User!")
 
-                const messages: UIMessage[] = []
-                if (data?.fileId) {
-                        // fetch file
-                        const fileRes = await FileModel.findById(data.fileId);
-                        if (!fileRes) throw new Error('File Not Found Please Check FileId!');
-                        messages.push({
-                                id: Math.random().toString(),
-                                parts: [{
-                                        type: "file",
-                                        url: fileRes.url as string,
-                                        mediaType: fileRes.mimeType,
-                                        filename: fileRes.name,
-                                }],
-                                role: "user"
-                        })
-                }
-
-                const modelMsg = await convertToModelMessages(messages);
+                const modelMsg = await convertToModelMessages(data.messages);
 
                 // // genearte summry
                 const { output } = await generateText({
                         model: model,
-                        instructions: sessionPrompt.getSessionTitleAndWelcomeMsg.replace('{{student_name}}', userInfo.name),
+                        instructions: sessionPrompt.genearteNameOfSession,
                         messages: modelMsg,
                         output: Output.object({
                                 schema: sessionSchems.createWelcomeMsgAndTitle
                         })
                 });
-                messages.push({
-                        id: Math.random().toString(),
-                        parts: [{
-                                type: "text",
-                                text: output.data.welcomeMsg
-                        }],
-                        role: "assistant"
-                })
 
                 const newSession = await SessionModel.create({
-                        messages: messages,
-                        name: output.title,
+                        messages: [],
+                        name: output.name,
                         createdBy: userId,
-                        icon: output.data.icon
                 });
 
                 if (data?.fileId) await FileModel.updateOne({ _id: data.fileId }, { $set: { sessionId: newSession?._id } })
@@ -100,6 +74,7 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
         try {
                 const { message, sessionId } = data;
 
+                console.log('jnj', message)
                 const session = await SessionModel.findOne({ createdBy: userId, _id: sessionId });
                 if (!session) throw new Error('Session Not Found!');
                 await SessionModel.updateOne({ _id: sessionId, createdBy: userId }, { $push: { messages: message } });
@@ -160,51 +135,6 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
                                 } catch (error) {
                                 }
                         },
-                        // onStepEnd: async ({ text, content }) => {
-                        //         try {
-                        //                 const assistantParts: any[] = [];
-                        //                 for (let item of content) {
-                        //                         switch (item.type) {
-                        //                                 case "text":
-                        //                                         assistantParts.push({
-                        //                                                 type: "text",
-                        //                                                 text,
-                        //                                         });
-                        //                                         break
-                        //                                 case "tool-result":
-                        //                                         if (item.toolName.startsWith('create') && item.output) {
-                        //                                                 assistantParts.push({
-                        //                                                         type: "data-artifact",
-                        //                                                         data: {
-                        //                                                                 // @ts-ignore
-                        //                                                                 artifactId: item.output?.artifactId,
-                        //                                                                 // @ts-ignore
-                        //                                                                 artifactType: item.output?.artifactType,
-                        //                                                                 // @ts-ignore
-                        //                                                                 title: item?.output?.title,
-                        //                                                         },
-                        //                                                 });
-                        //                                         }
-                        //                         }
-                        //                 }
-
-                        //                 // After the complete agent stream finishes:
-                        //                 await SessionModel.updateOne(
-                        //                         { _id: sessionId, createdBy: userId },
-                        //                         {
-                        //                                 $push: {
-                        //                                         messages: {
-                        //                                                 id: crypto.randomUUID(),
-                        //                                                 role: "assistant",
-                        //                                                 parts: assistantParts,
-                        //                                         },
-                        //                                 },
-                        //                         }
-                        //                 )
-                        //         } catch (error) {
-                        //                 console.log('FAILED TO STORE MESSAGE::', error)
-                        //         }
-                        // },
                         // @ts-ignore
                         toolsContext: tools.buildToolsContext(toolsSet, { sessionId: sessionId, ownerId: userId })
                 });
@@ -212,6 +142,7 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
                 return result.stream({ messages: modelMsg });
 
         } catch (error) {
+                console.log('error in ai chat::', error)
                 throw error
         }
 };

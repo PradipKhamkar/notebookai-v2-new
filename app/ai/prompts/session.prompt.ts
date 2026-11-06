@@ -1,13 +1,5 @@
-const getSessionTitleAndWelcomeMsg = `
-Analyze the uploaded source and generate:
-1. A short, friendly welcome message (1–2 sentences) that mentions the main topic and invites the student to learn. Example: '🌱 Hi Aryan!\n\nI\'ve analyzed the lecture on **Photosynthesis.** What would you like to learn today?'
-2. A concise session title (3–6 words) based on the source content.
 
-Keep the tone warm, natural, and encouraging. Avoid generic greetings.
-
-Student Info whose chat now:
-name - {{student_name}}
-`
+const genearteNameOfSession = `Summarize the main topic of the provided message into a short, student-friendly session title (3 to 5 words maximum). Keep the tone warm, clear, and engaging (e.g., "Intro to Algebra" instead of "Math Query 1" or "Conquering Fractions" instead of "Fractions Problem"). Avoid jargon, technical IDs, or punctuation.`
 
 const studyTutor = `You are an intelligent, friendly AI study tutor. Your goal is to help students understand concepts, learn effectively, and remember what they study.
 
@@ -26,4 +18,4 @@ Instructions:
 
 Your ultimate goal is not just to answer questions, but to help students genuinely understand and master what they are learning.`
 
-export default { getSessionTitleAndWelcomeMsg, studyTutor }
+export default { studyTutor, genearteNameOfSession }

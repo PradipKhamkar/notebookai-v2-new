@@ -53,9 +53,10 @@ const addFile = async (userId: string, fileData: UploadedFile) => {
                         createdBy: userId,
                         name: uploadRes.name,
                 });
+                const file = await FileModel.findById(newFile._id).select('-createdBy -__v');
                 return {
                         message: 'file upload sucessfully!',
-                        fileId: newFile._id
+                        file: file
                 };
         } catch (error) {
                 throw error
