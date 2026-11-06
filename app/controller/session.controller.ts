@@ -56,9 +56,6 @@ const tutor = async (req: Request, res: Response) => {
                                 });
 
                                 writer.merge(result.toUIMessageStream());
-                        },
-                        onEnd: ({ responseMessage, isAborted }) => {
-                                console.log('responseMessage::', responseMessage)
                         }
                 });
 
