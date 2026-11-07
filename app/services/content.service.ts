@@ -62,6 +62,7 @@ const create = async (userId: string, data: CreateContentPayload) => {
                         createdBy: userId,
                         title: results.output.title,
                         data: results.output.data,
+                        // @ts-ignore
                         sourceId: sourceId,
                         type: type
                 });
@@ -112,5 +113,23 @@ const deleteContent = async (userId: string, contentId: string) => {
                 throw error
         }
 }
-export default { create, getAllContentByUserId, getContentById, deleteContent }
+
+const getContent = async (userId: string, data: { contentId: string, sessionId: string }) => {
+        try {
+                const filter: any = { createdBy: userId };
+                if (data.contentId) filter["_id"] = data.contentId
+                if (data.sessionId) filter["sessionId"] = data.sessionId;
+
+                const contents = await ContentModel.find(filter).select('-createdBy -__v');
+
+                return {
+                        contents: contents,
+                        message: "content has been fetched successfully!!"
+                }
+        } catch (error) {
+                console.log('CONTENT FETCHED ERROR::', error)
+                throw error
+        }
+}
+export default { create, getAllContentByUserId, getContentById, deleteContent, getContent }
 

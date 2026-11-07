@@ -6,5 +6,6 @@ router.post('/', sessionController.AddSession);
 router.get('/', sessionController.getAllSessionByUserId);
 router.get('/:sessionId', sessionController.getSessionByIdAndUserId);
 router.post('/tutor/:sessionId', sessionController.tutor);
+router.delete('/:sessionId', sessionController.deleteSession);
 
 export default router

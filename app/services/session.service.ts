@@ -87,7 +87,9 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
                         model: aiHelper.getModel('gemini', 'gemini-2.5-flash'),
                         instructions: sessionPrompt.studyTutor,
                         tools: toolsSet,
-
+                        onToolExecutionEnd: ({ toolCall }) => {
+                                console.log('ToolCall::', toolCall.toolName)
+                        },
                         onEnd: async ({ steps }) => {
                                 try {
                                         const assistantText = steps.map((step) => step.text).filter(Boolean).join("\n\n");
@@ -146,4 +148,13 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
         }
 };
 
-export default { AddSession, getAllSessionByUserId, getSessionByIdAndUserId, tutor }
+const deleteSession = async (userId: string, sessionId: string) => {
+        try {
+                const session = await SessionModel.deleteOne({ _id: sessionId, createdBy: userId });
+                if (!session.deletedCount) throw new Error('Session Not Found!');
+                return { message: "Session Deleted Successfully" }
+        } catch (error: any) {
+                throw error
+        }
+}
+export default { AddSession, getAllSessionByUserId, getSessionByIdAndUserId, tutor, deleteSession }

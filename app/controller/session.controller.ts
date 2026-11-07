@@ -32,6 +32,14 @@ const getSessionByIdAndUserId = async (req: Request, res: Response) => {
         }
 }
 
+const deleteSession = async (req: Request, res: Response) => {
+        try {
+                const results = await sessionService.deleteSession(req.userId as string, req.params.sessionId as string);
+                return apiResponse.success(res, results, results.message, 200)
+        } catch (error: any) {
+                return apiResponse.error(res, error?.message || "something's wrong.")
+        }
+}
 
 const tutor = async (req: Request, res: Response) => {
         try {
@@ -74,4 +82,4 @@ const tutor = async (req: Request, res: Response) => {
         }
 }
 
-export default { AddSession, getAllSessionByUserId, getSessionByIdAndUserId, tutor }
+export default { AddSession, getAllSessionByUserId, getSessionByIdAndUserId, tutor, deleteSession }
