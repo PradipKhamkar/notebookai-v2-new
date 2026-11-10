@@ -50,4 +50,13 @@ const getContent = async (req: Request, res: Response) => {
         }
 };
 
-export default { getAllContentByUserId, getContentById, create, deleteContent, getContent }
+const renameContentName = async (req: Request, res: Response) => {
+        try {
+                const results = await contentService.renameContentName(req.userId as string, { contentId: req.params.contentId as string, name: req.body.name })
+                apiResponse.success(res, results, results?.message, 200)
+        } catch (error: any) {
+                apiResponse.error(res, error?.message || "Something went wrong")
+        }
+};
+
+export default { getAllContentByUserId, getContentById, create, deleteContent, getContent, renameContentName }

@@ -113,7 +113,6 @@ const deleteContent = async (userId: string, contentId: string) => {
                 throw error
         }
 }
-
 const getContent = async (userId: string, data: { contentId: string, sessionId: string }) => {
         try {
                 const filter: any = { createdBy: userId };
@@ -131,5 +130,16 @@ const getContent = async (userId: string, data: { contentId: string, sessionId: 
                 throw error
         }
 }
-export default { create, getAllContentByUserId, getContentById, deleteContent, getContent }
+const renameContentName = async (userId: string, data: { contentId: string, name: string }) => {
+        try {
+                const updated = await ContentModel.findOneAndUpdate({ createdBy: userId, _id: data.contentId }, { title: data.name }, { new: true }).select('-createdBy -__v');
+                return {
+                        content: updated,
+                        message: "content update successfully!"
+                }
+        } catch (error) {
+                throw error
+        }
+}
+export default { create, getAllContentByUserId, getContentById, deleteContent, getContent, renameContentName }
 
