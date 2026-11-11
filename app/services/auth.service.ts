@@ -5,9 +5,6 @@ import { UserModel } from "../models/user.model.js";
 import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from "../utils/token.js";
 import { UserUsesModel } from "../models/userUses.model.js";
 import usesConstant from "../constants/uses.constant.js";
-import sourceConstant from "../constants/source.constant.js";
-import { SourceModel } from "../models/source.model.js";
-import { ContentModel } from "../models/content.model.js";
 
 const googleLogin = async (authCode: string) => {
         try {
@@ -32,29 +29,6 @@ const googleLogin = async (authCode: string) => {
                         user = await UserModel.create({ avatar: picture, email: email, name: name });
                         if (!user) throw new Error('Failed to create user');
                         await UserUsesModel.create({ createdBy: user._id, allowed: { content: usesConstant.freePlan.content, messages: usesConstant.freePlan.messages }, tier: "free", });
-                        try {
-                                for (const item of sourceConstant.examples) {
-                                        // 1. Create the source and wait for it to finish
-                                        const newSource = await SourceModel.create({
-                                                ...item.sources,
-                                                createdBy: user?._id,
-                                                isExample: true,
-                                        });
-
-                                        // 2. Create materials one by one and wait for each
-                                        for (const material of item.material) {
-                                                await ContentModel.create({
-                                                        ...material,
-                                                        createdBy: user?._id,
-                                                        sourceId: newSource._id,
-                                                        isExample: true,
-                                                });
-                                        }
-                                }
-                                // console.log("All example sources and materials created sequentially!");
-                        } catch (err) {
-                                console.log("Error creating example source", err);
-                        }
                 }
 
                 const accessToken = generateAccessToken({ userId: user._id });
@@ -70,7 +44,6 @@ const googleLogin = async (authCode: string) => {
                                 avatar: user.avatar,
                                 tier: activeUses?.tier,
                         },
-
                 }
         } catch (error) {
                 console.log('ERROR in google login', error)
