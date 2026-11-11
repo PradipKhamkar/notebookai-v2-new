@@ -7,6 +7,7 @@ import conversationRoute from "./conversation.route.js";
 import purchaseRoute from "./purchase.route.js";
 import fileRouter from "./file.route.js";
 import sessionRouter from "./session.route.js";
+import artifactRoute from "./artifact.route.js";
 
 const route = Router();
 
@@ -17,5 +18,6 @@ route.use('/conversation', authGurd, conversationRoute);
 route.use('/purchase', purchaseRoute);
 route.use('/file', authGurd, fileRouter);
 route.use('/session', authGurd, sessionRouter);
+route.use('/artifact', authGurd, artifactRoute);
 
 export default route;

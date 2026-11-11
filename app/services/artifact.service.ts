@@ -28,18 +28,77 @@ const addArtifact = async (userId: string, sessionId: string, data: CreateArtifa
         }
 };
 
-const getUserArtifact = async (userId: string, sourceId: string) => {
+const getUserArtifact = async (userId: string) => {
         try {
-                // const content = await ContentModel.find({ sourceId: sourceId, createdBy: userId }).select('-createdBy').sort({ createdAt: -1 });
-                // return {
-                //         content: content,
-                //         message: "content has been fetched successfully!!"
-                // };
+                const artifacts = await ArtifactModel.find({ createdBy: userId }).select('-createdBy').sort({ createdAt: -1 });
+                return {
+                        artifacts: artifacts,
+                        message: "Artifact has been fetched successfully!!"
+                };
+        } catch (error) {
+                console.log('ARTIFACT FETCHED ERROR::', error)
+                throw error
+        }
+};
+
+const getArtifacts = async (userId: string, data: { artifactId?: string; sessionId?: string; limit?: number, fetchData?: boolean }
+) => {
+        try {
+                let select = ['-createdBy', '-__v', '-data']
+                const filter: Record<string, any> = { createdBy: userId };
+                if (data?.artifactId) filter._id = data.artifactId;
+                if (data?.sessionId) filter.sessionId = data.sessionId;
+                if (data?.fetchData) select.splice(select.indexOf('-data'), 1);
+
+
+                let query = ArtifactModel.find(filter).select(select).sort({ createdAt: -1 });
+
+                // apply limit only if provided and valid
+                if (data?.limit && data.limit > 0) {
+                        query = query.limit(data.limit);
+                }
+
+                const artifacts = await query;
+
+                return {
+                        artifacts: artifacts,
+                        message: "Artifact has been fetched successfully!!",
+                };
         } catch (error) {
                 console.log('CONTENT FETCHED ERROR::', error)
                 throw error
         }
 };
+
+const deleteArtifact = async (userId: string, artifactId: string) => {
+        try {
+                await ArtifactModel.findOneAndDelete({ _id: artifactId, createdBy: userId });
+                return {
+                        message: "Artifact has been deleted successfully!!",
+                }
+        } catch (error) {
+                console.log('ARTIFACT DELETED ERROR::', error)
+                throw error
+        }
+}
+
+const renameArtifact = async (userId: string, data: { artifactId: string, name: string }) => {
+        try {
+                const updated = await ArtifactModel.findOneAndUpdate({ createdBy: userId, _id: data.artifactId }, { title: data.name }, { new: true }).select('-createdBy -__v');
+                return {
+                        artifact: updated,
+                        message: "Artifact update successfully!"
+                }
+        } catch (error) {
+                throw error
+        }
+};
+
+
 export default {
-        addArtifact
+        addArtifact,
+        getArtifacts,
+        getUserArtifact,
+        deleteArtifact,
+        renameArtifact
 }
