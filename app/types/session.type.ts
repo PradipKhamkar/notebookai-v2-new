@@ -9,6 +9,7 @@ interface Session extends BaseDocument {
         messages: UIMessage[],
         updatedAt: string;
         createdAt: string;
+        icon: string
 }
 
 interface NewSessionPayload {

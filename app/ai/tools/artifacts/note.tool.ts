@@ -2,6 +2,8 @@ import { tool } from "ai";
 import { z } from "zod";
 import { ContentModel } from "../../../models/content.model.js";
 import type { ArtifactToolResponse } from "../../../types/session.type.js";
+import { icon } from "./quiz.tool.js";
+import artifactService from "../../../services/artifact.service.js";
 
 export const titleSchema = z
         .string()
@@ -13,6 +15,7 @@ export const createNoteSchema = z.object({
         data: z.object({
                 note: z.string().min(10).describe("Study note in markdown format"),
         }),
+        icon: icon
 });
 
 export type CreateNote = z.infer<typeof createNoteSchema>;
@@ -29,22 +32,13 @@ export const createNoteTool = tool({
         }),
         execute: async (input, { context }) => {
                 try {
-
-                        const newNote = await ContentModel.create({
-                                type: "note",
-                                sessionId: context.sessionId,
+                        const { aiRespose } = await artifactService.addArtifact(context.ownerId, context.sessionId, {
                                 title: input.title,
-                                createdBy: context.ownerId,
+                                icon: input.icon,
                                 data: input.data,
-                                isExample: false,
+                                type: "note",
                         });
-
-                        return {
-                                artifactId: String(newNote._id),
-                                artifactType: "note",
-                                title: input.title,
-                        } as ArtifactToolResponse;
-
+                        return aiRespose
                 } catch (error) {
                         throw error
                 }

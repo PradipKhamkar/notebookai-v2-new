@@ -16,6 +16,10 @@ const SessionSchema = new mongoose.Schema<Session>({
                 type: String,
                 required: [true, 'Name is required!'],
                 trim: true
+        },
+        icon: {
+                type: String,
+                required: [true, 'icon is required!']
         }
 }, {
         timestamps: true

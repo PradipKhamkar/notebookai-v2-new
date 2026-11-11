@@ -1,16 +1,16 @@
 
+import flashcardTool from "./artifacts/flashcard.tool.js";
+import mindmapTool from "./artifacts/mindmap.tool.js";
+import noteTool from "./artifacts/note.tool.js";
+import quizTool from "./artifacts/quiz.tool.js";
 import sourceTool from "./source.tool.js";
-import flashcardTool from "./study-content/flashcard.tool.js";
-import mindMapTool from "./study-content/mindmap.tool.js";
-import noteTool from "./study-content/note.tool.js";
-import quizTool from "./study-content/quiz.tool.js";
 
 
 const toolRegistry = {
         search_into_source: sourceTool.searchSource,
         create_quiz: quizTool.createQuiz,
         create_flashcards: flashcardTool.createFlashcards,
-        create_mindmap: mindMapTool.createMindmapTool,
+        create_mindmap: mindmapTool.createMindmapTool,
         create_note: noteTool.createNoteTool
 }
 

@@ -58,7 +58,7 @@ const create = async (userId: string, data: CreateContentPayload) => {
                 });
 
                 // save content
-                const newContent = await ContentModel.create({
+                const newContent: any = await ContentModel.create({
                         createdBy: userId,
                         title: results.output.title,
                         data: results.output.data,
@@ -113,23 +113,33 @@ const deleteContent = async (userId: string, contentId: string) => {
                 throw error
         }
 }
-const getContent = async (userId: string, data: { contentId: string, sessionId: string }) => {
+const getContent = async (
+        userId: string,
+        data: { contentId?: string; sessionId?: string; limit?: number }
+) => {
         try {
-                const filter: any = { createdBy: userId };
-                if (data.contentId) filter["_id"] = data.contentId
-                if (data.sessionId) filter["sessionId"] = data.sessionId;
+                const filter: Record<string, any> = { createdBy: userId };
+                if (data?.contentId) filter._id = data.contentId;
+                if (data?.sessionId) filter.sessionId = data.sessionId;
 
-                const contents = await ContentModel.find(filter).select('-createdBy -__v');
+                let query = ContentModel.find(filter).select('-createdBy -__v -data').sort({ createdAt: -1 });
+
+                // apply limit only if provided and valid
+                if (data?.limit && data.limit > 0) {
+                        query = query.limit(data.limit);
+                }
+
+                const contents = await query;
 
                 return {
-                        contents: contents,
-                        message: "content has been fetched successfully!!"
-                }
+                        contents,
+                        message: "content has been fetched successfully!!",
+                };
         } catch (error) {
-                console.log('CONTENT FETCHED ERROR::', error)
-                throw error
+                console.log("CONTENT FETCHED ERROR::", error);
+                throw error;
         }
-}
+};
 const renameContentName = async (userId: string, data: { contentId: string, name: string }) => {
         try {
                 const updated = await ContentModel.findOneAndUpdate({ createdBy: userId, _id: data.contentId }, { title: data.name }, { new: true }).select('-createdBy -__v');
@@ -140,6 +150,5 @@ const renameContentName = async (userId: string, data: { contentId: string, name
         } catch (error) {
                 throw error
         }
-}
+};
 export default { create, getAllContentByUserId, getContentById, deleteContent, getContent, renameContentName }
-

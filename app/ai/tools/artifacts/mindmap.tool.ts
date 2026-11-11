@@ -3,6 +3,8 @@ import { z } from "zod";
 import type { MindmapNode } from "../../../types/content.type.js";
 import { ContentModel } from "../../../models/content.model.js";
 import type { ArtifactToolResponse } from "../../../types/session.type.js";
+import { icon } from "./quiz.tool.js";
+import artifactService from "../../../services/artifact.service.js";
 
 
 export const MindmapNodeSchema: z.ZodType<MindmapNode> = z.lazy(() =>
@@ -22,6 +24,7 @@ export const MindmapNodeSchema: z.ZodType<MindmapNode> = z.lazy(() =>
 export const mindmapSchema = z.object({
         title: z.string().describe("Title of the mindmap"),
         data: z.array(MindmapNodeSchema).describe("Root nodes of the mindmap"),
+        icon: icon
 });
 
 export type Mindmap = z.infer<typeof mindmapSchema>;
@@ -39,21 +42,13 @@ export const createMindmapTool = tool({
         execute: async (input, { context }) => {
                 try {
 
-                        const newFlashcards = await ContentModel.create({
-                                type: "mindmap",
-                                sessionId: context.sessionId,
+                        const { aiRespose } = await artifactService.addArtifact(context.ownerId, context.sessionId, {
                                 title: input.title,
-                                createdBy: context.ownerId,
+                                icon: input.icon,
                                 data: input.data,
-                                isExample: false,
+                                type: "mindmap",
                         });
-
-                        return {
-                                artifactId: String(newFlashcards._id),
-                                artifactType: "mindmap",
-                                title: input.title,
-                        } as ArtifactToolResponse;
-
+                        return aiRespose
                 } catch (error) {
                         throw error
                 }

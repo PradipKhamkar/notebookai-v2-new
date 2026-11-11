@@ -31,6 +31,7 @@ const AddSession = async (userId: string, data: NewSessionPayload) => {
                         messages: [],
                         name: output.name,
                         createdBy: userId,
+                        icon: output.icon
                 });
 
                 if (data?.fileId) await FileModel.updateOne({ _id: data.fileId }, { $set: { sessionId: newSession?._id } })
@@ -45,7 +46,7 @@ const AddSession = async (userId: string, data: NewSessionPayload) => {
 
 const getAllSessionByUserId = async (userId: string) => {
         try {
-                const sessions = await SessionModel.find({ createdBy: userId }).select('-createdBy -__v -messages');
+                const sessions = await SessionModel.find({ createdBy: userId }).select('-createdBy -__v -messages').sort({ createdAt: -1 });
                 return {
                         message: "session feteched sucessfully!",
                         sessions: sessions

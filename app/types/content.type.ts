@@ -44,6 +44,7 @@ interface BaseContent<TType extends string, TData> extends BaseDocument {
         title: string;
         data: TData;
         isExample?: boolean;
+        icon?: string
 }
 
 // 4. Discriminated union members

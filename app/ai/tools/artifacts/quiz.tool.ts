@@ -1,12 +1,9 @@
 import { tool } from "ai";
 import z from "zod";
-import { ContentModel } from "../../../models/content.model.js";
-import type { ArtifactToolResponse } from "../../../types/session.type.js";
+import artifactService from "../../../services/artifact.service.js";
 
-export const titleSchema = z
-        .string()
-        .min(2)
-        .describe("A short descriptive title, e.g. 'Quiz about photosynthesis'");
+export const titleSchema = z.string().min(2).describe("A short descriptive title, e.g. 'Quiz about photosynthesis'");
+export const icon = z.string().min(1).describe("emoji icon for study material");
 
 const optionValue = z.enum(["a", "b", "c", "d"]);
 
@@ -14,6 +11,7 @@ const createQuiz = tool({
         description: "Create a multiple-choice practice quiz. Call this when the user asks for a quiz or practice questions. Each question must have exactly 4 options with values a, b, c, d and exactly one correct answer.",
         inputSchema: z.object({
                 title: titleSchema,
+                icon: icon,
                 data: z
                         .array(
                                 z.object({
@@ -43,20 +41,13 @@ const createQuiz = tool({
                 ownerId: z.string(),
         }),
         execute: async (input, { context }) => {
-                const newQuiz = await ContentModel.create({
+                const { aiRespose } = await artifactService.addArtifact(context.ownerId, context.sessionId, {
+                        title: input.title,
+                        icon: input.icon,
+                        data: input.data,
                         type: "quiz",
-                        sessionId: context.sessionId,
-                        title: input.title,
-                        createdBy: context.ownerId,
-                        data: input.data.map((q) => ({ ...q, type: "multiple-choice" as const })),
-                        isExample: false,
                 });
-
-                return {
-                        artifactId: String(newQuiz._id),
-                        artifactType: "quiz",
-                        title: input.title,
-                } as ArtifactToolResponse;
+                return aiRespose
         },
 });
 

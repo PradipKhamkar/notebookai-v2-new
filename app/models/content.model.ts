@@ -30,6 +30,9 @@ const ContentSchema = new mongoose.Schema<Content>({
         isExample: {
                 type: Boolean,
                 default: false
+        },
+        icon: {
+                type: String,
         }
 }, { timestamps: true });
 

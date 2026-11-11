@@ -1,8 +1,7 @@
 import { tool } from "ai";
 import z from "zod";
-import { ContentModel } from "../../../models/content.model.js";
-import type { ArtifactToolResponse } from "../../../types/session.type.js";
-import { titleSchema } from "./quiz.tool.js"; // adjust to wherever titleSchema lives
+import { icon, titleSchema } from "./quiz.tool.js"; // adjust to wherever titleSchema lives
+import artifactService from "../../../services/artifact.service.js";
 
 export const flashcardsSchema = z.object({
         title: titleSchema,
@@ -25,32 +24,23 @@ export const flashcardsSchema = z.object({
                 .describe(
                         "10 to 20 flashcards covering key concepts, terms, and facts from the source, with a mix of definition, concept, fact, and application cards"
                 ),
+        icon: icon
 });
-
 const createFlashcards = tool({
-        description:
-                "Create a set of flashcards for studying and memorization. Call this when the user asks for flashcards, study cards, or help memorizing a topic. Write 10 to 20 cards, each with a short front, a concise back, and a brief explanation.",
+        description: "Create a set of flashcards for studying and memorization. Call this when the user asks for flashcards, study cards, or help memorizing a topic. Write 10 to 20 cards, each with a short front, a concise back, and a brief explanation.",
         inputSchema: flashcardsSchema,
         contextSchema: z.object({
                 sessionId: z.string(),
                 ownerId: z.string(),
         }),
         execute: async (input, { context }) => {
-                const newFlashcards = await ContentModel.create({
-                        type: "flashcards",
-                        sessionId: context.sessionId,
+                const { aiRespose } = await artifactService.addArtifact(context.ownerId, context.sessionId, {
                         title: input.title,
-                        createdBy: context.ownerId,
+                        icon: input.icon,
                         data: input.data,
-                        isExample: false,
+                        type: "flashcards",
                 });
-
-                return {
-                        artifactId: String(newFlashcards._id),
-                        artifactType: "flashcards",
-                        title: input.title,
-                } as ArtifactToolResponse;
+                return aiRespose
         },
 });
-
 export default { createFlashcards };
