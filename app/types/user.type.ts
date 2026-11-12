@@ -18,6 +18,6 @@ export interface USER_USES extends BaseDocument {
                 messages: AllowedType;
                 sources: AllowedType;
         };
-        tier: "free" | "pro";
+        readonly tier?: "free" | "pro";
         expiryDate: string;
 }

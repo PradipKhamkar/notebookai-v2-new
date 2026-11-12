@@ -7,10 +7,14 @@ import SessionModel from "../models/session.model.js";
 import FileModel from "../models/file.model.js";
 import { UserModel } from "../models/user.model.js";
 import tools from "../ai/tools/index.js";
+import purchaseHelper from "../helper/purchase.helper.js";
 
 
 const AddSession = async (userId: string, data: NewSessionPayload) => {
         try {
+                // check user plan
+                await purchaseHelper.checkUsesAndUpdate(userId);
+
                 const model = aiHelper.getModel('gemini', 'gemini-2.5-flash');
                 const userInfo = await UserModel.findById(userId);
                 if (!userInfo) throw new Error("Invaild User!")
@@ -73,6 +77,10 @@ const getSessionByIdAndUserId = async (userId: string, sessionId: string) => {
 
 const tutor = async (userId: string, data: AskQuestionPaylod) => {
         try {
+                // check user plan
+                await purchaseHelper.checkUsesAndUpdate(userId);
+
+
                 const { message, sessionId } = data;
 
                 const session = await SessionModel.findOne({ createdBy: userId, _id: sessionId });

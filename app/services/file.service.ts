@@ -2,6 +2,7 @@ import type { UploadedFile } from "express-fileupload";
 import { v2 as cloudinary, type UploadApiResponse } from "cloudinary";
 import env from "../config/env.js";
 import FileModel from "../models/file.model.js";
+import purchaseHelper from "../helper/purchase.helper.js";
 
 // Configure Cloudinary
 cloudinary.config({
@@ -44,6 +45,9 @@ const remove = async (public_id: string) => {
 
 const addFile = async (userId: string, fileData: UploadedFile) => {
         try {
+                // check user plan
+                await purchaseHelper.checkUsesAndUpdate(userId);
+
                 const uploadRes = await upload(fileData);
                 const newFile = await FileModel.create({
                         mimeType: uploadRes.type,

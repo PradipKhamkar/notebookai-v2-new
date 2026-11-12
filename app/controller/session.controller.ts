@@ -64,6 +64,10 @@ const tutor = async (req: Request, res: Response) => {
                                 });
 
                                 writer.merge(result.toUIMessageStream());
+                        },
+                        onError: (error) => {
+                                if (error instanceof Error) return error.message;
+                                else return "Something went wrong"
                         }
                 });
 

@@ -31,9 +31,8 @@ const revenuecatEvent = async (event: any) => {
                                         { createdBy: userInfo._id },
                                         {
                                                 $set: {
-                                                        expiryDate: expirationDate.toISOString(),
+                                                        expiryDate: expirationDate,
                                                         createdBy: userInfo._id,
-                                                        tier: "pro",
                                                 }
                                         }
                                 );

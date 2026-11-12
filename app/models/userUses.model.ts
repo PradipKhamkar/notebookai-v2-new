@@ -10,14 +10,21 @@ const UserUsesSchema = new mongoose.Schema<USER_USES>({
                 type: mongoose.Schema.Types.Mixed,
                 required: true
         },
-        tier: {
-                type: String,
-                required: true,
-        },
         expiryDate: {
                 type: String,
                 required: false,
         },
-}, { timestamps: true });
+}, {
+        timestamps: true,
+        toJSON: { virtuals: true },
+        toObject: { virtuals: true }
+});
+
+
+UserUsesSchema.virtual("tier").get(function (this) {
+        if (!this.expiryDate) return;
+        const expiryDate = new Date(this.expiryDate)
+        return expiryDate.getTime() > Date.now() ? "pro" : "free";
+});
 
 export const UserUsesModel = mongoose.model<USER_USES>("UserUses", UserUsesSchema);

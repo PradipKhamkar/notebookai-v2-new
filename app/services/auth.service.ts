@@ -42,8 +42,10 @@ const googleLogin = async (authCode: string) => {
                                 name: user.name,
                                 email: user.email,
                                 avatar: user.avatar,
-                                tier: activeUses?.tier,
                         },
+                        plan: {
+                                tier: activeUses?.tier,
+                        }
                 }
         } catch (error) {
                 console.log('ERROR in google login', error)
@@ -56,10 +58,14 @@ const getLoggedUser = async (userId: string) => {
                 const activeUses = await UserUsesModel.findOne({ createdBy: userId }).select('-createdBy');
                 if (!user) throw new Error('User not found');
                 return {
-                        name: user.name,
-                        email: user.email,
-                        avatar: user.avatar,
-                        tier: activeUses?.tier,
+                        user: {
+                                name: user.name,
+                                email: user.email,
+                                avatar: user.avatar,
+                        },
+                        plan: {
+                                tier: activeUses?.tier,
+                        }
                 }
         } catch (error) {
                 throw error
@@ -75,6 +81,5 @@ const getNewAccessToken = async (refreshToken: string) => {
                 throw error
         }
 };
-
 
 export default { googleLogin, getLoggedUser, getNewAccessToken }
