@@ -15,7 +15,7 @@ const AddSession = async (userId: string, data: NewSessionPayload) => {
                 // check user plan
                 await purchaseHelper.checkUsesAndUpdate(userId);
 
-                const model = aiHelper.getModel('gemini', 'gemini-2.5-flash');
+                const model = aiHelper.getModel('gemini', 'gemini-2.5-flash-lite');
                 const userInfo = await UserModel.findById(userId);
                 if (!userInfo) throw new Error("Invaild User!")
 

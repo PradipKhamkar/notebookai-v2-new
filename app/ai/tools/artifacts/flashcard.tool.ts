@@ -19,15 +19,13 @@ export const flashcardsSchema = z.object({
                                         .describe("1-2 sentences of extra context that helps the learner understand or remember the answer"),
                         })
                 )
-                .min(10)
-                .max(20)
                 .describe(
-                        "10 to 20 flashcards covering key concepts, terms, and facts from the source, with a mix of definition, concept, fact, and application cards"
+                        'flashcards covering key concepts, terms, and facts from the source, with a mix of definition, concept, fact, and application cards'
                 ),
         icon: icon
 });
 const createFlashcards = tool({
-        description: "Create a set of flashcards for studying and memorization. Call this when the user asks for flashcards, study cards, or help memorizing a topic. Write 10 to 20 cards, each with a short front, a concise back, and a brief explanation.",
+        description: "Create a set of flashcards for studying and memorization. Call this when the user asks for flashcards, study cards, or help memorizing a topic. each with a short front, a concise back, and a brief explanation.",
         inputSchema: flashcardsSchema,
         contextSchema: z.object({
                 sessionId: z.string(),
