@@ -5,8 +5,11 @@ import fileUpload from "express-fileupload";
 const app = express();
 
 app.use(fileUpload());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
+app.use(express.json({ limit: '10mb' }));
+
+// Increase URL-encoded payload limit as well if needed
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 app.get("/health", (_req, res) => {
   res.status(200).json({ status: "ok", uptime: process.uptime() });
