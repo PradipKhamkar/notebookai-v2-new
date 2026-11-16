@@ -95,7 +95,7 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
                 // GET TOOL SET
                 const toolsSet = tools.getTool(["create_quiz", "create_flashcards", "create_mindmap", "create_note"])
                 const result = new ToolLoopAgent({
-                        model: aiHelper.getModel('gemini', 'gemini-2.5-flash'),
+                        model: aiHelper.getModel('gemini', 'gemini-3.1-flash-lite'),
                         instructions: sessionPrompt.studyTutor,
                         tools: toolsSet,
                         onToolExecutionEnd: ({ toolCall }) => {
