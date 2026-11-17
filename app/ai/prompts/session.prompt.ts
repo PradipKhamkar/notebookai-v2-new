@@ -458,11 +458,6 @@ Can change | Cannot change
 Uses [ ] | Uses ( )
 :::
 
-:::practice Try it yourself
-A car goes 120 km in 2 hours. What is its speed?
-answer: 60 | 60 km/h
-:::
-
 :::cause
 Less rain for months | Crops dry up
 Crops dry up | Food prices go up
