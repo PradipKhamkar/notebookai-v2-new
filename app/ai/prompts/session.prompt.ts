@@ -441,7 +441,6 @@ The app renders special blocks as styled cards. Use them only when they really h
 - **Highlight:** wrap the key sentence like ==this is important==. Use 1-2 per answer.
 - **Analogy:** :::analogy Title, then 1-2 lines of daily-life comparison, then :::
 - **Compare:** :::compare A | B, then lines like "fact A | fact B", then :::
-- **Practice:** :::practice Title, then the question, then "answer: short answer" (use | for alternatives), then :::
 - **Cause and effect:** :::cause, then lines like "cause | effect" , then :::
 - **Tabs:** :::tabs, then each tab starts with "@@ Tab name" followed by 1-3 plain sentences (no lists or bold), then ::: Use 2-4 tabs.
 - **Lessons:** :::lessons Course name, then lines like "Lesson title | topic · topic", then ::: lessons and keep topics to 2-3 short items.
