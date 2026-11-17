@@ -22,7 +22,7 @@ const UserUsesSchema = new mongoose.Schema<USER_USES>({
 
 
 UserUsesSchema.virtual("tier").get(function (this) {
-        if (!this.expiryDate) return;
+        if (!this.expiryDate) return 'free';
         const expiryDate = new Date(this.expiryDate)
         return expiryDate.getTime() > Date.now() ? "pro" : "free";
 });
