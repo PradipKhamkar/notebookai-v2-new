@@ -80,8 +80,6 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
                 // check user plan
                 await purchaseHelper.checkUsesAndUpdate(userId);
 
-                console.log('modelMsg');
-
                 const { message, sessionId } = data;
 
                 const session = await SessionModel.findOne({ createdBy: userId, _id: sessionId });
@@ -90,7 +88,6 @@ const tutor = async (userId: string, data: AskQuestionPaylod) => {
 
                 const updatedMsg = [...session.messages, message];
                 const modelMsg = await convertToModelMessages(updatedMsg);
-                console.log('modelMsg', JSON.stringify(modelMsg));
 
                 // GET TOOL SET
                 const toolsSet = tools.getTool(["create_quiz", "create_flashcards", "create_mindmap", "create_note"])
